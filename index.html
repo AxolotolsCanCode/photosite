@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#080808">
+<title>Cameron Schindler — Visual Storyteller</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Bebas+Neue&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET & VARIABLES ───────────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+:root {
+  --black: #080808;
+  --white: #f0ece4;
+  --cream: #e8e0d0;
+  --gold:  #c9a84c;
+  --gold-soft: rgba(201,168,76,0.12);
+  --gold-border: rgba(201,168,76,0.22);
+  --gray: #1e1e1e;
+  --gray2: #2a2a2a;
+  --red: #c0392b;
+  --text-muted: rgba(240,236,228,0.45);
+  --radius: 2px;
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Cormorant Garamond', serif;
+  overflow-x: hidden;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ─── LOADER ──────────────────────────────────────────────────── */
+#loader {
+  position: fixed; inset: 0;
+  background: var(--black);
+  z-index: 10000;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 20px;
+}
+#loader-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 10vw, 7rem);
+  letter-spacing: 0.3em;
+  overflow: hidden;
+}
+#loader-text span {
+  display: inline-block;
+  transform: translateY(100%);
+  animation: slideUp 0.8s cubic-bezier(0.76,0,0.24,1) forwards;
+}
+#loader-text span:nth-child(1){animation-delay:.1s}
+#loader-text span:nth-child(2){animation-delay:.2s}
+#loader-text span:nth-child(3){animation-delay:.3s}
+#loader-text span:nth-child(4){animation-delay:.4s}
+#loader-text span:nth-child(5){animation-delay:.5s}
+#loader-text span:nth-child(6){animation-delay:.6s}
+#loader-text span:nth-child(7){animation-delay:.7s}
+
+#loader-bar {
+  width: 160px; height: 1px;
+  background: var(--gray2); position: relative; overflow: hidden;
+}
+#loader-bar::after {
+  content:''; position:absolute; left:-100%; top:0; height:100%; width:100%;
+  background: var(--gold);
+  animation: loadBar 1.8s cubic-bezier(0.76,0,0.24,1) forwards 0.5s;
+}
+@keyframes loadBar { to { left:0; } }
+@keyframes slideUp { to { transform: translateY(0); } }
+#loader.done { animation: fadeOut 0.5s forwards; }
+@keyframes fadeOut { to { opacity:0; pointer-events:none; } }
+
+/* ─── NAV ─────────────────────────────────────────────────────── */
+nav {
+  position: fixed; top:0; left:0; right:0;
+  z-index: 100;
+  padding: 20px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.4s, backdrop-filter 0.4s;
+}
+nav.scrolled {
+  background: rgba(8,8,8,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.2rem, 4vw, 1.7rem);
+  letter-spacing: 0.2em;
+}
+.nav-links {
+  display: flex; gap: 32px; list-style: none;
+}
+.nav-links a {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem; letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  padding: 4px 0;
+  position: relative;
+}
+.nav-links a::after {
+  content:''; position:absolute; bottom:-2px; left:0;
+  width:0; height:1px; background: var(--gold);
+  transition: width 0.3s ease;
+}
+.nav-links a:hover { opacity:1; }
+.nav-links a:hover::after { width:100%; }
+
+/* Mobile hamburger */
+.nav-hamburger {
+  display: none;
+  flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 6px;
+}
+.nav-hamburger span {
+  display: block; width: 22px; height: 1px;
+  background: var(--white);
+  transition: transform 0.3s, opacity 0.3s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity:0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* Mobile nav drawer */
+.nav-drawer {
+  position: fixed; inset:0; top:0;
+  background: var(--black);
+  z-index: 99;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 40px;
+  opacity:0; pointer-events:none;
+  transition: opacity 0.35s ease;
+}
+.nav-drawer.open { opacity:1; pointer-events:all; }
+.nav-drawer a {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 12vw, 4rem);
+  letter-spacing: 0.08em;
+  color: var(--white);
+  opacity: 0.85;
+}
+.nav-drawer a:hover { color: var(--gold); opacity:1; }
+
+/* ─── HERO ────────────────────────────────────────────────────── */
+#hero {
+  height: 100svh; min-height: 560px;
+  position: relative;
+  display: flex; align-items: flex-end;
+  padding: clamp(40px,8vw,80px) clamp(20px,5vw,48px);
+  overflow: hidden;
+}
+#hero-bg { position:absolute; inset:0; z-index:0; }
+#hero-bg img {
+  width:100%; height:100%; object-fit:cover;
+  transform: scale(1.1) scaleX(-1);
+  animation: heroZoom 20s ease-in-out infinite alternate;
+  filter: brightness(0.7);
+}
+@keyframes heroZoom {
+  from { transform: scale(1.1) scaleX(-1); }
+  to   { transform: scale(1.0) scaleX(-1); }
+}
+#hero-bg::after {
+  content:''; position:absolute; inset:0;
+  background: linear-gradient(to top, rgba(8,8,8,0.97) 0%, rgba(8,8,8,0.35) 55%, rgba(8,8,8,0.05) 100%);
+}
+.hero-content { position:relative; z-index:1; width:100%; }
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: clamp(0.6rem, 2vw, 0.72rem);
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 20px;
+  opacity:0; transform: translateY(20px);
+  animation: fadeSlideUp 0.8s forwards 2.2s;
+}
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 12vw, 14rem);
+  line-height: 0.92; letter-spacing: 0.02em;
+  margin-bottom: 28px;
+}
+.hero-title .line { overflow: hidden; }
+.hero-title .line span {
+  display: block;
+  transform: translateY(110%);
+  animation: slideUp 1s cubic-bezier(0.76,0,0.24,1) forwards;
+}
+.hero-title .line:nth-child(1) span { animation-delay: 2.2s; }
+.hero-title .line:nth-child(2) span { animation-delay: 2.35s; }
+.hero-title em { font-style:italic; color: var(--cream); font-size: 0.85em; }
+.hero-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  opacity:0; animation: fadeSlideUp 0.8s forwards 2.7s;
+}
+.hero-sub {
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  font-weight: 300; max-width: 340px;
+  line-height: 1.65; color: rgba(240,236,228,0.65);
+  font-style: italic;
+}
+.hero-scroll {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold);
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  flex-shrink: 0;
+}
+.scroll-line {
+  width:1px; height: 50px; background: var(--gold);
+  animation: scrollAnim 2s ease-in-out infinite;
+}
+@keyframes scrollAnim {
+  0%   { transform:scaleY(0); transform-origin:top;    opacity:1; }
+  50%  { transform:scaleY(1); transform-origin:top;    opacity:1; }
+  51%  { transform:scaleY(1); transform-origin:bottom; opacity:1; }
+  100% { transform:scaleY(0); transform-origin:bottom; opacity:0; }
+}
+@keyframes fadeSlideUp { to { opacity:1; transform:translateY(0); } }
+
+/* ─── MARQUEE ─────────────────────────────────────────────────── */
+.marquee-section { padding: 28px 0; background: var(--gold); overflow:hidden; }
+.marquee-track {
+  display:flex; gap:50px;
+  animation: marquee 20s linear infinite; white-space:nowrap;
+}
+.marquee-item {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem; letter-spacing: 0.2em;
+  color: var(--black); flex-shrink:0;
+  display:flex; align-items:center; gap:20px;
+}
+.marquee-item::after { content:'×'; font-size:0.75rem; }
+@keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* ─── STATS ───────────────────────────────────────────────────── */
+.stats-section {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: var(--gray2);
+}
+.stat-item {
+  background: var(--black);
+  padding: clamp(32px, 5vw, 60px) clamp(20px, 3vw, 40px);
+  text-align: center; position:relative; overflow:hidden;
+}
+.stat-item::before {
+  content:''; position:absolute; inset:0;
+  background: var(--gold);
+  transform: translateY(100%);
+  transition: transform 0.5s cubic-bezier(0.76,0,0.24,1);
+}
+.stat-item:hover::before { transform: translateY(0); }
+.stat-item > * { position:relative; z-index:1; }
+.stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.2rem, 5vw, 5rem);
+  color: var(--gold); display:block;
+  transition: color 0.3s;
+}
+.stat-item:hover .stat-num { color: var(--black); }
+.stat-label {
+  font-family: 'DM Mono', monospace;
+  font-size: clamp(0.55rem, 1.5vw, 0.7rem);
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--text-muted); margin-top: 6px;
+  transition: color 0.3s;
+}
+.stat-item:hover .stat-label { color: var(--black); }
+
+/* ─── SECTION SHARED ──────────────────────────────────────────── */
+.section-header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: clamp(40px, 6vw, 80px);
+}
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 8vw, 8rem);
+  line-height: 1; letter-spacing: 0.03em;
+}
+.section-title em {
+  display: block; font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.45em; font-weight:300;
+  color: var(--text-muted); letter-spacing: 0.15em;
+}
+.section-link {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--gold);
+  border-bottom: 1px solid var(--gold); padding-bottom: 3px;
+  white-space: nowrap;
+}
+
+/* ─── WORK / GALLERY ──────────────────────────────────────────── */
+#work { padding: clamp(60px,10vw,120px) clamp(16px,5vw,48px); }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: clamp(8px, 1.5vw, 16px);
+}
+.gallery-item {
+  position: relative; overflow:hidden;
+  background: var(--gray);
+  aspect-ratio: 2/3;
+}
+.gallery-item img {
+  width:100%; height:100%; object-fit:cover;
+  transform: scale(1.05);
+  transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.4s;
+  filter: saturate(0.8);
+}
+.gallery-item:hover img { transform: scale(1.12); filter: saturate(1.1); }
+.gallery-overlay {
+  position:absolute; inset:0;
+  background: linear-gradient(to top, rgba(8,8,8,0.88) 0%, transparent 55%);
+  opacity:0; transition: opacity 0.4s ease;
+  display:flex; flex-direction:column; justify-content:flex-end;
+  padding: clamp(12px,2vw,24px);
+}
+.gallery-item:hover .gallery-overlay { opacity:1; }
+.gallery-cat {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.25em;
+  text-transform: uppercase; color: var(--gold);
+  transform: translateY(8px); transition: transform 0.3s ease 0.08s;
+}
+.gallery-title-item {
+  font-size: clamp(0.9rem, 2vw, 1.3rem); font-weight: 600;
+  transform: translateY(8px); transition: transform 0.3s ease;
+}
+.gallery-item:hover .gallery-cat,
+.gallery-item:hover .gallery-title-item { transform: translateY(0); }
+.gallery-num {
+  position:absolute; top:12px; right:12px;
+  font-family: 'DM Mono', monospace; font-size:0.65rem;
+  color: rgba(240,236,228,0.5);
+  background: rgba(8,8,8,0.55);
+  padding: 3px 8px; backdrop-filter: blur(4px);
+  opacity:0; transition: opacity 0.3s;
+}
+.gallery-item:hover .gallery-num { opacity:1; }
+
+/* ─── HORIZONTAL SCROLL GALLERY ───────────────────────────────── */
+#gallery-h { overflow:hidden; padding: 0 0 clamp(40px,6vw,80px); }
+.h-scroll-track {
+  display:flex; gap: clamp(10px, 1.5vw, 20px);
+  padding: 0 clamp(16px,5vw,48px);
+}
+.h-scroll-item {
+  flex-shrink:0;
+  width: clamp(180px, 22vw, 260px);
+  height: clamp(240px, 30vw, 380px);
+  overflow:hidden;
+}
+.h-scroll-item img { width:100%; height:100%; object-fit:cover; }
+
+/* ─── PRICING ─────────────────────────────────────────────────── */
+#pricing {
+  padding: clamp(60px,10vw,120px) clamp(16px,5vw,48px);
+  background: var(--white); color: var(--black);
+}
+#pricing .section-title { color: var(--black); }
+#pricing .section-title em { color: rgba(8,8,8,0.35); }
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2px; background: rgba(8,8,8,0.1);
+  margin-top: clamp(32px,5vw,80px);
+}
+.pricing-card {
+  background: var(--white);
+  padding: clamp(28px,4vw,56px) clamp(20px,3vw,40px);
+  position:relative; overflow:hidden; display:flex; flex-direction:column;
+}
+.pricing-card.featured-price { background: var(--black); color: var(--white); }
+.pricing-card.featured-price .pricing-name { color: var(--white); }
+.pricing-card.featured-price .pricing-desc { color: rgba(240,236,228,0.55); }
+.pricing-card.featured-price .pricing-includes li { color: var(--white); border-bottom-color: rgba(240,236,228,0.08); }
+.pricing-card.featured-price .pricing-starting { color: rgba(240,236,228,0.4); }
+.pricing-card.featured-price .pricing-price sub { color: rgba(240,236,228,0.4); }
+.pricing-badge {
+  font-family: 'DM Mono', monospace; font-size:0.58rem; letter-spacing:0.25em;
+  text-transform: uppercase; background: var(--gold); color: var(--black);
+  display:inline-block; padding: 4px 12px; margin-bottom: 24px; align-self: flex-start;
+}
+.pricing-badge-spacer { height:28px; margin-bottom:24px; }
+.pricing-cat {
+  font-family: 'DM Mono', monospace; font-size:0.6rem; letter-spacing:0.3em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
+}
+.pricing-name {
+  font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.5rem,3vw,1.9rem);
+  letter-spacing:0.05em; color: var(--black); margin-bottom: 16px; line-height:1.05;
+}
+.pricing-price {
+  font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.2rem,5vw,4.2rem);
+  color: var(--gold); line-height:1; margin-bottom: 4px;
+}
+.pricing-price sub {
+  font-family: 'DM Mono', monospace; font-size:0.7rem;
+  vertical-align:baseline; color: rgba(8,8,8,0.4);
+}
+.pricing-starting {
+  font-family: 'DM Mono', monospace; font-size:0.58rem; letter-spacing:0.2em;
+  text-transform:uppercase; color: rgba(8,8,8,0.35); margin-bottom: 24px;
+}
+.pricing-divider { width:36px; height:1px; background: var(--gold); margin-bottom: 22px; }
+.pricing-desc {
+  font-size:0.9rem; font-style:italic; font-weight:300; line-height:1.7;
+  color: rgba(8,8,8,0.55); margin-bottom: 22px;
+}
+.pricing-includes { list-style:none; margin-bottom: 32px; flex:1; }
+.pricing-includes li {
+  font-family: 'DM Mono', monospace; font-size:0.65rem; letter-spacing:0.06em;
+  color: rgba(8,8,8,0.7); padding: 7px 0;
+  border-bottom: 1px solid rgba(8,8,8,0.06);
+  display:flex; align-items:center; gap:8px;
+}
+.pricing-includes li::before { content:'*'; color: var(--gold); flex-shrink:0; }
+.btn-book {
+  display:inline-block; padding: 13px 24px;
+  background: transparent; color: var(--black);
+  font-family: 'DM Mono', monospace; font-size:0.62rem; letter-spacing:0.22em;
+  text-transform: uppercase; border: 1px solid var(--black);
+  position:relative; overflow:hidden; transition: color 0.4s; text-align:center;
+  cursor:pointer;
+}
+.btn-book::before {
+  content:''; position:absolute; inset:0;
+  background: var(--black); transform: translateX(-100%);
+  transition: transform 0.4s cubic-bezier(0.76,0,0.24,1);
+}
+.btn-book:hover::before { transform: translateX(0); }
+.btn-book:hover { color: var(--white); }
+.btn-book span { position:relative; z-index:1; }
+.pricing-card.featured-price .btn-book { border-color: var(--gold); color: var(--gold); }
+.pricing-card.featured-price .btn-book::before { background: var(--gold); }
+.pricing-card.featured-price .btn-book:hover { color: var(--black); }
+.pricing-row-label {
+  margin-top: clamp(32px,4vw,60px);
+  font-family: 'DM Mono', monospace; font-size:0.62rem; letter-spacing:0.3em;
+  text-transform:uppercase; color: rgba(8,8,8,0.35);
+}
+
+/* ─── BOOKING ─────────────────────────────────────────────────── */
+#booking {
+  background: #0a0a0a;
+  padding: clamp(60px,10vw,120px) clamp(16px,5vw,48px);
+}
+
+.booking-inner {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* Header */
+.booking-header {
+  margin-bottom: clamp(32px,5vw,52px);
+  text-align: center;
+}
+.booking-header .eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem; letter-spacing: 0.35em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 16px; display:block;
+}
+.booking-header h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.8rem, 8vw, 5.5rem);
+  line-height: 0.92;
+  letter-spacing: 0.03em;
+  margin-bottom: 14px;
+}
+.booking-header h2 em {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 0.5em; font-weight:300;
+  color: var(--text-muted); display:block; letter-spacing:0.08em;
+}
+.booking-header p {
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  font-style: italic; color: var(--text-muted);
+  line-height: 1.75;
+}
+
+/* ── FORM CARD ─────────────────────────────────────────────────── */
+.booking-form-card {
+  background: #131313;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+}
+
+/* Form body */
+.form-body {
+  padding: clamp(24px,5vw,44px) clamp(20px,5vw,44px) clamp(16px,3vw,28px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Two-column row */
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Single field group */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.field-group label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.57rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(240,236,228,0.38);
+  transition: color 0.2s;
+}
+.field-group:focus-within label { color: var(--gold); }
+
+.field-group input,
+.field-group textarea,
+.field-group select {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 8px;
+  color: var(--white);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-weight: 300;
+  padding: 13px 16px;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.22s, background 0.22s, box-shadow 0.22s;
+  -webkit-appearance: none;
+  appearance: none;
+  line-height: 1.4;
+}
+.field-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(201,168,76,0.5)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 38px;
+  cursor: pointer;
+}
+.field-group select option {
+  background: #1a1a1a;
+  color: var(--white);
+}
+.field-group input::placeholder,
+.field-group textarea::placeholder { color: rgba(240,236,228,0.17); font-style: italic; }
+.field-group input:focus,
+.field-group textarea:focus,
+.field-group select:focus {
+  border-color: rgba(201,168,76,0.5);
+  background: rgba(201,168,76,0.04);
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.08);
+}
+.field-group textarea {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.65;
+  font-style: italic;
+}
+
+/* Submit area */
+.form-submit-area {
+  padding: clamp(16px,3vw,24px) clamp(20px,5vw,44px) clamp(20px,4vw,32px);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 17px 24px;
+  background: var(--gold);
+  color: var(--black);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem; letter-spacing: 0.3em;
+  text-transform: uppercase;
+  border: none; cursor: pointer;
+  border-radius: 8px;
+  position: relative; overflow: hidden;
+  transition: background 0.25s, transform 0.15s, box-shadow 0.25s;
+  -webkit-tap-highlight-color: transparent;
+}
+.submit-btn:hover {
+  background: #d9b85c;
+  box-shadow: 0 6px 24px rgba(201,168,76,0.28);
+  transform: translateY(-1px);
+}
+.submit-btn:active { transform: translateY(0); background: #b8972f; }
+.submit-btn span { position:relative; z-index:1; font-weight: 400; }
+
+.form-helper {
+  text-align: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.56rem; letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(240,236,228,0.2);
+}
+.form-helper a {
+  color: rgba(201,168,76,0.55);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+}
+.form-helper a:hover { color: var(--gold); }
+
+/* Status */
+.form-status {
+  display: none;
+  padding: 13px 16px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.15em;
+  border-radius: 6px;
+  text-align: center;
+}
+.form-status.success { display:block; color: #5dbd7a; background: rgba(93,189,122,0.08); border: 1px solid rgba(93,189,122,0.2); }
+.form-status.error   { display:block; color: #e07070;  background: rgba(192,57,43,0.08); border: 1px solid rgba(192,57,43,0.2); }
+
+/* Contact strip below form */
+.booking-contact {
+  display: flex;
+  gap: clamp(24px,4vw,48px);
+  margin-top: 28px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.contact-item {
+  display:flex; flex-direction:column; gap:4px; align-items: center;
+}
+.contact-item-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.56rem; letter-spacing: 0.28em;
+  text-transform: uppercase; color: rgba(240,236,228,0.3);
+}
+.contact-item a {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem; font-style: italic;
+  color: rgba(240,236,228,0.7);
+  transition: color 0.2s;
+}
+.contact-item a:hover { color: var(--gold); }
+
+/* ─── FOOTER ──────────────────────────────────────────────────── */
+footer {
+  padding: clamp(24px,4vw,40px) clamp(16px,5vw,48px);
+  border-top: 1px solid var(--gray2);
+  display: flex; justify-content: space-between;
+  align-items: center; flex-wrap: wrap; gap: 16px;
+}
+footer .logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem; letter-spacing: 0.2em;
+}
+footer p {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem; letter-spacing: 0.12em;
+  color: rgba(240,236,228,0.25); text-transform: uppercase;
+}
+.social-links { display:flex; gap:20px; list-style:none; }
+.social-links a {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(240,236,228,0.35);
+  transition: color 0.25s;
+}
+.social-links a:hover { color: var(--gold); }
+
+/* ─── REVEAL ──────────────────────────────────────────────────── */
+.reveal {
+  opacity:0; transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.reveal.visible { opacity:1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ─── NOISE OVERLAY ───────────────────────────────────────────── */
+body::before {
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.022;
+}
+
+/* ─── RESPONSIVE ──────────────────────────────────────────────── */
+
+/* Tablet */
+@media (max-width: 900px) {
+  .nav-links { display:none; }
+  .nav-hamburger { display:flex; }
+
+  .hero-scroll { display:none; }
+
+  .stats-section { grid-template-columns: repeat(2, 1fr); }
+
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+
+  .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .field-row { grid-template-columns: 1fr; }
+
+  footer { justify-content: center; text-align:center; }
+  .social-links { justify-content: center; }
+}
+
+/* Mobile */
+@media (max-width: 560px) {
+  nav { padding: 16px 20px; }
+
+  #hero { padding: 60px 20px 36px; }
+  .hero-title { font-size: clamp(2.8rem, 14vw, 5rem); }
+
+  .stats-section { grid-template-columns: repeat(2, 1fr); }
+  .stat-item { padding: 28px 16px; }
+
+  #work { padding: 48px 16px; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+
+  #pricing { padding: 48px 16px; }
+  .pricing-grid { grid-template-columns: 1fr; }
+
+  #booking { padding: 48px 16px; }
+  .booking-header h2 { font-size: clamp(2.5rem,14vw,4rem); }
+
+  .form-body { padding: 20px 16px; }
+
+  .booking-contact { gap: 20px; }
+
+  .h-scroll-item { width: 150px; height: 210px; }
+
+  footer { padding: 24px 20px; flex-direction: column; gap: 12px; }
+}
+
+/* Very small screens */
+@media (max-width: 380px) {
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* Touch devices — show overlay on all gallery items */
+@media (hover: none) {
+  .gallery-overlay { opacity:1; }
+  .gallery-item img { transform:scale(1); filter:saturate(0.9); }
+  .gallery-cat, .gallery-title-item { transform:translateY(0); }
+  .gallery-num { opacity:1; }
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div id="loader-text">
+    <span>C</span><span>A</span><span>M</span><span>E</span><span>R</span><span>O</span><span>N</span>
+  </div>
+  <div id="loader-bar"></div>
+</div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">Cameron Schindler</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#booking">Book</a></li>
+  </ul>
+  <div class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer" id="navDrawer">
+  <a href="#work" class="drawer-link">Work</a>
+  <a href="#pricing" class="drawer-link">Pricing</a>
+  <a href="#booking" class="drawer-link">Book</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div id="hero-bg">
+    <img src="DSC_2244-Edit.jpg" alt="Cameron Schindler Photography">
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Visual Storyteller</p>
+    <h1 class="hero-title">
+      <div class="line"><span>The World</span></div>
+      <div class="line"><span><em>through my lens</em></span></div>
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-sub">Photography that transforms your vision into timeless images people can't look away from.</p>
+      <div class="hero-scroll">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <div class="marquee-item">Reels</div>
+    <div class="marquee-item">Sports</div>
+    <div class="marquee-item">Family</div>
+    <div class="marquee-item">Portrait</div>
+    <div class="marquee-item">Events</div>
+    <div class="marquee-item">Editorial</div>
+    <div class="marquee-item">Commercial</div>
+    <div class="marquee-item">Automotive</div>
+    <div class="marquee-item">Reels</div>
+    <div class="marquee-item">Sports</div>
+    <div class="marquee-item">Family</div>
+    <div class="marquee-item">Portrait</div>
+    <div class="marquee-item">Events</div>
+    <div class="marquee-item">Editorial</div>
+    <div class="marquee-item">Commercial</div>
+    <div class="marquee-item">Automotive</div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-section">
+  <div class="stat-item reveal">
+    <span class="stat-num" data-count="100">0</span>
+    <span class="stat-label">Sessions Shot</span>
+  </div>
+  <div class="stat-item reveal reveal-delay-1">
+    <span class="stat-num" data-count="48">0</span>
+    <span class="stat-label">Hr Avg Turnaround</span>
+  </div>
+  <div class="stat-item reveal reveal-delay-2">
+    <span class="stat-num" data-count="2">0</span>
+    <span class="stat-label">Years Experience</span>
+  </div>
+  <div class="stat-item reveal reveal-delay-3">
+    <span class="stat-num" data-count="98">0</span>
+    <span class="stat-label">% Client Satisfaction</span>
+  </div>
+</div>
+
+<!-- WORK -->
+<section id="work">
+  <div class="section-header reveal">
+    <div class="section-title"><em>Selected</em>Work</div>
+    <a href="#" class="section-link">View All</a>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item reveal">
+      <img src="DSC_1522-Enhanced-NR.jpg" alt="Seattle Space Needle" loading="lazy">
+      <div class="gallery-num">01</div>
+      <div class="gallery-overlay">
+        <span class="gallery-cat">Landscape</span>
+        <span class="gallery-title-item">Space Needle</span>
+      </div>
+    </div>
+    <div class="gallery-item reveal reveal-delay-1">
+      <img src="DSC_4057.jpg" alt="Flamingo" loading="lazy">
+      <div class="gallery-num">02</div>
+      <div class="gallery-overlay">
+        <span class="gallery-cat">Wildlife</span>
+        <span class="gallery-title-item">Flamingo</span>
+      </div>
+    </div>
+    <div class="gallery-item reveal reveal-delay-2">
+      <img src="DSC_4948-Edit-2.jpg" alt="Bald Eagle" loading="lazy">
+      <div class="gallery-num">03</div>
+      <div class="gallery-overlay">
+        <span class="gallery-cat">Wildlife</span>
+        <span class="gallery-title-item">Bald Eagle</span>
+      </div>
+    </div>
+    <div class="gallery-item reveal">
+      <img src="DSC_2061-Edit.jpg" alt="Blue Flowers" loading="lazy">
+      <div class="gallery-num">04</div>
+      <div class="gallery-overlay">
+        <span class="gallery-cat">Landscape</span>
+        <span class="gallery-title-item">Blue Flowers</span>
+      </div>
+    </div>
+    <div class="gallery-item reveal reveal-delay-1">
+      <img src="Z62_0078-Enhanced-NR.jpg" alt="Basketball" loading="lazy">
+      <div class="gallery-num">05</div>
+      <div class="gallery-overlay">
+        <span class="gallery-cat">Sports</span>
+        <span class="gallery-title-item">Basketball</span>
+      </div>
+    </div>
+    <div class="gallery-item reveal reveal-delay-2">
+      <img src="Z62_0276-Enhanced-NR.jpg" alt="Basketball" loading="lazy">
+      <div class="gallery-num">06</div>
+      <div class="gallery-overlay">
+        <span class="gallery-cat">Sports</span>
+        <span class="gallery-title-item">West Park</span>
+      </div>
+    </div>
+    <div class="gallery-item reveal">
+      <img src="IMG_3842-Enhanced-NR.jpg" alt="Football" loading="lazy">
+      <div class="gallery-num">07</div>
+      <div class="gallery-overlay">
+        <span class="gallery-cat">Sports</span>
+        <span class="gallery-title-item">Football</span>
+      </div>
+    </div>
+    <div class="gallery-item reveal reveal-delay-1">
+      <img src="IMG_3874-Enhanced.png.jpg" alt="Fireworks" loading="lazy">
+      <div class="gallery-num">08</div>
+      <div class="gallery-overlay">
+        <span class="gallery-cat">Events</span>
+        <span class="gallery-title-item">Fireworks</span>
+      </div>
+    </div>
+    <div class="gallery-item reveal reveal-delay-2">
+      <img src="DSC_2452.jpg" alt="Baby Portrait" loading="lazy">
+      <div class="gallery-num">09</div>
+      <div class="gallery-overlay">
+        <span class="gallery-cat">Portrait</span>
+        <span class="gallery-title-item">6th Month</span>
+      </div>
+    </div>
+    <div class="gallery-item reveal">
+      <img src="DSC_2508.jpg" alt="Baby" loading="lazy">
+      <div class="gallery-num">10</div>
+      <div class="gallery-overlay">
+        <span class="gallery-cat">Portrait</span>
+        <span class="gallery-title-item">Baby</span>
+      </div>
+    </div>
+    <div class="gallery-item reveal reveal-delay-1">
+      <img src="IMG_6940-Enhanced-NR.jpg" alt="Car Session" loading="lazy">
+      <div class="gallery-num">11</div>
+      <div class="gallery-overlay">
+        <span class="gallery-cat">Automotive</span>
+        <span class="gallery-title-item">Car Session</span>
+      </div>
+    </div>
+    <div class="gallery-item reveal reveal-delay-2">
+      <img src="IMG_5758-Edit.jpg" alt="Corn Field" loading="lazy">
+      <div class="gallery-num">12</div>
+      <div class="gallery-overlay">
+        <span class="gallery-cat">Portrait</span>
+        <span class="gallery-title-item">Corn Field</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HORIZONTAL GALLERY -->
+<div id="gallery-h">
+  <div class="h-scroll-track" id="hTrack">
+    <div class="h-scroll-item"><img src="DSC_3858.jpg" alt="" loading="lazy"></div>
+    <div class="h-scroll-item"><img src="IMG_4358-Enhanced-NR.jpg" alt="" loading="lazy"></div>
+    <div class="h-scroll-item"><img src="DSC_1865-Edit.jpg" alt="" loading="lazy"></div>
+    <div class="h-scroll-item"><img src="DSC_4213-Enhanced-NR.jpg" alt="" loading="lazy"></div>
+    <div class="h-scroll-item"><img src="DSC_4920-Enhanced-NR.jpg" alt="" loading="lazy"></div>
+    <div class="h-scroll-item"><img src="DSC_1552.jpg" alt="" loading="lazy"></div>
+    <div class="h-scroll-item"><img src="DSC_4774.jpg" alt="" loading="lazy"></div>
+    <div class="h-scroll-item"><img src="DSC_5007-Enhanced-NR.jpg" alt="" loading="lazy"></div>
+    <div class="h-scroll-item"><img src="DSC_3761.jpg" alt="" loading="lazy"></div>
+    <div class="h-scroll-item"><img src="Z62_0822-Enhanced-NR-Edit.jpg" alt="" loading="lazy"></div>
+    <div class="h-scroll-item"><img src="IMG_5871.jpg" alt="" loading="lazy"></div>
+    <div class="h-scroll-item"><img src="IMG_7461(1).jpg" alt="" loading="lazy"></div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-header reveal">
+    <div class="section-title">Pricing</div>
+  </div>
+
+  <div class="pricing-grid">
+    <div class="pricing-card reveal">
+      <div class="pricing-badge-spacer"></div>
+      <span class="pricing-cat">01 — Video</span>
+      <h3 class="pricing-name">Single Reel</h3>
+      <div class="pricing-price">$35<sub> / reel</sub></div>
+      <p class="pricing-starting">Starting at</p>
+      <div class="pricing-divider"></div>
+      <p class="pricing-desc">One polished short-form reel, edited and ready to post.</p>
+      <ul class="pricing-includes">
+        <li>1 finished reel (up to 60 sec)</li>
+        <li>Professional editing + color grade</li>
+        <li>Licensed music for social use</li>
+        <li>1 revision round</li>
+      </ul>
+      <a href="#booking" class="btn-book"><span>Book Now</span></a>
+    </div>
+    <div class="pricing-card reveal reveal-delay-1">
+      <div class="pricing-badge-spacer"></div>
+      <span class="pricing-cat">02 — Bundle</span>
+      <h3 class="pricing-name">Reels Bundle</h3>
+      <div class="pricing-price">$240<sub> / 7</sub></div>
+      <p class="pricing-starting">Best value</p>
+      <div class="pricing-divider"></div>
+      <p class="pricing-desc">Seven reels shot and edited in a single session.</p>
+      <ul class="pricing-includes">
+        <li>7 finished reels (up to 60 sec each)</li>
+        <li>Full shoot day included</li>
+        <li>Professional color grade</li>
+        <li>Content strategy consultation</li>
+      </ul>
+      <a href="#booking" class="btn-book"><span>Book Now</span></a>
+    </div>
+    <div class="pricing-card reveal reveal-delay-2">
+      <div class="pricing-badge-spacer"></div>
+      <span class="pricing-cat">03 — Events</span>
+      <h3 class="pricing-name">Event Coverage</h3>
+      <div class="pricing-price">$75<sub> / session</sub></div>
+      <p class="pricing-starting">Starting at</p>
+      <div class="pricing-divider"></div>
+      <p class="pricing-desc">Full coverage for any gathering — birthdays, corporate, groups.</p>
+      <ul class="pricing-includes">
+        <li>Up to 2-hour coverage</li>
+        <li>20+ edited gallery images</li>
+        <li>Location scouting included</li>
+        <li>Digital download gallery</li>
+      </ul>
+      <a href="#booking" class="btn-book"><span>Book Now</span></a>
+    </div>
+    <div class="pricing-card featured-price reveal reveal-delay-3">
+      <div class="pricing-badge">Most Popular</div>
+      <span class="pricing-cat">04 — Portrait</span>
+      <h3 class="pricing-name">Portrait Shoot</h3>
+      <div class="pricing-price">$50<sub> / session</sub></div>
+      <p class="pricing-starting">Starting at</p>
+      <div class="pricing-divider"></div>
+      <p class="pricing-desc">Headshots, lifestyle, branding, or personal projects.</p>
+      <ul class="pricing-includes">
+        <li>60-minute session</li>
+        <li>25+ edited high-res images</li>
+        <li>Online gallery delivery</li>
+        <li>Print-ready files included</li>
+      </ul>
+      <a href="#booking" class="btn-book"><span>Book Now</span></a>
+    </div>
+  </div>
+
+  <p class="pricing-row-label reveal">More Sessions</p>
+  <div class="pricing-grid" style="margin-top:2px;">
+    <div class="pricing-card reveal">
+      <div class="pricing-badge-spacer"></div>
+      <span class="pricing-cat">05 — Real Estate</span>
+      <h3 class="pricing-name">Property Shoot</h3>
+      <div class="pricing-price">$80<sub> / session</sub></div>
+      <p class="pricing-starting">Starting at</p>
+      <div class="pricing-divider"></div>
+      <p class="pricing-desc">Homes, apartments, Airbnbs, commercial spaces.</p>
+      <ul class="pricing-includes">
+        <li>Interior + exterior coverage</li>
+        <li>20+ edited high-res images</li>
+        <li>Wide-angle &amp; detail shots</li>
+        <li>Add-on drone footage available</li>
+      </ul>
+      <a href="#booking" class="btn-book"><span>Book Now</span></a>
+    </div>
+    <div class="pricing-card reveal reveal-delay-1">
+      <div class="pricing-badge-spacer"></div>
+      <span class="pricing-cat">06 — Automotive</span>
+      <h3 class="pricing-name">Car Shoot</h3>
+      <div class="pricing-price">$65<sub> / session</sub></div>
+      <p class="pricing-starting">Starting at</p>
+      <div class="pricing-divider"></div>
+      <p class="pricing-desc">Personal builds to dealership inventory, on location.</p>
+      <ul class="pricing-includes">
+        <li>Exterior + interior shots</li>
+        <li>15+ edited high-res images</li>
+        <li>Detail &amp; lifestyle angles</li>
+        <li>Social-ready edits included</li>
+      </ul>
+      <a href="#booking" class="btn-book"><span>Book Now</span></a>
+    </div>
+    <div class="pricing-card reveal reveal-delay-2">
+      <div class="pricing-badge-spacer"></div>
+      <span class="pricing-cat">07 — Athletics</span>
+      <h3 class="pricing-name">Sports Shoot</h3>
+      <div class="pricing-price">$50<sub> / session</sub></div>
+      <p class="pricing-starting">Starting at</p>
+      <div class="pricing-divider"></div>
+      <p class="pricing-desc">Action shots, athlete portraits, team photos.</p>
+      <ul class="pricing-includes">
+        <li>Game or practice coverage</li>
+        <li>25+ edited high-res images</li>
+        <li>Individual + team shots</li>
+        <li>Print-ready files included</li>
+      </ul>
+      <a href="#booking" class="btn-book"><span>Book Now</span></a>
+    </div>
+    <div class="pricing-card featured-price reveal reveal-delay-3">
+      <div class="pricing-badge">Popular</div>
+      <span class="pricing-cat">08 — Family</span>
+      <h3 class="pricing-name">Family Session</h3>
+      <div class="pricing-price">$75<sub> / session</sub></div>
+      <p class="pricing-starting">Starting at</p>
+      <div class="pricing-divider"></div>
+      <p class="pricing-desc">Relaxed, candid, full of heart — milestone or everyday.</p>
+      <ul class="pricing-includes">
+        <li>60-minute session</li>
+        <li>20+ edited gallery images</li>
+        <li>Location scouting included</li>
+        <li>Print-ready files included</li>
+      </ul>
+      <a href="#booking" class="btn-book"><span>Book Now</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+  <div class="booking-inner">
+
+    <div class="booking-header reveal">
+      <span class="eyebrow">New Inquiry</span>
+      <h2>Book a Session<em>Let's make it happen.</em></h2>
+      <p>Fill in your details and I'll be in touch within 24 hours to lock in your date.</p>
+    </div>
+
+    <div class="booking-form-card reveal reveal-delay-1">
+      <form id="bookingForm" novalidate>
+
+        <div class="form-body">
+
+          <!-- Row 1: Name -->
+          <div class="field-row">
+            <div class="field-group">
+              <label for="firstName">First Name *</label>
+              <input type="text" id="firstName" name="firstName" placeholder="Jane" required autocomplete="given-name">
+            </div>
+            <div class="field-group">
+              <label for="lastName">Last Name *</label>
+              <input type="text" id="lastName" name="lastName" placeholder="Smith" required autocomplete="family-name">
+            </div>
+          </div>
+
+          <!-- Row 2: Contact -->
+          <div class="field-row">
+            <div class="field-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" placeholder="jane@example.com" required autocomplete="email">
+            </div>
+            <div class="field-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" autocomplete="tel">
+            </div>
+          </div>
+
+          <!-- Row 3: Session type + Date -->
+          <div class="field-row">
+            <div class="field-group">
+              <label for="sessionType">Type of Shoot</label>
+              <select id="sessionType" name="sessionType">
+                <option value="" disabled selected>Select a session...</option>
+                <option value="Portrait Shoot — $50+">Portrait — starting at $50</option>
+                <option value="Sports Shoot — $50+">Sports — starting at $50</option>
+                <option value="Family Session — $75+">Family — starting at $75</option>
+                <option value="Event Coverage — $75+">Event Coverage — starting at $75</option>
+                <option value="Single Reel — $35+">Single Reel — starting at $35</option>
+                <option value="Reels Bundle — $240">Reels Bundle — $240</option>
+                <option value="Property Shoot — $80+">Real Estate — starting at $80</option>
+                <option value="Car Shoot — $65+">Automotive — starting at $65</option>
+                <option value="Custom / Other">Custom / Not Sure</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label for="date">Preferred Date</label>
+              <input type="date" id="date" name="date">
+            </div>
+          </div>
+
+          <!-- Notes -->
+          <div class="field-group">
+            <label for="message">Notes</label>
+            <textarea id="message" name="message" placeholder="Any ideas, locations, or details you'd like to share…"></textarea>
+          </div>
+
+        </div>
+
+        <div class="form-submit-area">
+          <div class="form-status" id="formStatus"></div>
+          <button type="submit" class="submit-btn">
+            <span id="submitLabel">Send Booking Request</span>
+          </button>
+          <p class="form-helper">
+            I'll reply within 24 hours — or email me directly at
+            <a href="mailto:cameronjschindler@gmail.com">cameronjschindler@gmail.com</a>
+          </p>
+        </div>
+
+      </form>
+    </div>
+
+    <div class="booking-contact reveal reveal-delay-2">
+      <div class="contact-item">
+        <span class="contact-item-label">Email</span>
+        <a href="mailto:cameronjschindler@gmail.com">cameronjschindler@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-item-label">Instagram</span>
+        <a href="https://www.instagram.com/schindler_cameron/" target="_blank">@schindler_cameron</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-item-label">Response</span>
+        <a style="cursor:default; pointer-events:none;">Within 24 hours</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="logo">Cameron Schindler</span>
+  <p>&copy; 2026 Cameron Schindler</p>
+  <ul class="social-links">
+    <li><a href="https://www.instagram.com/schindler_cameron/" target="_blank">Instagram</a></li>
+    <li><a href="#">LinkedIn</a></li>
+  </ul>
+</footer>
+
+<script>
+/* ── LOADER ──────────────────────────────────────────── */
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const l = document.getElementById('loader');
+    l.classList.add('done');
+    setTimeout(() => l.remove(), 600);
+  }, 2200);
+});
+
+/* ── MOBILE NAV ──────────────────────────────────────── */
+const hamburger = document.getElementById('hamburger');
+const drawer    = document.getElementById('navDrawer');
+
+hamburger.addEventListener('click', () => {
+  const open = drawer.classList.toggle('open');
+  hamburger.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+
+document.querySelectorAll('.drawer-link').forEach(link => {
+  link.addEventListener('click', () => {
+    drawer.classList.remove('open');
+    hamburger.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+/* ── NAV SCROLL ──────────────────────────────────────── */
+const mainNav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  mainNav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+/* ── SCROLL REVEAL ───────────────────────────────────── */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ── COUNTER ANIMATION ───────────────────────────────── */
+function animateCount(el, target) {
+  let current = 0;
+  const step = target / (1600 / 16);
+  const label = el.closest('.stat-item').querySelector('.stat-label').textContent;
+  const isPercent = label.includes('%');
+  const timer = setInterval(() => {
+    current = Math.min(current + step, target);
+    el.textContent = Math.floor(current) + (isPercent ? '%' : '+');
+    if (current >= target) clearInterval(timer);
+  }, 16);
+}
+
+const statObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const el = e.target.querySelector('.stat-num');
+      if (el && !el.dataset.animated) {
+        el.dataset.animated = '1';
+        animateCount(el, parseInt(el.dataset.count));
+      }
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.stat-item').forEach(el => statObserver.observe(el));
+
+/* ── HORIZONTAL AUTO-SCROLL ──────────────────────────── */
+const track = document.getElementById('hTrack');
+let hPos = 0;
+let paused = false;
+track.addEventListener('mouseenter', () => paused = true);
+track.addEventListener('mouseleave', () => paused = false);
+function scrollH() {
+  if (!paused) {
+    hPos -= 0.55;
+    if (hPos <= -(track.scrollWidth / 2)) hPos = 0;
+    track.style.transform = 'translateX(' + hPos + 'px)';
+  }
+  requestAnimationFrame(scrollH);
+}
+scrollH();
+
+/* ── HERO PARALLAX ───────────────────────────────────── */
+if (window.matchMedia('(hover: hover)').matches) {
+  window.addEventListener('scroll', () => {
+    const img = document.querySelector('#hero-bg img');
+    if (img) img.style.transform = 'scale(1.1) scaleX(-1) translateY(' + (window.scrollY * 0.28) + 'px)';
+  }, { passive: true });
+}
+
+/* ── BOOKING FORM ────────────────────────────────────── */
+// ⬇️ Replace this with your deployed Google Apps Script URL
+const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL';
+
+const form        = document.getElementById('bookingForm');
+const submitLabel = document.getElementById('submitLabel');
+const formStatus  = document.getElementById('formStatus');
+
+form.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  formStatus.className = 'form-status';
+
+  const firstName = this.firstName.value.trim();
+  const lastName  = this.lastName.value.trim();
+  const email     = this.email.value.trim();
+
+  if (!firstName || !lastName || !email) {
+    formStatus.textContent = 'Please fill in your name and email to continue.';
+    formStatus.className = 'form-status error';
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    formStatus.textContent = 'Please enter a valid email address.';
+    formStatus.className = 'form-status error';
+    return;
+  }
+
+  submitLabel.textContent = 'Sending…';
+
+  const data = {
+    firstName,
+    lastName,
+    email,
+    phone:       this.phone.value.trim(),
+    sessionType: this.sessionType.value || 'Not specified',
+    date:        this.date.value,
+    message:     this.message.value.trim()
+  };
+
+  if (GOOGLE_SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL') {
+    formStatus.textContent = 'Connect your Google Apps Script URL to activate form submissions.';
+    formStatus.className = 'form-status error';
+    submitLabel.textContent = 'Send Booking Request';
+    return;
+  }
+
+  try {
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    formStatus.textContent = '✓ Request received — I\'ll be in touch within 24 hours.';
+    formStatus.className = 'form-status success';
+    form.reset();
+    submitLabel.textContent = 'Send Booking Request';
+  } catch (err) {
+    formStatus.textContent = 'Something went wrong — please email me directly.';
+    formStatus.className = 'form-status error';
+    submitLabel.textContent = 'Send Booking Request';
+  }
+});
+</script>
+</body>
+</html>
