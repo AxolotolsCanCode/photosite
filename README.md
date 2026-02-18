@@ -1,2 +1,2 @@
-# photosite
-my photo website
+# photo
+
