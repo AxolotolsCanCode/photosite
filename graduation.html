@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#080808">
+<title>Graduation — Cameron Schindler</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+:root {
+  --black: #080808;
+  --white: #f0ece4;
+  --gold:  #c9a84c;
+  --gold-soft: rgba(201,168,76,0.10);
+  --gold-border: rgba(201,168,76,0.20);
+  --gray2: #2a2a2a;
+  --text-muted: rgba(240,236,228,0.45);
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  overflow-x: hidden;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ─── NOISE ─── */
+body::before {
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.022;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top:0; left:0; right:0;
+  z-index: 100;
+  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(8,8,8,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.1rem, 4vw, 1.6rem);
+  letter-spacing: 0.2em;
+}
+.nav-back {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.8;
+  transition: opacity 0.2s;
+  display: flex; align-items: center; gap: 7px;
+}
+.nav-back:hover { opacity: 1; }
+.nav-back::before { content: '←'; }
+
+/* ─── MAIN ─── */
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* safe-area insets for notched phones */
+  padding: calc(90px + env(safe-area-inset-top)) 24px calc(60px + env(safe-area-inset-bottom));
+  position: relative;
+  overflow: hidden;
+}
+
+/* ─── BG DECORATION ─── */
+.bg-decor {
+  position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+}
+.bg-line { position: absolute; background: var(--gold-border); }
+.bg-line-h { height: 1px; width: 100%; }
+.bg-line-v { width: 1px; height: 100%; }
+.bg-line-h:nth-child(1) { top: 28%; }
+.bg-line-h:nth-child(2) { top: 72%; }
+.bg-line-v:nth-child(3) { left: 12%; }
+.bg-line-v:nth-child(4) { right: 12%; }
+
+.bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--gold-border);
+  top: 50%; left: 50%;
+  animation: pulse 6s ease-in-out infinite;
+}
+.bg-circle:nth-child(5) { width: min(380px, 90vw); height: min(380px, 90vw); transform: translate(-50%, -50%); }
+.bg-circle:nth-child(6) { width: min(620px, 150vw); height: min(620px, 150vw); transform: translate(-50%, -50%); animation-delay: 1s; }
+.bg-circle:nth-child(7) { width: min(880px, 210vw); height: min(880px, 210vw); transform: translate(-50%, -50%); animation-delay: 2s; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.28; }
+  50% { opacity: 0.07; }
+}
+
+/* ─── CONTENT ─── */
+.content {
+  text-align: center;
+  position: relative; z-index: 1;
+  width: 100%;
+  max-width: 640px;
+  padding: 0 4px; /* tiny buffer so nothing clips edge-to-edge */
+}
+
+.eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: clamp(0.55rem, 2.5vw, 0.68rem);
+  letter-spacing: 0.32em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  display: block;
+  opacity: 0;
+  animation: fadeUp 0.8s forwards 0.3s;
+}
+
+.title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4.2rem, 22vw, 13rem);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  margin-bottom: 10px;
+}
+.title .line { overflow: hidden; }
+.title .line span {
+  display: block;
+  transform: translateY(110%);
+  animation: slideUp 1s cubic-bezier(0.76,0,0.24,1) forwards;
+}
+.title .line:nth-child(1) span { animation-delay: 0.5s; }
+.title .line:nth-child(2) span {
+  animation-delay: 0.65s;
+  font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.34em;
+  font-weight: 300;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+
+.divider {
+  width: 48px; height: 1px;
+  background: var(--gold);
+  margin: clamp(24px, 5vw, 40px) auto;
+  opacity: 0;
+  animation: fadeIn 0.6s forwards 1.2s;
+}
+
+.message {
+  font-size: clamp(0.95rem, 3.5vw, 1.2rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.8;
+  color: rgba(240,236,228,0.62);
+  margin-bottom: clamp(32px, 6vw, 52px);
+  opacity: 0;
+  animation: fadeUp 0.8s forwards 1.4s;
+  padding: 0 8px; /* breathing room on narrow screens */
+}
+.message strong {
+  color: var(--gold);
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* ─── REFRESH ─── */
+.refresh-hint {
+  opacity: 0;
+  animation: fadeUp 0.8s forwards 1.6s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.refresh-hint p {
+  font-family: 'DM Mono', monospace;
+  font-size: clamp(0.52rem, 2vw, 0.6rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.refresh-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 32px;
+  border: 1px solid var(--gold-border);
+  font-family: 'DM Mono', monospace;
+  font-size: clamp(0.58rem, 2.5vw, 0.65rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: transparent;
+  cursor: pointer;
+  border-radius: 2px;
+  position: relative; overflow: hidden;
+  transition: color 0.4s;
+  /* bigger tap target on mobile */
+  min-height: 52px;
+  -webkit-tap-highlight-color: transparent;
+}
+.refresh-btn::before {
+  content:''; position:absolute; inset:0;
+  background: var(--gold); transform: translateX(-100%);
+  transition: transform 0.4s cubic-bezier(0.76,0,0.24,1);
+}
+.refresh-btn:active::before,
+.refresh-btn:hover::before { transform: translateX(0); }
+.refresh-btn:active,
+.refresh-btn:hover { color: var(--black); }
+.refresh-btn span { position:relative; z-index:1; }
+.refresh-icon {
+  position: relative; z-index: 1;
+  display: inline-block;
+  transition: transform 0.5s ease;
+  font-size: 1.1em;
+}
+.refresh-btn:hover .refresh-icon,
+.refresh-btn:active .refresh-icon { transform: rotate(360deg); }
+
+/* ─── MARQUEE ─── */
+.marquee-section {
+  padding: 18px 0;
+  background: var(--gold);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.marquee-track {
+  display:flex; gap:48px;
+  animation: marquee 22s linear infinite; white-space:nowrap;
+}
+.marquee-item {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.95rem; letter-spacing: 0.2em;
+  color: var(--black); flex-shrink:0;
+  display:flex; align-items:center; gap:18px;
+}
+.marquee-item::after { content:'×'; font-size:0.7rem; }
+@keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* ─── FOOTER ─── */
+footer {
+  padding: clamp(18px,3vw,28px) 24px;
+  border-top: 1px solid var(--gray2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+footer .logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.25rem; letter-spacing: 0.2em;
+}
+footer p {
+  font-family: 'DM Mono', monospace; font-size: 0.55rem;
+  letter-spacing: 0.12em; color: rgba(240,236,228,0.22); text-transform: uppercase;
+}
+.social-links { display:flex; gap:20px; list-style:none; }
+.social-links a {
+  font-family: 'DM Mono', monospace; font-size: 0.58rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(240,236,228,0.32); transition: color 0.25s;
+}
+.social-links a:hover { color: var(--gold); }
+
+/* ─── ANIMATIONS ─── */
+@keyframes slideUp { to { transform: translateY(0); } }
+@keyframes fadeUp  { to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn  { to { opacity: 1; } }
+
+.eyebrow, .message, .refresh-hint { transform: translateY(20px); }
+
+/* ─── TABLET UP ─── */
+@media (min-width: 600px) {
+  main { padding: calc(100px + env(safe-area-inset-top)) 48px calc(72px + env(safe-area-inset-bottom)); }
+  footer { flex-direction: row; justify-content: space-between; text-align: left; padding: 24px 48px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Cameron Schindler</a>
+  <a href="/" class="nav-back">Portfolio</a>
+</nav>
+
+<main>
+  <div class="bg-decor">
+    <div class="bg-line bg-line-h"></div>
+    <div class="bg-line bg-line-h"></div>
+    <div class="bg-line bg-line-v"></div>
+    <div class="bg-line bg-line-v"></div>
+    <div class="bg-circle"></div>
+    <div class="bg-circle"></div>
+    <div class="bg-circle"></div>
+  </div>
+
+  <div class="content">
+    <span class="eyebrow">Cameron Schindler — 2026</span>
+
+    <div class="title">
+      <div class="line"><span>Graduation</span></div>
+      <div class="line"><span>Gallery coming soon</span></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <p class="message">
+      The <strong>graduation gallery</strong> is on its way.
+      Check back soon — photos will be posted here when they're ready.
+    </p>
+
+    <div class="refresh-hint">
+      <p>Not live yet? Refresh to check for updates.</p>
+      <button class="refresh-btn" onclick="location.reload()">
+        <span class="refresh-icon">↻</span>
+        <span>Refresh Page</span>
+      </button>
+    </div>
+  </div>
+</main>
+
+<div class="marquee-section">
+  <div class="marquee-track">
+    <div class="marquee-item">Graduation 2026</div>
+    <div class="marquee-item">Cameron Schindler</div>
+    <div class="marquee-item">Gallery Coming Soon</div>
+    <div class="marquee-item">Stay Tuned</div>
+    <div class="marquee-item">Graduation 2026</div>
+    <div class="marquee-item">Cameron Schindler</div>
+    <div class="marquee-item">Gallery Coming Soon</div>
+    <div class="marquee-item">Stay Tuned</div>
+    <div class="marquee-item">Graduation 2026</div>
+    <div class="marquee-item">Cameron Schindler</div>
+    <div class="marquee-item">Gallery Coming Soon</div>
+    <div class="marquee-item">Stay Tuned</div>
+  </div>
+</div>
+
+<footer>
+  <span class="logo">Cameron Schindler</span>
+  <p>&copy; 2026 Cameron Schindler</p>
+  <ul class="social-links">
+    <li><a href="https://www.instagram.com/schindler_cameron/" target="_blank">Instagram</a></li>
+    <li><a href="#">LinkedIn</a></li>
+  </ul>
+</footer>
+
+</body>
+</html>
