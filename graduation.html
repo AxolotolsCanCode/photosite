@@ -128,64 +128,7 @@ nav {
 .nav-back:hover { opacity: 1; }
 .nav-back::before { content: '←'; }
 
-/* ─── PAGE HEADER ─── */
-.page-header {
-  text-align: center;
-  padding: clamp(20px, 3vw, 32px) 24px clamp(20px, 4vw, 36px);
-  margin-top: calc(46px + 52px); /* banner + nav */
-}
-.page-eyebrow {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.62rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 14px;
-  display: block;
-  animation: fadeUp 0.8s forwards 0.2s both;
-  opacity: 0;
-  transform: translateY(14px);
-}
-.page-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(3.2rem, 16vw, 9rem);
-  line-height: 0.9;
-  letter-spacing: 0.02em;
-  animation: fadeUp 0.8s forwards 0.35s both;
-  opacity: 0;
-  transform: translateY(14px);
-}
-.page-sub {
-  font-size: clamp(0.9rem, 3vw, 1.1rem);
-  font-weight: 300;
-  font-style: italic;
-  color: var(--text-muted);
-  margin-top: 12px;
-  animation: fadeUp 0.8s forwards 0.5s both;
-  opacity: 0;
-  transform: translateY(14px);
-}
-.page-divider {
-  width: 48px; height: 1px;
-  background: var(--gold);
-  margin: 24px auto 0;
-  animation: fadeIn 0.6s forwards 0.7s both;
-  opacity: 0;
-}
 
-/* ─── PURCHASE NOTE (below header) ─── */
-.purchase-note {
-  background: var(--gold-soft);
-  border: 1px solid var(--gold-border);
-  border-radius: 4px;
-  max-width: 680px;
-  margin: 28px auto 0;
-  padding: 18px 24px;
-  text-align: center;
-  animation: fadeUp 0.8s forwards 0.8s both;
-  opacity: 0;
-  transform: translateY(14px);
-}
 .purchase-note p {
   font-family: 'DM Mono', monospace;
   font-size: clamp(0.58rem, 2.5vw, 0.68rem);
@@ -224,9 +167,9 @@ nav {
 
 /* ─── GALLERY GRID ─── */
 .gallery-section {
-  padding: 32px 20px 60px;
+  padding: 24px 20px 60px;
   max-width: 1400px;
-  margin: 0 auto;
+  margin: calc(46px + 52px) auto 0;
   width: 100%;
 }
 
@@ -570,24 +513,8 @@ footer p {
   <a href="/" class="nav-back">Portfolio</a>
 </nav>
 
-<!-- PAGE HEADER -->
-<header class="page-header">
-  <span class="page-eyebrow">Cameron Schindler — Class of 2026</span>
-  <h1 class="page-title">Graduation</h1>
-  <p class="page-sub">Click any photo to view full size &amp; purchase</p>
-  <div class="page-divider"></div>
 
-  <div class="purchase-note">
-    <p>
-      To purchase any photo, note the <strong>photo number</strong> and reach out below.<br>
-      All photos are available as high-resolution digital files or prints.
-    </p>
-    <div class="contact-links">
-      <a href="mailto:cameronjschindler@gmail.com?subject=Graduation Photo Purchase" class="contact-link">✉ cameronjschindler@gmail.com</a>
-      <a href="https://www.instagram.com/schindler_cameron/" target="_blank" class="contact-link">@ schindler_cameron</a>
-    </div>
-  </div>
-</header>
+
 
 <!-- GALLERY -->
 <section class="gallery-section">
