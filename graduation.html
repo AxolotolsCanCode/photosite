@@ -185,8 +185,8 @@ nav {
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
 }
 
 .photo-card {
@@ -486,11 +486,14 @@ footer p {
 @media (min-width: 600px) {
   nav { top: 46px; }
   .purchase-banner { padding: 14px 32px; }
-  .gallery-grid { gap: 16px; }
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
   footer { flex-direction: row; justify-content: space-between; text-align: left; padding: 24px 48px; }
 }
 @media (min-width: 900px) {
-  .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+  .gallery-grid { grid-template-columns: repeat(4, 1fr); gap: 14px; }
+}
+@media (min-width: 1200px) {
+  .gallery-grid { grid-template-columns: repeat(5, 1fr); }
 }
 </style>
 </head>
@@ -722,9 +725,9 @@ if (GRADUATION_PHOTOS.length === 0) {
     card.setAttribute("aria-label", `Open photo #${num}`);
 
     const img = document.createElement("img");
-    img.src = FOLDER + filename;
+    img.dataset.src = FOLDER + filename;
     img.alt = `Graduation photo #${num}`;
-    img.loading = "lazy";
+    img.decoding = "async";
     img.addEventListener("load", () => {
       img.classList.add("loaded");
       card.classList.add("img-loaded");
@@ -752,6 +755,21 @@ if (GRADUATION_PHOTOS.length === 0) {
     card.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") openLightbox(); });
   });
 }
+
+/* ─── LAZY LOAD via IntersectionObserver ─── */
+const lazyObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const img = entry.target.querySelector("img[data-src]");
+    if (img) {
+      img.src = img.dataset.src;
+      delete img.dataset.src;
+    }
+    lazyObserver.unobserve(entry.target);
+  });
+}, { rootMargin: "200px 0px" });
+
+document.querySelectorAll(".photo-card").forEach(card => lazyObserver.observe(card));
 
 /* ─── LIGHTBOX LOGIC ─── */
 function padNum(n) { return String(n + 1).padStart(3, "0"); }
