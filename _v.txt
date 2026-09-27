@@ -1,0 +1,28 @@
+=== gallery ===
+frames: 29  ok
+numbering 1..29 sequential: yes
+aria 1..29 sequential    : *** 21,23,7,19,9,2,24,8,18,17,27,33,15,4,3,35,1,30,28,31,16,25,5,6,22,29,32,11,20
+aria denominator         : 35
+duplicates               : 0
+curated titles kept      : 6
+sheet-note              : 29 frames from recent sessions. Select any one to open it full screen.
+lb-count                : undefined
+ === removed frames are gone from the page ===
+  gone      DSC_1880-Edit.jpg : 0
+  gone      DSC_2244-Edit.jpg : 0
+  gone      DSC_2508.jpg : 0
+  gone      DSC_3761.jpg : 0
+  gone      IMG_7461(1).jpg : 0
+  gone      Z62_9685.jpg : 0
+ === assets ===
+referenced: 90   missing: none
+ === contrast: white vs dark text on the green accent ===
+  accent #20e080 / on-accent #0a0a0b : 11.34:1
+  accent #20e080 / #ffffff             : 1.74:1  (unusable)
+  white-on-accent left: 0  ok
+ === structure ===
+CSS braces: 210/210
+  *** div 9/10
+  *** section 2/1
+script: parses OK
+U+00B7 22  U+FFFD 0  BOM false

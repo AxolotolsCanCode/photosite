@@ -1,0 +1,24 @@
+--- PRODUCT.md : no title
+    hero-ish image ref: none
+--- iteration-05.html : Cameron Schindler. · Portrait & Commercial Photography · Washington
+    hero-ish image ref: DSC_2244-Edit.jpg
+    mentions DSC_2244: yes
+--- iteration-04.html : Cameron Schindler. · Portrait & Commercial Photography · Washington
+    hero-ish image ref: DSC_2244-Edit.jpg
+    mentions DSC_2244: yes
+--- style-2-minimal.html : Cameron Schindler — Portrait & Commercial Photography
+    hero-ish image ref: DSC_2244-Edit.jpg
+    mentions DSC_2244: yes
+--- _audit.html : Cameron Schindler. Â· Portrait & Commercial Photography Â· Roseville, CA
+    hero-ish image ref: DSC_2244-Edit.jpg
+    mentions DSC_2244: yes
+
+hero/ folder files:
+    hero-1400.jpg  190KB
+    hero-2000.jpg  368KB
+    hero-800.jpg  69KB
+    manifest.json  0KB
+
+source originals present in root:
+    DSC_2584-Edit.jpg : true
+    DSC_2244-Edit.jpg : false

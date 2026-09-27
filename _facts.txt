@@ -1,0 +1,32 @@
+=== cta-band references in the surviving current CSS ===
+  .cta-band{align-items:flex-start;flex-direction:column;gap:22px}
+  .cta-go{width:100%;justify-content:space-between}
+  (markup for these is gone: absent)
+ === _audit.html (most complete surviving copy) ===
+  title      : Cameron Schindler. Â· Portrait & Commercial Photography Â· Roseville, CA
+  accent     : #ff2e1a
+  lb-count   : 1 / 6
+  sheet note : undefined
+  lb-arrow   : 2
+  services   : true
+  assure     : true
+  lb css     : NO .lb base rules (matches the bug I fixed)
+  bytes      : 38650
+ === _recovered.html (from HEAD) ===
+  pricing    : true
+  bookingForm: true
+  services   : false
+  cta-band   : false
+  bytes      : 12029
+ === cta-band: any surviving copy at all? ===
+  iteration-01.html       0
+  iteration-02.html       0
+  iteration-03.html       0
+  iteration-04.html       0
+  iteration-05.html       0
+  style-2-minimal.html    0
+  iterations.html         0
+  graduation.html         0
+  _audit.html             0
+  _recovered.html         0
+  _work-section.html      0

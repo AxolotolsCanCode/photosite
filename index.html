@@ -3,1360 +3,760 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#080808">
-<title>Cameron Schindler — Visual Storyteller</title>
-
-<!-- Preconnect to Google Fonts -->
+<title>Cameron Schindler. · Portrait & Commercial Photography · Roseville, CA</title>
+<meta name="description" content="Cameron Schindler, Roseville photographer. Portraits, families, sports, real estate, automotive and branded reels · proofs within 48 hours.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preload" as="image" imagesrcset="hero/hero-800.jpg 800w, hero/hero-1400.jpg 1400w, hero/hero-2000.jpg 2000w" imagesizes="100vw" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<!-- Load display font first (used in loader/hero), defer rest -->
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"></noscript>
-
-<!-- Preload the hero image (LCP element) -->
-<link rel="preload" as="image" href="DSC_2244-Edit.jpg">
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-/* ─── RESET & VARIABLES ───────────────────────────────────────── */
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  :root{
+    --bg:#0a0a0b;
+    --panel:#111113;
+    --well:#161619;
+    --paper:#f5f2ec;
+    --muted:#a19d96;
+    --line:#252529;
+    --hair:#1d1d21;
+    --accent:#20e080;
+    --on-accent:#0a0a0b;
+    --sans:"Inter",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;overflow-x:hidden}
+  ::selection{background:var(--accent);color:var(--bg)}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  body{
+    margin:0;background:var(--bg);color:var(--paper);
+    font-family:var(--sans);line-height:1.58;-webkit-font-smoothing:antialiased;
+    scrollbar-color:var(--line) var(--bg);text-rendering:optimizeLegibility;
+  }
+  ::-webkit-scrollbar{width:12px;height:12px}
+  ::-webkit-scrollbar-track{background:var(--bg)}
+  ::-webkit-scrollbar-thumb{background:var(--line);border:3px solid var(--bg);border-radius:6px}
+  ::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+  a{color:inherit}
+  img{display:block}
+  .wrap{max-width:1360px;margin:0 auto;padding:0 clamp(18px,5vw,26px)}
+  .caps{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600}
 
-:root {
-  --black: #080808;
-  --white: #f0ece4;
-  --cream: #e8e0d0;
-  --gold:  #c9a84c;
-  --gold-soft: rgba(201,168,76,0.12);
-  --gold-border: rgba(201,168,76,0.22);
-  --gray: #1e1e1e;
-  --gray2: #2a2a2a;
-  --red: #c0392b;
-  --text-muted: rgba(240,236,228,0.45);
-  --radius: 2px;
-}
+  /* ── Header ───────────────────────────────────────────── */
+  .bar{position:fixed;top:0;left:0;right:0;z-index:60;transition:background .35s ease,border-color .35s ease}
+  .bar.scrolled{background:rgba(10,10,11,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--hair)}
+  .bar .inner{display:flex;justify-content:space-between;align-items:center;padding:clamp(14px,3.2vw,20px) clamp(18px,5vw,26px);max-width:1360px;margin:0 auto}
+  .wordmark{font-size:17px;font-weight:800;letter-spacing:-.02em;text-decoration:none;color:var(--paper)}
+  .wordmark .dot{color:var(--accent)}
+  .bar nav{display:flex;gap:32px;align-items:center}
+  .bar nav a{font-size:11px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--paper);font-weight:600;opacity:.72;transition:opacity .2s ease}
+  .bar nav a:hover{opacity:1}
+  .bar nav a.active{opacity:1;border-bottom:1px solid var(--accent);padding-bottom:2px}
+  .bar nav a.cta{opacity:1;border:1px solid var(--accent);padding:9px 16px;color:var(--on-accent);background:var(--accent);transition:background .2s ease,color .2s ease}
+  .bar nav a.cta:hover{background:transparent;color:var(--paper)}
 
-body {
-  background: var(--black);
-  color: var(--white);
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  overflow-x: hidden;
-}
+  /* ── Hero ────────────────────────────────────────────── */
+  .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;background:var(--bg)}
+  .hero-media{position:absolute;inset:0;z-index:0;transform:translate3d(0,var(--py,0px),0);will-change:transform}
+  .hero img.photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 46%;animation:heroBreathe 34s cubic-bezier(.4,0,.5,1) infinite alternate}
+  @keyframes heroBreathe{
+    0%{transform:scale(1.115)}
+    3.5%{transform:scale(1.02)}
+    100%{transform:scale(1.085)}
+  }
+  .hero::after{content:"";position:absolute;inset:0;z-index:1;background:
+    linear-gradient(180deg,rgba(10,10,11,.72) 0%,rgba(10,10,11,.18) 42%,rgba(10,10,11,.42) 66%,rgba(10,10,11,.96) 100%),
+    radial-gradient(120% 90% at 50% 0%,transparent 40%,rgba(10,10,11,.42) 100%)}
+  .hero::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;mix-blend-mode:overlay;opacity:.12;
+    background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .hero .inner{position:relative;z-index:4;width:100%;max-width:1360px;margin:0 auto;padding:0 26px 56px;display:grid;grid-template-columns:1.45fr 1fr;align-items:end;gap:48px}
+  .hero h1{margin:0;font-size:clamp(3rem,9.2vw,6rem);font-weight:900;letter-spacing:-.035em;line-height:.92}
+  .hero h1 em{font-style:normal;color:var(--accent)}
+  .hero .sub{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:22px;color:var(--muted)}
+  .hero .sub .caps{color:var(--muted)}
+  .hero .side{display:flex;flex-direction:column;gap:26px;align-items:flex-start;padding-bottom:6px}
+  .hero .side p{margin:0;font-size:.95rem;color:var(--muted);max-width:46ch}
+  .hero .cta{
+    display:inline-flex;align-items:center;gap:12px;padding:15px 22px;
+    background:var(--accent);color:var(--on-accent);text-decoration:none;
+    font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;
+    transition:background .2s ease,transform .2s ease;
+  }
+  .hero .cta:hover{background:#4ce88a;color:#111}
+  .hero .cta svg{transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+  .hero .cta:hover svg{transform:translateX(4px)}
 
-img { display: block; max-width: 100%; }
-a { color: inherit; text-decoration: none; }
+  /* ── Sections ────────────────────────────────────────── */
+  section{padding:clamp(58px,9vw,118px) 0 10px}
+  .kicker-row{display:flex;justify-content:space-between;gap:18px;align-items:center;border-bottom:1px solid var(--hair);padding-bottom:15px;margin-bottom:44px}
+  h2{font-size:clamp(1.7rem,3.6vw,2.6rem);font-weight:800;letter-spacing:-.028em;margin:0;line-height:1.02}
+  h2 .dot{color:var(--accent)}
 
-/* ─── LOADER ──────────────────────────────────────────────────── */
-#loader {
-  position: fixed; inset: 0;
-  background: var(--black);
-  z-index: 10000;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 20px;
-}
-#loader-text {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2.5rem, 10vw, 7rem);
-  letter-spacing: 0.3em;
-  overflow: hidden;
-}
-#loader-text span {
-  display: inline-block;
-  transform: translateY(100%);
-  animation: slideUp 0.8s cubic-bezier(0.76,0,0.24,1) forwards;
-}
-#loader-text span:nth-child(1){animation-delay:.1s}
-#loader-text span:nth-child(2){animation-delay:.2s}
-#loader-text span:nth-child(3){animation-delay:.3s}
-#loader-text span:nth-child(4){animation-delay:.4s}
-#loader-text span:nth-child(5){animation-delay:.5s}
-#loader-text span:nth-child(6){animation-delay:.6s}
-#loader-text span:nth-child(7){animation-delay:.7s}
+  /* ── Work: portrait contact sheet ─────────────────────── */
+  .sheet-note{margin:0 0 22px;color:var(--muted);font-size:.9rem;max-width:52ch}
+  .sheet{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}
+  .frame{
+    position:relative;display:block;width:100%;margin:0;padding:0;
+    overflow:hidden;background:var(--well);border:1px solid var(--hair);
+    aspect-ratio:2/3;cursor:zoom-in;font:inherit;color:inherit;text-align:left;
+    -webkit-appearance:none;appearance:none;
+  }
+  .frame img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .8s cubic-bezier(.2,.65,.25,1)}
+  .frame:hover img,.frame:focus-visible img{transform:scale(1.045)}
+  .frame::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(245,242,236,.05);pointer-events:none}
+  .frame .no{position:absolute;right:7px;bottom:6px;z-index:2;font-size:10px;font-weight:700;letter-spacing:.14em;color:rgba(245,242,236,.6);text-shadow:0 1px 4px rgba(0,0,0,.75);font-variant-numeric:tabular-nums;pointer-events:none}
 
-#loader-bar {
-  width: 160px; height: 1px;
-  background: var(--gray2); position: relative; overflow: hidden;
-}
-#loader-bar::after {
-  content:''; position:absolute; left:-100%; top:0; height:100%; width:100%;
-  background: var(--gold);
-  animation: loadBar 1.4s cubic-bezier(0.76,0,0.24,1) forwards 0.5s;
-}
-@keyframes loadBar { to { left:0; } }
-@keyframes slideUp { to { transform: translateY(0); } }
-#loader.done { animation: fadeOut 0.5s forwards; }
-@keyframes fadeOut { to { opacity:0; pointer-events:none; } }
+  /* ── Services (cast ledger) ──────────────────────────── */
+  .ledger{border-top:1px solid var(--line)}
+  .ledger-row{
+    display:grid;grid-template-columns:1.6fr 1fr 150px;gap:26px;align-items:center;
+    padding:26px 0;border-bottom:1px solid var(--line);text-decoration:none;color:inherit;
+  }
+  .ledger-row .n{font-size:1.25rem;font-weight:700;letter-spacing:-.02em;transition:color .2s ease}
+  .ledger-row .d{font-size:.87rem;color:var(--muted);max-width:52ch}
+  .ledger-row .p{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:600;text-align:right}
+  .ledger-row:hover .n{color:var(--accent)}
+  .ledger-row .p .num{color:var(--paper);font-weight:700}
 
-/* ─── NAV ─────────────────────────────────────────────────────── */
-nav {
-  position: fixed; top:0; left:0; right:0;
-  z-index: 100;
-  padding: 20px 32px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: background 0.4s, backdrop-filter 0.4s;
-}
-nav.scrolled {
-  background: rgba(8,8,8,0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-.nav-logo {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(1.2rem, 4vw, 1.7rem);
-  letter-spacing: 0.2em;
-}
-.nav-links {
-  display: flex; gap: 32px; list-style: none;
-}
-.nav-links a {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.65rem; letter-spacing: 0.2em;
-  text-transform: uppercase;
-  opacity: 0.7;
-  transition: opacity 0.2s;
-  padding: 4px 0;
-  position: relative;
-}
-.nav-links a::after {
-  content:''; position:absolute; bottom:-2px; left:0;
-  width:0; height:1px; background: var(--gold);
-  transition: width 0.3s ease;
-}
-.nav-links a:hover { opacity:1; }
-.nav-links a:hover::after { width:100%; }
+  /* ── Promise ─────────────────────────────────────────── */
+  .promise{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:start;padding:14px 0 0}
+  .promise h2{font-size:clamp(2rem,4.6vw,3.6rem);font-weight:900;letter-spacing:-.035em;line-height:1.02;margin:0;max-width:18ch}
+  .promise h2 .em{color:var(--accent)}
+  .promise p{font-size:.95rem;color:var(--muted);margin:0;max-width:54ch}
+  .promise .rule{width:52px;height:3px;background:var(--accent);margin-bottom:30px}
 
-.nav-hamburger {
-  display: none;
-  flex-direction: column; gap: 5px;
-  cursor: pointer; padding: 6px;
-}
-.nav-hamburger span {
-  display: block; width: 22px; height: 1px;
-  background: var(--white);
-  transition: transform 0.3s, opacity 0.3s;
-}
-.nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-.nav-hamburger.open span:nth-child(2) { opacity:0; }
-.nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  /* ── Booking ─────────────────────────────────────────── */
+  #booking .kicker-row{justify-content:center;flex-direction:column;align-items:center;gap:9px;text-align:center}
+  .booking{max-width:660px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:46px}
+  .book-info{text-align:center}
+  .book-info .lead{margin:0 auto 30px;font-size:.95rem;color:var(--muted);max-width:52ch}
+  .assure{list-style:none;margin:0 auto 32px;padding:0;max-width:44ch;text-align:left;display:grid;gap:18px}
+  .assure li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:13px;align-items:start}
+  .a-dot{width:6px;height:6px;margin-top:8px;border-radius:50%;background:var(--accent)}
+  .assure b{display:block;font-size:.92rem;font-weight:700;letter-spacing:-.012em;margin-bottom:3px}
+  .assure span{display:block;font-size:.85rem;line-height:1.55;color:var(--muted)}
+  .email-line{font-size:clamp(1.02rem,2vw,1.4rem);font-weight:800;letter-spacing:-.028em;text-decoration:none;border-bottom:2px solid var(--line);display:inline-block;line-height:1.4;transition:border-color .2s ease,color .2s ease}
+  .email-line:hover{border-color:var(--accent);color:var(--accent)}
+  .foot-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:38px;padding-top:26px;border-top:1px solid var(--hair)}
+  .foot-grid .lbl{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:7px}
+  .foot-grid p{margin:0;font-size:.92rem;font-weight:600}
+  .foot-grid a{color:inherit;text-decoration:none;transition:color .2s ease}
+  .foot-grid a:hover{color:var(--accent)}
 
-.nav-drawer {
-  position: fixed; inset:0; top:0;
-  background: var(--black);
-  z-index: 99;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 40px;
-  opacity:0; pointer-events:none;
-  transition: opacity 0.35s ease;
-}
-.nav-drawer.open { opacity:1; pointer-events:all; }
-.nav-drawer a {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2.5rem, 12vw, 4rem);
-  letter-spacing: 0.08em;
-  color: var(--white);
-  opacity: 0.85;
-}
-.nav-drawer a:hover { color: var(--gold); opacity:1; }
+  .formp{background:var(--panel);border:1px solid var(--hair);border-radius:20px;padding:38px 34px;box-shadow:0 22px 64px rgba(0,0,0,.55)}
+  .formp .t{display:flex;justify-content:center;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding-bottom:15px;margin-bottom:22px;text-align:center}
+  .formp .t h3{margin:0;font-size:1.15rem;font-weight:700;letter-spacing:-.018em}
+  .formp .t .caps{color:var(--muted)}
+  .formp .sub{margin:0 auto 28px;font-size:.85rem;color:var(--muted);text-align:center;max-width:44ch}
+  .fr2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .fd{margin-bottom:22px}
+  .fd label{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:8px}
+  .fd label .r{color:var(--accent)}
+  .fd input,.fd select,.fd textarea{
+    width:100%;background:var(--well);border:1px solid var(--line);
+    padding:13px 15px;font:inherit;font-size:.96rem;color:var(--paper);
+    border-radius:11px;
+    transition:border-color .2s ease,background .2s ease,box-shadow .2s ease;
+  }
+  .fd input::placeholder,.fd textarea::placeholder{color:#8b8b93}
+  .fd input:focus,.fd select:focus,.fd textarea:focus{
+    outline:none;border-color:var(--accent);background:var(--panel);
+    box-shadow:0 0 0 3px rgba(32,224,128,.13);
+  }
+  .fd select{appearance:none;-webkit-appearance:none;cursor:pointer;color:var(--paper);padding-right:40px;
+    background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a19d96' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 15px center;
+  }
+  .fd select option{background:var(--panel);color:var(--paper)}
+  .fd textarea{min-height:104px;resize:vertical}
+  .fd select:invalid{color:#8b8b93}
+  input:-webkit-autofill{-webkit-box-shadow:0 0 0 1000px var(--well) inset;-webkit-text-fill-color:var(--paper);caret-color:var(--accent)}
+  .fd input,.fd textarea{caret-color:var(--accent)}
+  .form-status{min-height:20px;font-size:.84rem;margin:2px 0 14px;color:var(--muted)}
+  .form-status.success{color:#7dd88f;font-weight:600}
+  .form-status.error{color:var(--accent);font-weight:600}
+  .btn{
+    display:flex;align-items:center;justify-content:center;gap:12px;
+    width:fit-content;min-width:250px;max-width:100%;margin:0 auto;
+    padding:18px 36px;border-radius:999px;background:var(--accent);color:var(--on-accent);
+    font:inherit;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;
+    border:0;cursor:pointer;text-decoration:none;
+    box-shadow:0 10px 28px rgba(32,224,128,.16);
+    transition:background .2s ease,transform .15s ease,box-shadow .2s ease;
+  }
+  .btn:hover,.btn:focus-visible{background:#4ce88a;color:#111;box-shadow:0 12px 34px rgba(76,232,138,.3)}
+  .btn:active{transform:translateY(1px)}
+  .btn:disabled{opacity:.6;cursor:default;box-shadow:none}
+  .btn svg{transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+  .btn:hover svg{transform:translateX(4px)}
+  .fine{display:flex;align-items:center;justify-content:center;gap:8px;margin:20px 0 0;font-size:.8rem;color:var(--muted);text-align:center}
+  .fine svg{color:var(--accent);flex:0 0 auto}
+  .alt-line{margin:12px 0 0;font-size:.8rem;color:var(--muted);text-align:center}
+  .alt-line a{color:var(--paper);text-decoration:none;border-bottom:1px solid var(--line);transition:color .2s ease,border-color .2s ease}
+  .alt-line a:hover{color:var(--accent);border-color:var(--accent)}
 
-/* ─── HERO ────────────────────────────────────────────────────── */
-#hero {
-  height: 100svh; min-height: 560px;
-  position: relative;
-  display: flex; align-items: flex-end;
-  padding: clamp(40px,8vw,80px) clamp(20px,5vw,48px);
-  overflow: hidden;
-}
-#hero-bg { position:absolute; inset:0; z-index:0; }
-#hero-bg img {
-  width:100%; height:100%; object-fit:cover;
-  transform: scale(1.1) scaleX(-1);
-  animation: heroZoom 20s ease-in-out infinite alternate;
-  filter: brightness(0.7);
-  /* Hint browser about size to reduce layout shift */
-  will-change: transform;
-}
-@keyframes heroZoom {
-  from { transform: scale(1.1) scaleX(-1); }
-  to   { transform: scale(1.0) scaleX(-1); }
-}
-#hero-bg::after {
-  content:''; position:absolute; inset:0;
-  background: linear-gradient(to top, rgba(8,8,8,0.97) 0%, rgba(8,8,8,0.35) 55%, rgba(8,8,8,0.05) 100%);
-}
-.hero-content { position:relative; z-index:1; width:100%; }
-.hero-eyebrow {
-  font-family: 'DM Mono', monospace;
-  font-size: clamp(0.6rem, 2vw, 0.72rem);
-  letter-spacing: 0.3em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 20px;
-  opacity:0; transform: translateY(20px);
-  animation: fadeSlideUp 0.8s forwards 2.2s;
-}
-.hero-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(3rem, 12vw, 14rem);
-  line-height: 0.92; letter-spacing: 0.02em;
-  margin-bottom: 28px;
-}
-.hero-title .line { overflow: hidden; }
-.hero-title .line span {
-  display: block;
-  transform: translateY(110%);
-  animation: slideUp 1s cubic-bezier(0.76,0,0.24,1) forwards;
-}
-.hero-title .line:nth-child(1) span { animation-delay: 2.2s; }
-.hero-title .line:nth-child(2) span { animation-delay: 2.35s; }
-.hero-title em { font-style:italic; color: var(--cream); font-size: 0.85em; }
-.hero-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 20px;
-  opacity:0; animation: fadeSlideUp 0.8s forwards 2.7s;
-}
-.hero-sub {
-  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-  font-weight: 300; max-width: 340px;
-  line-height: 1.65; color: rgba(240,236,228,0.65);
-  font-style: italic;
-}
-.hero-scroll {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
-  color: var(--gold);
-  display: flex; flex-direction: column; align-items: center; gap: 10px;
-  flex-shrink: 0;
-}
-.scroll-line {
-  width:1px; height: 50px; background: var(--gold);
-  animation: scrollAnim 2s ease-in-out infinite;
-}
-@keyframes scrollAnim {
-  0%   { transform:scaleY(0); transform-origin:top;    opacity:1; }
-  50%  { transform:scaleY(1); transform-origin:top;    opacity:1; }
-  51%  { transform:scaleY(1); transform-origin:bottom; opacity:1; }
-  100% { transform:scaleY(0); transform-origin:bottom; opacity:0; }
-}
-@keyframes fadeSlideUp { to { opacity:1; transform:translateY(0); } }
+  /* ── Lightbox (full-screen viewer) ────────────────────── */
+  .lb{position:fixed;inset:0;z-index:100;display:none;flex-direction:column;background:rgba(8,8,9,.975)}
+  .lb.open{display:flex}
+  .lb-top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 26px;border-bottom:1px solid var(--line);flex:0 0 auto}
+  .lb-x{display:inline-flex;align-items:center;gap:9px;background:transparent;border:1px solid var(--line);color:var(--paper);padding:9px 14px;font:inherit;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;cursor:pointer;transition:background .2s ease,border-color .2s ease}
+  .lb-x:hover{background:var(--accent);border-color:var(--accent)}
+  .lb-stage{flex:1 1 auto;display:flex;align-items:center;justify-content:center;padding:22px;min-height:0;overflow:hidden}
+  .lb-stage img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+  .lb-bar{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:26px;padding:20px 26px;border-top:1px solid var(--line);flex-wrap:wrap}
+  .lb-meta{display:flex;flex-direction:column;gap:5px;min-width:0}
+  .lb-meta .t{font-size:1rem;font-weight:700;letter-spacing:-.018em}
+  .lb-meta .c{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .lb-tools{display:flex;align-items:center;gap:14px}
+  .lb-arrow{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:transparent;border:1px solid var(--line);color:var(--paper);cursor:pointer;transition:background .2s ease,border-color .2s ease}
+  .lb-arrow:hover:not(:disabled){background:var(--accent);border-color:var(--accent)}
+  .lb-arrow:disabled{opacity:.3;cursor:default}
+  .lb-count{font-size:11px;letter-spacing:.2em;color:var(--muted);font-weight:600;font-variant-numeric:tabular-nums;min-width:62px;text-align:center}
+  .lb-go{display:inline-flex;align-items:center;gap:12px;padding:13px 18px;background:var(--accent);color:var(--on-accent);text-decoration:none;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;transition:background .2s ease}
+  .lb-go:hover{background:#4ce88a;color:#111}
+  .lb-go svg{transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+  .lb-go:hover svg{transform:translateX(4px)}
 
-/* ─── MARQUEE ─────────────────────────────────────────────────── */
-.marquee-section { padding: 28px 0; background: var(--gold); overflow:hidden; }
-.marquee-track {
-  display:flex; gap:50px;
-  animation: marquee 20s linear infinite; white-space:nowrap;
-}
-.marquee-item {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.1rem; letter-spacing: 0.2em;
-  color: var(--black); flex-shrink:0;
-  display:flex; align-items:center; gap:20px;
-}
-.marquee-item::after { content:'×'; font-size:0.75rem; }
-@keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  /* ── Footer ──────────────────────────────────────────── */
+  .footer{border-top:1px solid var(--line);margin-top:clamp(56px,9vw,120px);padding:44px 0 40px}
+  .footer .giant{font-size:clamp(2.6rem,9.5vw,6rem);font-weight:900;letter-spacing:-.035em;margin:0 0 20px;line-height:.92}
+  .footer .giant .dot{color:var(--accent)}
+  .footer .row{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--muted)}
 
-/* ─── STATS ───────────────────────────────────────────────────── */
-.stats-section {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 1px; background: var(--gray2);
-}
-.stat-item {
-  background: var(--black);
-  padding: clamp(32px, 5vw, 60px) clamp(20px, 3vw, 40px);
-  text-align: center; position:relative; overflow:hidden;
-}
-.stat-item::before {
-  content:''; position:absolute; inset:0;
-  background: var(--gold);
-  transform: translateY(100%);
-  transition: transform 0.5s cubic-bezier(0.76,0,0.24,1);
-}
-.stat-item:hover::before { transform: translateY(0); }
-.stat-item > * { position:relative; z-index:1; }
-.stat-num {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2.2rem, 5vw, 5rem);
-  color: var(--gold); display:block;
-  transition: color 0.3s;
-}
-.stat-item:hover .stat-num { color: var(--black); }
-.stat-label {
-  font-family: 'DM Mono', monospace;
-  font-size: clamp(0.55rem, 1.5vw, 0.7rem);
-  letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--text-muted); margin-top: 6px;
-  transition: color 0.3s;
-}
-.stat-item:hover .stat-label { color: var(--black); }
+  @media (max-width:1020px){
+    .promise{grid-template-columns:1fr;gap:24px}
+    .sheet{grid-template-columns:repeat(4,minmax(0,1fr))}
+  }
+  @media (max-width:900px){
+    .hero .inner{grid-template-columns:1fr;gap:22px;padding-bottom:36px}
+    .hero h1{font-size:clamp(2.4rem,9.5vw,4rem)}
+    .hero{min-height:82svh}
+    .hero img.photo{object-position:50% 44%}
+    .ledger-row{grid-template-columns:1fr;gap:6px}
+    .ledger-row .p{text-align:left}
+    .bar nav{gap:0;width:100%}
+    .bar nav a:not(.cta){display:none}
+    .bar .inner{flex-wrap:wrap;row-gap:10px}
+    .bar nav a.cta{display:flex;align-items:center;justify-content:center;width:100%;padding:14px 18px}
+    .lb-bar{gap:14px}
+    .lb-go{width:100%;justify-content:space-between}
+  }
+  @media (max-width:560px){
+    .fr2{grid-template-columns:1fr}
+    .formp{padding:28px 22px;border-radius:14px}
+    .foot-grid{grid-template-columns:1fr}
+    .btn{min-width:0;width:100%;padding:17px 24px}
+    .sheet{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+    .hero .sub{flex-direction:column;gap:8px}
+    .hero h1{font-size:clamp(2.3rem,8.6vw,3.7rem)}
+    .footer .giant{font-size:clamp(2.05rem,8.8vw,3.5rem)}
+    .cta-band{align-items:flex-start;flex-direction:column;gap:22px}
+    .cta-go{width:100%;justify-content:space-between}
+    .lb-stage{padding:12px}
+    .lb-top{padding:14px 18px}
+    .lb-bar{padding:14px 18px}
+  }
+  /* ── Mobile: touch targets, input zoom, safe areas ────── */
+  @media (max-width:640px){
+    /* iOS Safari zooms the viewport on any field under 16px and never
+       zooms back out, so every form control stays at 16px minimum. */
+    .fd input,.fd select,.fd textarea{font-size:16px;padding:13px 0}
+    .fd{margin-bottom:20px}
 
-/* ─── SECTION SHARED ──────────────────────────────────────────── */
-.section-header {
-  display: flex; justify-content: space-between; align-items: flex-end;
-  margin-bottom: clamp(40px, 6vw, 80px);
-}
-.section-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2.5rem, 8vw, 8rem);
-  line-height: 1; letter-spacing: 0.03em;
-}
-.section-title em {
-  display: block; font-style: italic;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 0.45em; font-weight:300;
-  color: var(--text-muted); letter-spacing: 0.15em;
-}
-.section-link {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.65rem; letter-spacing: 0.2em;
-  text-transform: uppercase; color: var(--gold);
-  border-bottom: 1px solid var(--gold); padding-bottom: 3px;
-  white-space: nowrap;
-}
+    /* 44px minimum touch targets (WCAG 2.5.5 / iOS HIG). */
+    .bar nav a{min-height:44px;align-items:center}
+    .bar nav a.cta{padding:14px 18px}
+    .bar nav a.active{padding-bottom:0}
+    .lb-arrow{width:48px;height:48px}
+    .lb-x{padding:12px 16px;min-height:44px}
+    .lb-go{min-height:48px}
+    .foot-grid a,.alt-line a{display:inline-block;padding:8px 2px}
+    .email-line{padding:8px 0}
+    .frame{min-height:120px}
 
-/* ─── WORK / GALLERY ──────────────────────────────────────────── */
-#work { padding: clamp(60px,10vw,120px) clamp(16px,5vw,48px); }
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: clamp(8px, 1.5vw, 16px);
-}
-.gallery-item {
-  position: relative; overflow:hidden;
-  background: var(--gray);
-  aspect-ratio: 2/3;
-}
-.gallery-item img {
-  width:100%; height:100%; object-fit:cover;
-  transform: scale(1.05);
-  transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.4s;
-  filter: saturate(0.8);
-  /* Performance: promote to own layer only on hover */
-  will-change: auto;
-}
-.gallery-item:hover img { transform: scale(1.12); filter: saturate(1.1); will-change: transform; }
-.gallery-overlay {
-  position:absolute; inset:0;
-  background: linear-gradient(to top, rgba(8,8,8,0.88) 0%, transparent 55%);
-  opacity:0; transition: opacity 0.4s ease;
-  display:flex; flex-direction:column; justify-content:flex-end;
-  padding: clamp(12px,2vw,24px);
-}
-.gallery-item:hover .gallery-overlay { opacity:1; }
-.gallery-cat {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.6rem; letter-spacing: 0.25em;
-  text-transform: uppercase; color: var(--gold);
-  transform: translateY(8px); transition: transform 0.3s ease 0.08s;
-}
-.gallery-title-item {
-  font-size: clamp(0.9rem, 2vw, 1.3rem); font-weight: 600;
-  transform: translateY(8px); transition: transform 0.3s ease;
-}
-.gallery-item:hover .gallery-cat,
-.gallery-item:hover .gallery-title-item { transform: translateY(0); }
-.gallery-num {
-  position:absolute; top:12px; right:12px;
-  font-family: 'DM Mono', monospace; font-size:0.65rem;
-  color: rgba(240,236,228,0.5);
-  background: rgba(8,8,8,0.55);
-  padding: 3px 8px; backdrop-filter: blur(4px);
-  opacity:0; transition: opacity 0.3s;
-}
-.gallery-item:hover .gallery-num { opacity:1; }
+    /* Touch has no hover, so give presses real feedback instead of letting
+       :hover stick after a tap. */
+    .frame:active img{transform:scale(1.045)}
+    .btn:active{transform:translateY(1px)}
+    .ledger-row:active .n{color:var(--accent)}
+    .foot-grid a:active,.alt-line a:active{color:var(--accent)}
 
-/* Skeleton loading state for images */
-.gallery-item img, .h-scroll-item img {
-  background: var(--gray2);
-}
-
-/* ─── HORIZONTAL SCROLL GALLERY ───────────────────────────────── */
-#gallery-h { overflow:hidden; padding: 0 0 clamp(40px,6vw,80px); }
-.h-scroll-track {
-  display:flex; gap: clamp(10px, 1.5vw, 20px);
-  padding: 0 clamp(16px,5vw,48px);
-}
-.h-scroll-item {
-  flex-shrink:0;
-  width: clamp(180px, 22vw, 260px);
-  height: clamp(240px, 30vw, 380px);
-  overflow:hidden;
-}
-.h-scroll-item img { width:100%; height:100%; object-fit:cover; }
-
-/* ─── PRICING ─────────────────────────────────────────────────── */
-#pricing {
-  padding: clamp(60px,10vw,120px) clamp(16px,5vw,48px);
-  background: var(--white); color: var(--black);
-}
-#pricing .section-title { color: var(--black); }
-#pricing .section-title em { color: rgba(8,8,8,0.35); }
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 2px; background: rgba(8,8,8,0.1);
-  margin-top: clamp(32px,5vw,80px);
-}
-.pricing-card {
-  background: var(--white);
-  padding: clamp(28px,4vw,56px) clamp(20px,3vw,40px);
-  position:relative; overflow:hidden; display:flex; flex-direction:column;
-}
-.pricing-card.featured-price { background: var(--black); color: var(--white); }
-.pricing-card.featured-price .pricing-name { color: var(--white); }
-.pricing-card.featured-price .pricing-desc { color: rgba(240,236,228,0.55); }
-.pricing-card.featured-price .pricing-includes li { color: var(--white); border-bottom-color: rgba(240,236,228,0.08); }
-.pricing-card.featured-price .pricing-starting { color: rgba(240,236,228,0.4); }
-.pricing-card.featured-price .pricing-price sub { color: rgba(240,236,228,0.4); }
-.pricing-badge {
-  font-family: 'DM Mono', monospace; font-size:0.58rem; letter-spacing:0.25em;
-  text-transform: uppercase; background: var(--gold); color: var(--black);
-  display:inline-block; padding: 4px 12px; margin-bottom: 24px; align-self: flex-start;
-}
-.pricing-badge-spacer { height:28px; margin-bottom:24px; }
-.pricing-cat {
-  font-family: 'DM Mono', monospace; font-size:0.6rem; letter-spacing:0.3em;
-  text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
-}
-.pricing-name {
-  font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.5rem,3vw,1.9rem);
-  letter-spacing:0.05em; color: var(--black); margin-bottom: 16px; line-height:1.05;
-}
-.pricing-price {
-  font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.2rem,5vw,4.2rem);
-  color: var(--gold); line-height:1; margin-bottom: 4px;
-}
-.pricing-price sub {
-  font-family: 'DM Mono', monospace; font-size:0.7rem;
-  vertical-align:baseline; color: rgba(8,8,8,0.4);
-}
-.pricing-starting {
-  font-family: 'DM Mono', monospace; font-size:0.58rem; letter-spacing:0.2em;
-  text-transform:uppercase; color: rgba(8,8,8,0.35); margin-bottom: 24px;
-}
-.pricing-divider { width:36px; height:1px; background: var(--gold); margin-bottom: 22px; }
-.pricing-desc {
-  font-size:0.9rem; font-style:italic; font-weight:300; line-height:1.7;
-  color: rgba(8,8,8,0.55); margin-bottom: 22px;
-}
-.pricing-includes { list-style:none; margin-bottom: 32px; flex:1; }
-.pricing-includes li {
-  font-family: 'DM Mono', monospace; font-size:0.65rem; letter-spacing:0.06em;
-  color: rgba(8,8,8,0.7); padding: 7px 0;
-  border-bottom: 1px solid rgba(8,8,8,0.06);
-  display:flex; align-items:center; gap:8px;
-}
-.pricing-includes li::before { content:'*'; color: var(--gold); flex-shrink:0; }
-.btn-book {
-  display:inline-block; padding: 13px 24px;
-  background: transparent; color: var(--black);
-  font-family: 'DM Mono', monospace; font-size:0.62rem; letter-spacing:0.22em;
-  text-transform: uppercase; border: 1px solid var(--black);
-  position:relative; overflow:hidden; transition: color 0.4s; text-align:center;
-  cursor:pointer;
-}
-.btn-book::before {
-  content:''; position:absolute; inset:0;
-  background: var(--black); transform: translateX(-100%);
-  transition: transform 0.4s cubic-bezier(0.76,0,0.24,1);
-}
-.btn-book:hover::before { transform: translateX(0); }
-.btn-book:hover { color: var(--white); }
-.btn-book span { position:relative; z-index:1; }
-.pricing-card.featured-price .btn-book { border-color: var(--gold); color: var(--gold); }
-.pricing-card.featured-price .btn-book::before { background: var(--gold); }
-.pricing-card.featured-price .btn-book:hover { color: var(--black); }
-.pricing-row-label {
-  margin-top: clamp(32px,4vw,60px);
-  font-family: 'DM Mono', monospace; font-size:0.62rem; letter-spacing:0.3em;
-  text-transform:uppercase; color: rgba(8,8,8,0.35);
-}
-
-/* ─── BOOKING ─────────────────────────────────────────────────── */
-#booking {
-  background: #0a0a0a;
-  padding: clamp(60px,10vw,120px) clamp(16px,5vw,48px);
-}
-.booking-inner { max-width: 680px; margin: 0 auto; }
-.booking-header { margin-bottom: clamp(32px,5vw,52px); text-align: center; }
-.booking-header .eyebrow {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.65rem; letter-spacing: 0.35em;
-  text-transform: uppercase; color: var(--gold);
-  margin-bottom: 16px; display:block;
-}
-.booking-header h2 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2.8rem, 8vw, 5.5rem);
-  line-height: 0.92; letter-spacing: 0.03em; margin-bottom: 14px;
-}
-.booking-header h2 em {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic; font-size: 0.5em; font-weight:300;
-  color: var(--text-muted); display:block; letter-spacing:0.08em;
-}
-.booking-header p {
-  font-size: clamp(0.9rem, 2vw, 1rem);
-  font-style: italic; color: var(--text-muted); line-height: 1.75;
-}
-.booking-form-card {
-  background: #131313;
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 16px; overflow: hidden;
-  box-shadow: 0 24px 64px rgba(0,0,0,0.4);
-}
-.form-body {
-  padding: clamp(24px,5vw,44px) clamp(20px,5vw,44px) clamp(16px,3vw,28px);
-  display: flex; flex-direction: column; gap: 20px;
-}
-.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.field-group { display: flex; flex-direction: column; gap: 7px; }
-.field-group label {
-  font-family: 'DM Mono', monospace; font-size: 0.57rem;
-  letter-spacing: 0.22em; text-transform: uppercase;
-  color: rgba(240,236,228,0.38); transition: color 0.2s;
-}
-.field-group:focus-within label { color: var(--gold); }
-.field-group input,
-.field-group textarea,
-.field-group select {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.09);
-  border-radius: 8px; color: var(--white);
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.05rem; font-weight: 300;
-  padding: 13px 16px; outline: none; width: 100%;
-  transition: border-color 0.22s, background 0.22s, box-shadow 0.22s;
-  -webkit-appearance: none; appearance: none; line-height: 1.4;
-}
-.field-group select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(201,168,76,0.5)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: right 14px center;
-  padding-right: 38px; cursor: pointer;
-}
-.field-group select option { background: #1a1a1a; color: var(--white); }
-.field-group input::placeholder,
-.field-group textarea::placeholder { color: rgba(240,236,228,0.17); font-style: italic; }
-.field-group input:focus,
-.field-group textarea:focus,
-.field-group select:focus {
-  border-color: rgba(201,168,76,0.5);
-  background: rgba(201,168,76,0.04);
-  box-shadow: 0 0 0 3px rgba(201,168,76,0.08);
-}
-.field-group textarea { resize: vertical; min-height: 100px; line-height: 1.65; font-style: italic; }
-.form-submit-area {
-  padding: clamp(16px,3vw,24px) clamp(20px,5vw,44px) clamp(20px,4vw,32px);
-  border-top: 1px solid rgba(255,255,255,0.05);
-  display: flex; flex-direction: column; gap: 14px;
-}
-.submit-btn {
-  width: 100%; padding: 17px 24px; background: var(--gold); color: var(--black);
-  font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.3em;
-  text-transform: uppercase; border: none; cursor: pointer; border-radius: 8px;
-  position: relative; overflow: hidden;
-  transition: background 0.25s, transform 0.15s, box-shadow 0.25s;
-  -webkit-tap-highlight-color: transparent;
-}
-.submit-btn:hover { background: #d9b85c; box-shadow: 0 6px 24px rgba(201,168,76,0.28); transform: translateY(-1px); }
-.submit-btn:active { transform: translateY(0); background: #b8972f; }
-.submit-btn span { position:relative; z-index:1; font-weight: 400; }
-.form-helper {
-  text-align: center; font-family: 'DM Mono', monospace;
-  font-size: 0.56rem; letter-spacing: 0.18em; text-transform: uppercase;
-  color: rgba(240,236,228,0.2);
-}
-.form-helper a {
-  color: rgba(201,168,76,0.55); text-decoration: underline;
-  text-underline-offset: 3px; transition: color 0.2s;
-}
-.form-helper a:hover { color: var(--gold); }
-.form-status {
-  display: none; padding: 13px 16px;
-  font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em;
-  border-radius: 6px; text-align: center;
-}
-.form-status.success { display:block; color: #5dbd7a; background: rgba(93,189,122,0.08); border: 1px solid rgba(93,189,122,0.2); }
-.form-status.error   { display:block; color: #e07070; background: rgba(192,57,43,0.08); border: 1px solid rgba(192,57,43,0.2); }
-.booking-contact {
-  display: flex; gap: clamp(24px,4vw,48px); margin-top: 28px;
-  flex-wrap: wrap; justify-content: center;
-}
-.contact-item { display:flex; flex-direction:column; gap:4px; align-items: center; }
-.contact-item-label {
-  font-family: 'DM Mono', monospace; font-size: 0.56rem;
-  letter-spacing: 0.28em; text-transform: uppercase; color: rgba(240,236,228,0.3);
-}
-.contact-item a {
-  font-family: 'Cormorant Garamond', serif; font-size: 1rem;
-  font-style: italic; color: rgba(240,236,228,0.7); transition: color 0.2s;
-}
-.contact-item a:hover { color: var(--gold); }
-
-/* ─── FOOTER ──────────────────────────────────────────────────── */
-footer {
-  padding: clamp(24px,4vw,40px) clamp(16px,5vw,48px);
-  border-top: 1px solid var(--gray2);
-  display: flex; justify-content: space-between;
-  align-items: center; flex-wrap: wrap; gap: 16px;
-}
-footer .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.2em; }
-footer p {
-  font-family: 'DM Mono', monospace; font-size: 0.62rem;
-  letter-spacing: 0.12em; color: rgba(240,236,228,0.25); text-transform: uppercase;
-}
-.social-links { display:flex; gap:20px; list-style:none; }
-.social-links a {
-  font-family: 'DM Mono', monospace; font-size: 0.62rem;
-  letter-spacing: 0.18em; text-transform: uppercase;
-  color: rgba(240,236,228,0.35); transition: color 0.25s;
-}
-.social-links a:hover { color: var(--gold); }
-
-/* ─── REVEAL ──────────────────────────────────────────────────── */
-.reveal {
-  opacity:0; transform: translateY(32px);
-  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
-}
-.reveal.visible { opacity:1; transform: translateY(0); }
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-
-/* ─── NOISE OVERLAY ───────────────────────────────────────────── */
-body::before {
-  content:''; position:fixed; inset:0; pointer-events:none; z-index:9999;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity: 0.022;
-}
-
-/* ─── RESPONSIVE ──────────────────────────────────────────────── */
-@media (max-width: 900px) {
-  .nav-links { display:none; }
-  .nav-hamburger { display:flex; }
-  .hero-scroll { display:none; }
-  .stats-section { grid-template-columns: repeat(2, 1fr); }
-  .gallery-grid { grid-template-columns: repeat(3, 1fr); }
-  .pricing-grid { grid-template-columns: repeat(2, 1fr); }
-  .field-row { grid-template-columns: 1fr; }
-  footer { justify-content: center; text-align:center; }
-  .social-links { justify-content: center; }
-}
-@media (max-width: 560px) {
-  nav { padding: 16px 20px; }
-  #hero-bg img { object-position: 20% center; }
-  #hero { padding: 60px 20px 36px; }
-  .hero-title { font-size: clamp(2.8rem, 14vw, 5rem); }
-  .stats-section { grid-template-columns: repeat(2, 1fr); }
-  .stat-item { padding: 28px 16px; }
-  #work { padding: 48px 16px; }
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-  #pricing { padding: 48px 16px; }
-  .pricing-grid { grid-template-columns: 1fr; }
-  #booking { padding: 48px 16px; }
-  .booking-header h2 { font-size: clamp(2.5rem,14vw,4rem); }
-  .form-body { padding: 20px 16px; }
-  .booking-contact { gap: 20px; }
-  .h-scroll-item { width: 150px; height: 210px; }
-  footer { padding: 24px 20px; flex-direction: column; gap: 12px; }
-}
-@media (max-width: 380px) {
-  .gallery-grid { grid-template-columns: 1fr 1fr; }
-}
-@media (hover: none) {
-  .gallery-overlay { opacity:1; }
-  .gallery-item img { transform:scale(1); filter:saturate(0.9); }
-  .gallery-cat, .gallery-title-item { transform:translateY(0); }
-  .gallery-num { opacity:1; }
-}
+    /* Notched devices: keep the fixed header and viewer clear of the
+       status bar and home indicator. */
+    .bar .inner{padding-top:calc(14px + env(safe-area-inset-top))}
+    .hero{padding-top:env(safe-area-inset-top)}
+    .lb{padding-bottom:env(safe-area-inset-bottom)}
+    .lb-top{padding-top:calc(14px + env(safe-area-inset-top))}
+    .footer .wrap{padding-bottom:calc(40px + env(safe-area-inset-bottom))}
+  }
+  /* Landscape phones are ~844px wide, so this cannot live inside the 640px
+     query above - it would never match. A full-height hero just pushes
+     everything else off-screen. */
+  @media (orientation:landscape) and (max-height:520px){
+    .hero{min-height:70svh}
+  }
+  /* Pointer capability, not screen size: touch devices have no hover, so a
+     tapped frame would otherwise stay zoomed after the viewer closes. */
+  @media (hover:none){
+    .frame:hover img{transform:none}
+    .frame:active img{transform:scale(1.045)}
+    .foot-grid a:hover,.alt-line a:hover,.email-line:hover{color:inherit}
+    .email-line:hover{border-bottom-color:var(--line)}
+    /* Outline buttons reset to their own base. Accent-filled buttons must go
+       back to the accent, not to transparent, or a tap looks disabled. */
+    .lb-x:hover{background:transparent;border-color:var(--line);color:var(--paper)}
+    .lb-arrow:hover:not(:disabled){background:transparent;border-color:var(--line)}
+    .lb-go:hover,.bar nav a.cta:hover,.hero .cta:hover{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+    .btn:hover{background:var(--accent);color:var(--on-accent);box-shadow:none}
+    .btn:hover svg,.lb-go:hover svg,.hero .cta:hover svg{transform:none}
+    .ledger-row:hover .n{color:inherit}
+    .ledger-row:active .n{color:var(--accent)}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .hero img.photo{transform:none}
+    .hero-media{transform:none!important}
+    .frame:hover img,.frame:focus-visible img{transform:none}
+  }
 </style>
 </head>
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-  <div id="loader-text">
-    <span>C</span><span>A</span><span>M</span><span>E</span><span>R</span><span>O</span><span>N</span>
+<header class="bar" id="top" data-bar>
+  <div class="inner">
+    <a class="wordmark" href="#top">Cameron Schindler<span class="dot">.</span></a>
+    <nav aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#booking">Contact</a>
+      <a class="cta" href="#booking">Book a date</a>
+    </nav>
   </div>
-  <div id="loader-bar"></div>
-</div>
+</header>
 
-<!-- NAV -->
-<nav id="mainNav">
-  <a href="#" class="nav-logo">Cameron Schindler</a>
-  <ul class="nav-links">
-    <li><a href="#work">Work</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#booking">Book</a></li>
-  </ul>
-  <div class="nav-hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </div>
-</nav>
-
-<!-- MOBILE DRAWER -->
-<div class="nav-drawer" id="navDrawer">
-  <a href="#work" class="drawer-link">Work</a>
-  <a href="#pricing" class="drawer-link">Pricing</a>
-  <a href="#booking" class="drawer-link">Book</a>
-</div>
-
-<!-- HERO -->
-<section id="hero">
-  <div id="hero-bg">
-    <!-- fetchpriority=high tells browser to load this first (LCP element) -->
-    <img src="DSC_2244-Edit.jpg"
-         alt="Cameron Schindler Photography"
-         fetchpriority="high"
-         loading="eager"
-         decoding="sync"
-         width="1920" height="1080">
-  </div>
-  <div class="hero-content">
-    <p class="hero-eyebrow">Visual Storyteller</p>
-    <h1 class="hero-title">
-      <div class="line"><span>The World</span></div>
-      <div class="line"><span><em>through my lens</em></span></div>
-    </h1>
-    <div class="hero-bottom">
-      <p class="hero-sub">Photography that transforms your vision into timeless images people can't look away from.</p>
-      <div class="hero-scroll">
-        <div class="scroll-line"></div>
-        <span>Scroll</span>
+<main>
+  <section class="hero" aria-label="Cameron Schindler, Roseville photographer">
+    <div class="hero-media" id="heroMedia">
+      <img class="photo" src="hero/hero-1400.jpg" srcset="hero/hero-800.jpg 800w, hero/hero-1400.jpg 1400w, hero/hero-2000.jpg 2000w" sizes="100vw" alt="Session photography by Cameron Schindler" fetchpriority="high" decoding="async" width="1400" height="933">
+    </div>
+    <div class="inner">
+      <div>
+        <h1>Cameron&nbsp;Schindler<em>.</em></h1>
+        <div class="sub">
+          <span class="caps">Portrait &amp; commercial</span>
+          <span class="caps">Roseville</span>
+          <span class="caps">Proofs in 48 hours</span>
+        </div>
+      </div>
+      <div class="side">
+        <p>On location throughout Roseville and the Sacramento area · a business shoot in the morning, a family session at the park by afternoon. Portraits, families, sports, real estate, automotive and branded reels.</p>
+        <a class="cta" href="#booking">Request a date
+          <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        </a>
       </div>
     </div>
+  </section>
+
+  <div class="wrap">
+        <section id="work">
+      <div class="kicker-row">
+        <h2>Selected&nbsp;work<span class="dot">.</span></h2>
+        <span class="caps">Portrait · landscape · sports · wildlife · automotive · events</span>
+      </div>
+      <div class="sheet">
+<button class="frame" type="button" data-full="full/Z62_0824.jpg" aria-label="Open photo 01 of 29 full screen">
+          <img src="thumbs/Z62_0824.jpg" srcset="thumbs/sm/Z62_0824.jpg 520w, thumbs/Z62_0824.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Photograph by Cameron Schindler" loading="lazy" decoding="async" width="900" height="1353">
+          <span class="no" aria-hidden="true">1</span>
+        </button>
+<button class="frame" type="button" data-full="full/Z62_9352.jpg" aria-label="Open photo 02 of 29 full screen">
+          <img src="thumbs/Z62_9352.jpg" srcset="thumbs/sm/Z62_9352.jpg 520w, thumbs/Z62_9352.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Photograph by Cameron Schindler" loading="lazy" decoding="async" width="900" height="1353">
+          <span class="no" aria-hidden="true">2</span>
+        </button>
+<button class="frame" type="button" data-full="full/DSC_0134-Enhanced-NR-Edit.jpg" aria-label="Open photo 03 of 29 full screen">
+          <img src="thumbs/DSC_0134-Enhanced-NR-Edit.jpg" srcset="thumbs/sm/DSC_0134-Enhanced-NR-Edit.jpg 520w, thumbs/DSC_0134-Enhanced-NR-Edit.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Photograph by Cameron Schindler" loading="lazy" decoding="async" width="900" height="1350">
+          <span class="no" aria-hidden="true">3</span>
+        </button>
+<button class="frame" type="button" data-full="full/DSC_4948-Edit-2.jpg" aria-label="Open photo 04 of 29 full screen">
+          <img src="thumbs/DSC_4948-Edit-2.jpg" srcset="thumbs/sm/DSC_4948-Edit-2.jpg 520w, thumbs/DSC_4948-Edit-2.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Photograph by Cameron Schindler" loading="lazy" decoding="async" width="900" height="1350">
+          <span class="no" aria-hidden="true">4</span>
+        </button>
+<button class="frame" type="button" data-full="full/DSC_1865-Edit.jpg" aria-label="Open photo 05 of 29 full screen">
+          <img src="thumbs/DSC_1865-Edit.jpg" srcset="thumbs/sm/DSC_1865-Edit.jpg 520w, thumbs/DSC_1865-Edit.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Photograph by Cameron Schindler" loading="lazy" decoding="async" width="900" height="1350">
+          <span class="no" aria-hidden="true">5</span>
+        </button>
+<button class="frame" type="button" data-full="full/Z62_0078-Enhanced-NR.jpg" data-title="Basketball" data-cat="Sports · Sacramento" aria-label="Open photo 06 of 29 full screen">
+          <img src="thumbs/Z62_0078-Enhanced-NR.jpg" srcset="thumbs/sm/Z62_0078-Enhanced-NR.jpg 520w, thumbs/Z62_0078-Enhanced-NR.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Basketball action · sports photography" loading="lazy" decoding="async" width="900" height="1353">
+          <span class="no" aria-hidden="true">6</span>
+        </button>
+<button class="frame" type="button" data-full="full/Z62_9091-Edit.jpg" aria-label="Open photo 07 of 29 full screen">
+          <img src="thumbs/Z62_9091-Edit.jpg" srcset="thumbs/sm/Z62_9091-Edit.jpg 520w, thumbs/Z62_9091-Edit.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Photograph by Cameron Schindler" loading="lazy" decoding="async" width="900" height="1353">
+          <span class="no" aria-hidden="true">7</span>
+        </button>
+<button class="frame" type="button" data-full="full/DSC_1552.jpg" aria-label="Open photo 08 of 29 full screen">
+          <img src="thumbs/DSC_1552.jpg" srcset="thumbs/sm/DSC_1552.jpg 520w, thumbs/DSC_1552.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Photograph by Cameron Schindler" loading="lazy" decoding="async" width="900" height="1350">
+          <span class="no" aria-hidden="true">8</span>
+        </button>
+<button class="frame" type="button" data-full="full/DSC_4920-Enhanced-NR.jpg" aria-label="Open photo 09 of 29 full screen">
+          <img src="thumbs/DSC_4920-Enhanced-NR.jpg" srcset="thumbs/sm/DSC_4920-Enhanced-NR.jpg 520w, thumbs/DSC_4920-Enhanced-NR.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Photograph by Cameron Schindler" loading="lazy" decoding="async" width="900" height="1350">
+          <span class="no" aria-hidden="true">9</span>
+        </button>
+<button class="frame" type="button" data-full="full/DSC_4774.jpg" aria-label="Open photo 10 of 29 full screen">
+          <img src="thumbs/DSC_4774.jpg" srcset="thumbs/sm/DSC_4774.jpg 520w, thumbs/DSC_4774.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Photograph by Cameron Schindler" loading="lazy" decoding="async" width="900" height="1350">
+          <span class="no" aria-hidden="true">10</span>
+        </button>
+<button class="frame" type="button" data-full="full/Z62_0276-Enhanced-NR.jpg" aria-label="Open photo 11 of 29 full screen">
+          <img src="thumbs/Z62_0276-Enhanced-NR.jpg" srcset="thumbs/sm/Z62_0276-Enhanced-NR.jpg 520w, thumbs/Z62_0276-Enhanced-NR.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Photograph by Cameron Schindler" loading="lazy" decoding="async" width="900" height="1353">
+          <span class="no" aria-hidden="true">11</span>
+        </button>
+<button class="frame" type="button" data-full="full/IMG_4358-Enhanced-NR.jpg" aria-label="Open photo 12 of 29 full screen">
+          <img src="thumbs/IMG_4358-Enhanced-NR.jpg" srcset="thumbs/sm/IMG_4358-Enhanced-NR.jpg 520w, thumbs/IMG_4358-Enhanced-NR.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Photograph by Cameron Schindler" loading="lazy" decoding="async" width="900" height="1350">
+          <span class="no" aria-hidden="true">12</span>
+        </button>
+<button class="frame" type="button" data-full="full/DSC_3858.jpg" aria-label="Open photo 13 of 29 full screen">
+          <img src="thumbs/DSC_3858.jpg" srcset="thumbs/sm/DSC_3858.jpg 520w, thumbs/DSC_3858.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Photograph by Cameron Schindler" loading="lazy" decoding="async" width="900" height="1350">
+          <span class="no" aria-hidden="true">13</span>
+        </button>
+<button class="frame" type="button" data-full="full/IMG_6940-Enhanced-NR.jpg" data-title="Car session" data-cat="Automotive · Sacramento" aria-label="Open photo 14 of 29 full screen">
+          <img src="thumbs/IMG_6940-Enhanced-NR.jpg" srcset="thumbs/sm/IMG_6940-Enhanced-NR.jpg 520w, thumbs/IMG_6940-Enhanced-NR.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Car session · automotive photography" loading="lazy" decoding="async" width="900" height="1350">
+          <span class="no" aria-hidden="true">14</span>
+        </button>
+<button class="frame" type="button" data-full="full/IMG_3874-Enhanced.png.jpg" data-title="Fireworks" data-cat="Events" aria-label="Open photo 15 of 29 full screen">
+          <img src="thumbs/IMG_3874-Enhanced.png.jpg" srcset="thumbs/sm/IMG_3874-Enhanced.png.jpg 520w, thumbs/IMG_3874-Enhanced.png.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Fireworks · event photography" loading="lazy" decoding="async" width="900" height="1351">
+          <span class="no" aria-hidden="true">15</span>
+        </button>
+<button class="frame" type="button" data-full="full/Z62_9739-Enhanced-NR-2.jpg" aria-label="Open photo 16 of 29 full screen">
+          <img src="thumbs/Z62_9739-Enhanced-NR-2.jpg" srcset="thumbs/sm/Z62_9739-Enhanced-NR-2.jpg 520w, thumbs/Z62_9739-Enhanced-NR-2.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Photograph by Cameron Schindler" loading="lazy" decoding="async" width="900" height="599">
+          <span class="no" aria-hidden="true">16</span>
+        </button>
+<button class="frame" type="button" data-full="full/DSC_2452.jpg" data-title="Six months" data-cat="Portrait · Roseville" aria-label="Open photo 17 of 29 full screen">
+          <img src="thumbs/DSC_2452.jpg" srcset="thumbs/sm/DSC_2452.jpg 520w, thumbs/DSC_2452.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Baby at six months · portrait session" loading="lazy" decoding="async" width="900" height="1350">
+          <span class="no" aria-hidden="true">17</span>
+        </button>
+<button class="frame" type="button" data-full="full/IMG_3842-Enhanced-NR.jpg" aria-label="Open photo 18 of 29 full screen">
+          <img src="thumbs/IMG_3842-Enhanced-NR.jpg" srcset="thumbs/sm/IMG_3842-Enhanced-NR.jpg 520w, thumbs/IMG_3842-Enhanced-NR.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Photograph by Cameron Schindler" loading="lazy" decoding="async" width="900" height="1350">
+          <span class="no" aria-hidden="true">18</span>
+        </button>
+<button class="frame" type="button" data-full="full/Z62_0295.jpg" aria-label="Open photo 19 of 29 full screen">
+          <img src="thumbs/Z62_0295.jpg" srcset="thumbs/sm/Z62_0295.jpg 520w, thumbs/Z62_0295.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Photograph by Cameron Schindler" loading="lazy" decoding="async" width="900" height="1353">
+          <span class="no" aria-hidden="true">19</span>
+        </button>
+<button class="frame" type="button" data-full="full/IMG_5758-Edit.jpg" aria-label="Open photo 20 of 29 full screen">
+          <img src="thumbs/IMG_5758-Edit.jpg" srcset="thumbs/sm/IMG_5758-Edit.jpg 520w, thumbs/IMG_5758-Edit.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Photograph by Cameron Schindler" loading="lazy" decoding="async" width="900" height="1350">
+          <span class="no" aria-hidden="true">20</span>
+        </button>
+<button class="frame" type="button" data-full="full/DSC_4213-Enhanced-NR.jpg" aria-label="Open photo 21 of 29 full screen">
+          <img src="thumbs/DSC_4213-Enhanced-NR.jpg" srcset="thumbs/sm/DSC_4213-Enhanced-NR.jpg 520w, thumbs/DSC_4213-Enhanced-NR.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Photograph by Cameron Schindler" loading="lazy" decoding="async" width="900" height="1350">
+          <span class="no" aria-hidden="true">21</span>
+        </button>
+<button class="frame" type="button" data-full="full/IMG_5871.jpg" aria-label="Open photo 22 of 29 full screen">
+          <img src="thumbs/IMG_5871.jpg" srcset="thumbs/sm/IMG_5871.jpg 520w, thumbs/IMG_5871.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Photograph by Cameron Schindler" loading="lazy" decoding="async" width="900" height="1350">
+          <span class="no" aria-hidden="true">22</span>
+        </button>
+<button class="frame" type="button" data-full="full/DSC_1522-Enhanced-NR.jpg" data-title="Space Needle" data-cat="Landscape · Sacramento" aria-label="Open photo 23 of 29 full screen">
+          <img src="thumbs/DSC_1522-Enhanced-NR.jpg" srcset="thumbs/sm/DSC_1522-Enhanced-NR.jpg 520w, thumbs/DSC_1522-Enhanced-NR.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Skyline · landscape photography" loading="lazy" decoding="async" width="900" height="1350">
+          <span class="no" aria-hidden="true">23</span>
+        </button>
+<button class="frame" type="button" data-full="full/DSC_4057.jpg" data-title="Flamingo" data-cat="Wildlife" aria-label="Open photo 24 of 29 full screen">
+          <img src="thumbs/DSC_4057.jpg" srcset="thumbs/sm/DSC_4057.jpg 520w, thumbs/DSC_4057.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Flamingo · wildlife photography" loading="lazy" decoding="async" width="900" height="1350">
+          <span class="no" aria-hidden="true">24</span>
+        </button>
+<button class="frame" type="button" data-full="full/IMG_4135-Enhanced-NR.jpg" aria-label="Open photo 25 of 29 full screen">
+          <img src="thumbs/IMG_4135-Enhanced-NR.jpg" srcset="thumbs/sm/IMG_4135-Enhanced-NR.jpg 520w, thumbs/IMG_4135-Enhanced-NR.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Photograph by Cameron Schindler" loading="lazy" decoding="async" width="900" height="1350">
+          <span class="no" aria-hidden="true">25</span>
+        </button>
+<button class="frame" type="button" data-full="full/Z62_0822-Enhanced-NR-Edit.jpg" aria-label="Open photo 26 of 29 full screen">
+          <img src="thumbs/Z62_0822-Enhanced-NR-Edit.jpg" srcset="thumbs/sm/Z62_0822-Enhanced-NR-Edit.jpg 520w, thumbs/Z62_0822-Enhanced-NR-Edit.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Photograph by Cameron Schindler" loading="lazy" decoding="async" width="900" height="1353">
+          <span class="no" aria-hidden="true">26</span>
+        </button>
+<button class="frame" type="button" data-full="full/Z62_9109-Enhanced-NR.jpg" aria-label="Open photo 27 of 29 full screen">
+          <img src="thumbs/Z62_9109-Enhanced-NR.jpg" srcset="thumbs/sm/Z62_9109-Enhanced-NR.jpg 520w, thumbs/Z62_9109-Enhanced-NR.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Photograph by Cameron Schindler" loading="lazy" decoding="async" width="900" height="1352">
+          <span class="no" aria-hidden="true">27</span>
+        </button>
+<button class="frame" type="button" data-full="full/DSC_2061-Edit.jpg" aria-label="Open photo 28 of 29 full screen">
+          <img src="thumbs/DSC_2061-Edit.jpg" srcset="thumbs/sm/DSC_2061-Edit.jpg 520w, thumbs/DSC_2061-Edit.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Photograph by Cameron Schindler" loading="lazy" decoding="async" width="900" height="1350">
+          <span class="no" aria-hidden="true">28</span>
+        </button>
+<button class="frame" type="button" data-full="full/DSC_5007-Enhanced-NR.jpg" aria-label="Open photo 29 of 29 full screen">
+          <img src="thumbs/DSC_5007-Enhanced-NR.jpg" srcset="thumbs/sm/DSC_5007-Enhanced-NR.jpg 520w, thumbs/DSC_5007-Enhanced-NR.jpg 900w" sizes="(max-width:560px) 47vw, (max-width:900px) 32vw, (max-width:1020px) 24vw, 20vw" alt="Photograph by Cameron Schindler" loading="lazy" decoding="async" width="900" height="1350">
+          <span class="no" aria-hidden="true">29</span>
+        </button>
+      </div>
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee-section">
-  <div class="marquee-track">
-    <div class="marquee-item">Reels</div>
-    <div class="marquee-item">Sports</div>
-    <div class="marquee-item">Family</div>
-    <div class="marquee-item">Portrait</div>
-    <div class="marquee-item">Events</div>
-    <div class="marquee-item">Editorial</div>
-    <div class="marquee-item">Commercial</div>
-    <div class="marquee-item">Automotive</div>
-    <div class="marquee-item">Reels</div>
-    <div class="marquee-item">Sports</div>
-    <div class="marquee-item">Family</div>
-    <div class="marquee-item">Portrait</div>
-    <div class="marquee-item">Events</div>
-    <div class="marquee-item">Editorial</div>
-    <div class="marquee-item">Commercial</div>
-    <div class="marquee-item">Automotive</div>
-  </div>
-</div>
-
-<!-- STATS -->
-<div class="stats-section">
-  <div class="stat-item reveal">
-    <span class="stat-num" data-count="100">0</span>
-    <span class="stat-label">Sessions Shot</span>
-  </div>
-  <div class="stat-item reveal reveal-delay-1">
-    <span class="stat-num" data-count="48">0</span>
-    <span class="stat-label">Hr Avg Turnaround</span>
-  </div>
-  <div class="stat-item reveal reveal-delay-2">
-    <span class="stat-num" data-count="2">0</span>
-    <span class="stat-label">Years Experience</span>
-  </div>
-  <div class="stat-item reveal reveal-delay-3">
-    <span class="stat-num" data-count="98">0</span>
-    <span class="stat-label">% Client Satisfaction</span>
-  </div>
-</div>
-
-<!-- WORK -->
-<section id="work">
-  <div class="section-header reveal">
-    <div class="section-title"><em>Selected</em>Work</div>
-    <a href="#" class="section-link">View All</a>
-  </div>
-  <div class="gallery-grid">
-    <!-- Gallery images use loading="lazy" + decoding="async" to not block render -->
-    <div class="gallery-item reveal">
-      <img src="DSC_1522-Enhanced-NR.jpg" alt="Seattle Space Needle" loading="lazy" decoding="async" width="400" height="600">
-      <div class="gallery-num">01</div>
-      <div class="gallery-overlay">
-        <span class="gallery-cat">Landscape</span>
-        <span class="gallery-title-item">Space Needle</span>
-      </div>
-    </div>
-    <div class="gallery-item reveal reveal-delay-1">
-      <img src="DSC_4057.jpg" alt="Flamingo" loading="lazy" decoding="async" width="400" height="600">
-      <div class="gallery-num">02</div>
-      <div class="gallery-overlay">
-        <span class="gallery-cat">Wildlife</span>
-        <span class="gallery-title-item">Flamingo</span>
-      </div>
-    </div>
-    <div class="gallery-item reveal reveal-delay-2">
-      <img src="DSC_4948-Edit-2.jpg" alt="Bald Eagle" loading="lazy" decoding="async" width="400" height="600">
-      <div class="gallery-num">03</div>
-      <div class="gallery-overlay">
-        <span class="gallery-cat">Wildlife</span>
-        <span class="gallery-title-item">Bald Eagle</span>
-      </div>
-    </div>
-    <div class="gallery-item reveal">
-      <img src="DSC_2061-Edit.jpg" alt="Blue Flowers" loading="lazy" decoding="async" width="400" height="600">
-      <div class="gallery-num">04</div>
-      <div class="gallery-overlay">
-        <span class="gallery-cat">Landscape</span>
-        <span class="gallery-title-item">Blue Flowers</span>
-      </div>
-    </div>
-    <div class="gallery-item reveal reveal-delay-1">
-      <img src="Z62_0078-Enhanced-NR.jpg" alt="Basketball" loading="lazy" decoding="async" width="400" height="600">
-      <div class="gallery-num">05</div>
-      <div class="gallery-overlay">
-        <span class="gallery-cat">Sports</span>
-        <span class="gallery-title-item">Basketball</span>
-      </div>
-    </div>
-    <div class="gallery-item reveal reveal-delay-2">
-      <img src="Z62_0276-Enhanced-NR.jpg" alt="Basketball" loading="lazy" decoding="async" width="400" height="600">
-      <div class="gallery-num">06</div>
-      <div class="gallery-overlay">
-        <span class="gallery-cat">Sports</span>
-        <span class="gallery-title-item">West Park</span>
-      </div>
-    </div>
-    <div class="gallery-item reveal">
-      <img src="IMG_3842-Enhanced-NR.jpg" alt="Football" loading="lazy" decoding="async" width="400" height="600">
-      <div class="gallery-num">07</div>
-      <div class="gallery-overlay">
-        <span class="gallery-cat">Sports</span>
-        <span class="gallery-title-item">Football</span>
-      </div>
-    </div>
-    <div class="gallery-item reveal reveal-delay-1">
-      <img src="IMG_3874-Enhanced.png.jpg" alt="Fireworks" loading="lazy" decoding="async" width="400" height="600">
-      <div class="gallery-num">08</div>
-      <div class="gallery-overlay">
-        <span class="gallery-cat">Events</span>
-        <span class="gallery-title-item">Fireworks</span>
-      </div>
-    </div>
-    <div class="gallery-item reveal reveal-delay-2">
-      <img src="DSC_2452.jpg" alt="Baby Portrait" loading="lazy" decoding="async" width="400" height="600">
-      <div class="gallery-num">09</div>
-      <div class="gallery-overlay">
-        <span class="gallery-cat">Portrait</span>
-        <span class="gallery-title-item">6th Month</span>
-      </div>
-    </div>
-    <div class="gallery-item reveal">
-      <img src="DSC_2508.jpg" alt="Baby" loading="lazy" decoding="async" width="400" height="600">
-      <div class="gallery-num">10</div>
-      <div class="gallery-overlay">
-        <span class="gallery-cat">Portrait</span>
-        <span class="gallery-title-item">Baby</span>
-      </div>
-    </div>
-    <div class="gallery-item reveal reveal-delay-1">
-      <img src="IMG_6940-Enhanced-NR.jpg" alt="Car Session" loading="lazy" decoding="async" width="400" height="600">
-      <div class="gallery-num">11</div>
-      <div class="gallery-overlay">
-        <span class="gallery-cat">Automotive</span>
-        <span class="gallery-title-item">Car Session</span>
-      </div>
-    </div>
-    <div class="gallery-item reveal reveal-delay-2">
-      <img src="IMG_5758-Edit.jpg" alt="Corn Field" loading="lazy" decoding="async" width="400" height="600">
-      <div class="gallery-num">12</div>
-      <div class="gallery-overlay">
-        <span class="gallery-cat">Portrait</span>
-        <span class="gallery-title-item">Corn Field</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- HORIZONTAL GALLERY -->
-<div id="gallery-h">
-  <div class="h-scroll-track" id="hTrack">
-    <div class="h-scroll-item"><img src="DSC_3858.jpg" alt="" loading="lazy" decoding="async" width="260" height="380"></div>
-    <div class="h-scroll-item"><img src="IMG_4358-Enhanced-NR.jpg" alt="" loading="lazy" decoding="async" width="260" height="380"></div>
-    <div class="h-scroll-item"><img src="DSC_1865-Edit.jpg" alt="" loading="lazy" decoding="async" width="260" height="380"></div>
-    <div class="h-scroll-item"><img src="DSC_4213-Enhanced-NR.jpg" alt="" loading="lazy" decoding="async" width="260" height="380"></div>
-    <div class="h-scroll-item"><img src="DSC_4920-Enhanced-NR.jpg" alt="" loading="lazy" decoding="async" width="260" height="380"></div>
-    <div class="h-scroll-item"><img src="DSC_1552.jpg" alt="" loading="lazy" decoding="async" width="260" height="380"></div>
-    <div class="h-scroll-item"><img src="DSC_4774.jpg" alt="" loading="lazy" decoding="async" width="260" height="380"></div>
-    <div class="h-scroll-item"><img src="DSC_5007-Enhanced-NR.jpg" alt="" loading="lazy" decoding="async" width="260" height="380"></div>
-    <div class="h-scroll-item"><img src="DSC_3761.jpg" alt="" loading="lazy" decoding="async" width="260" height="380"></div>
-    <div class="h-scroll-item"><img src="Z62_0822-Enhanced-NR-Edit.jpg" alt="" loading="lazy" decoding="async" width="260" height="380"></div>
-    <div class="h-scroll-item"><img src="IMG_5871.jpg" alt="" loading="lazy" decoding="async" width="260" height="380"></div>
-    <div class="h-scroll-item"><img src="IMG_7461(1).jpg" alt="" loading="lazy" decoding="async" width="260" height="380"></div>
-  </div>
-</div>
-
-<!-- PRICING -->
-<section id="pricing">
-  <div class="section-header reveal">
-    <div class="section-title">Pricing</div>
-  </div>
-  <div class="pricing-grid">
-    <div class="pricing-card reveal">
-      <div class="pricing-badge-spacer"></div>
-      <span class="pricing-cat">01 — Video</span>
-      <h3 class="pricing-name">Single Reel</h3>
-      <div class="pricing-price">$35<sub> / reel</sub></div>
-      <p class="pricing-starting">Starting at</p>
-      <div class="pricing-divider"></div>
-      <p class="pricing-desc">One polished short-form reel, edited and ready to post.</p>
-      <ul class="pricing-includes">
-        <li>1 finished reel (up to 60 sec)</li>
-        <li>Professional editing + color grade</li>
-        <li>Licensed music for social use</li>
-        <li>1 revision round</li>
-      </ul>
-      <a href="#booking" class="btn-book"><span>Book Now</span></a>
-    </div>
-    <div class="pricing-card reveal reveal-delay-1">
-      <div class="pricing-badge-spacer"></div>
-      <span class="pricing-cat">02 — Bundle</span>
-      <h3 class="pricing-name">Reels Bundle</h3>
-      <div class="pricing-price">$240<sub> / 7</sub></div>
-      <p class="pricing-starting">Best value</p>
-      <div class="pricing-divider"></div>
-      <p class="pricing-desc">Seven reels shot and edited in a single session.</p>
-      <ul class="pricing-includes">
-        <li>7 finished reels (up to 60 sec each)</li>
-        <li>Full shoot day included</li>
-        <li>Professional color grade</li>
-        <li>Content strategy consultation</li>
-      </ul>
-      <a href="#booking" class="btn-book"><span>Book Now</span></a>
-    </div>
-    <div class="pricing-card reveal reveal-delay-2">
-      <div class="pricing-badge-spacer"></div>
-      <span class="pricing-cat">03 — Events</span>
-      <h3 class="pricing-name">Event Coverage</h3>
-      <div class="pricing-price">$75<sub> / session</sub></div>
-      <p class="pricing-starting">Starting at</p>
-      <div class="pricing-divider"></div>
-      <p class="pricing-desc">Full coverage for any gathering — birthdays, corporate, groups.</p>
-      <ul class="pricing-includes">
-        <li>Up to 2-hour coverage</li>
-        <li>20+ edited gallery images</li>
-        <li>Location scouting included</li>
-        <li>Digital download gallery</li>
-      </ul>
-      <a href="#booking" class="btn-book"><span>Book Now</span></a>
-    </div>
-    <div class="pricing-card featured-price reveal reveal-delay-3">
-      <div class="pricing-badge">Most Popular</div>
-      <span class="pricing-cat">04 — Portrait</span>
-      <h3 class="pricing-name">Portrait Shoot</h3>
-      <div class="pricing-price">$50<sub> / session</sub></div>
-      <p class="pricing-starting">Starting at</p>
-      <div class="pricing-divider"></div>
-      <p class="pricing-desc">Headshots, lifestyle, branding, or personal projects.</p>
-      <ul class="pricing-includes">
-        <li>60-minute session</li>
-        <li>25+ edited high-res images</li>
-        <li>Online gallery delivery</li>
-        <li>Print-ready files included</li>
-      </ul>
-      <a href="#booking" class="btn-book"><span>Book Now</span></a>
-    </div>
-  </div>
-  <p class="pricing-row-label reveal">More Sessions</p>
-  <div class="pricing-grid" style="margin-top:2px;">
-    <div class="pricing-card reveal">
-      <div class="pricing-badge-spacer"></div>
-      <span class="pricing-cat">05 — Real Estate</span>
-      <h3 class="pricing-name">Property Shoot</h3>
-      <div class="pricing-price">$80<sub> / session</sub></div>
-      <p class="pricing-starting">Starting at</p>
-      <div class="pricing-divider"></div>
-      <p class="pricing-desc">Homes, apartments, Airbnbs, commercial spaces.</p>
-      <ul class="pricing-includes">
-        <li>Interior + exterior coverage</li>
-        <li>20+ edited high-res images</li>
-        <li>Wide-angle &amp; detail shots</li>
-        <li>Add-on drone footage available</li>
-      </ul>
-      <a href="#booking" class="btn-book"><span>Book Now</span></a>
-    </div>
-    <div class="pricing-card reveal reveal-delay-1">
-      <div class="pricing-badge-spacer"></div>
-      <span class="pricing-cat">06 — Automotive</span>
-      <h3 class="pricing-name">Car Shoot</h3>
-      <div class="pricing-price">$65<sub> / session</sub></div>
-      <p class="pricing-starting">Starting at</p>
-      <div class="pricing-divider"></div>
-      <p class="pricing-desc">Personal builds to dealership inventory, on location.</p>
-      <ul class="pricing-includes">
-        <li>Exterior + interior shots</li>
-        <li>15+ edited high-res images</li>
-        <li>Detail &amp; lifestyle angles</li>
-        <li>Social-ready edits included</li>
-      </ul>
-      <a href="#booking" class="btn-book"><span>Book Now</span></a>
-    </div>
-    <div class="pricing-card reveal reveal-delay-2">
-      <div class="pricing-badge-spacer"></div>
-      <span class="pricing-cat">07 — Athletics</span>
-      <h3 class="pricing-name">Sports Shoot</h3>
-      <div class="pricing-price">$50<sub> / session</sub></div>
-      <p class="pricing-starting">Starting at</p>
-      <div class="pricing-divider"></div>
-      <p class="pricing-desc">Action shots, athlete portraits, team photos.</p>
-      <ul class="pricing-includes">
-        <li>Game or practice coverage</li>
-        <li>25+ edited high-res images</li>
-        <li>Individual + team shots</li>
-        <li>Print-ready files included</li>
-      </ul>
-      <a href="#booking" class="btn-book"><span>Book Now</span></a>
-    </div>
-    <div class="pricing-card featured-price reveal reveal-delay-3">
-      <div class="pricing-badge">Popular</div>
-      <span class="pricing-cat">08 — Family</span>
-      <h3 class="pricing-name">Family Session</h3>
-      <div class="pricing-price">$75<sub> / session</sub></div>
-      <p class="pricing-starting">Starting at</p>
-      <div class="pricing-divider"></div>
-      <p class="pricing-desc">Relaxed, candid, full of heart — milestone or everyday.</p>
-      <ul class="pricing-includes">
-        <li>60-minute session</li>
-        <li>20+ edited gallery images</li>
-        <li>Location scouting included</li>
-        <li>Print-ready files included</li>
-      </ul>
-      <a href="#booking" class="btn-book"><span>Book Now</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- BOOKING -->
 <section id="booking">
-  <div class="booking-inner">
-    <div class="booking-header reveal">
-      <span class="eyebrow">New Inquiry</span>
-      <h2>Book a Session<em>Let's make it happen.</em></h2>
-      <p>Fill in your details and I'll be in touch within 24 hours to lock in your date.</p>
+  <div class="wrap">
+    <div class="kicker-row">
+      <h2>Book a session<span class="dot">.</span></h2>
+      <span class="caps">Request a date · reply within 24 hours</span>
     </div>
-    <div class="booking-form-card reveal reveal-delay-1">
-      <form id="bookingForm" novalidate>
-        <div class="form-body">
-          <div class="field-row">
-            <div class="field-group">
-              <label for="firstName">First Name *</label>
-              <input type="text" id="firstName" name="firstName" placeholder="Jane" required autocomplete="given-name">
+    <div class="booking">
+      <div class="book-info">
+        <p class="lead">Tell me what you're picturing — portraits, a family session, sports, a reel for the business. I'll reply within 24 hours with a quote and a date that works.</p>
+        <ul class="assure">
+          <li>
+            <span class="a-dot"></span>
+            <div>
+              <b>Proofs in 48 hours</b>
+              <span>You'll see every keeper from your session within two days, watermarked and ready to pick.</span>
             </div>
-            <div class="field-group">
-              <label for="lastName">Last Name *</label>
-              <input type="text" id="lastName" name="lastName" placeholder="Smith" required autocomplete="family-name">
+          </li>
+          <li>
+            <span class="a-dot"></span>
+            <div>
+              <b>Flat pricing up front</b>
+              <span>Session rates are posted before you book — no surprises, no pressure.</span>
+            </div>
+          </li>
+          <li>
+            <span class="a-dot"></span>
+            <div>
+              <b>On location</b>
+              <span>Roseville, Folsom and the Sacramento area. No studio required.</span>
+            </div>
+          </li>
+        </ul>
+        <a class="email-line" href="mailto:cameronjschindler@gmail.com">cameronjschindler@gmail.com</a>
+        <div class="foot-grid">
+          <div><span class="lbl">Email</span><p><a href="mailto:cameronjschindler@gmail.com">cameronjschindler@gmail.com</a></p></div>
+          <div><span class="lbl">Instagram</span><p><a href="https://www.instagram.com/schindler_cameron/" target="_blank" rel="noopener">@schindler_cameron</a></p></div>
+          <div><span class="lbl">Response</span><p>Within 24 hours</p></div>
+          <div><span class="lbl">Turnaround</span><p>Proofs in 48 hours</p></div>
+        </div>
+      </div>
+      <div class="formp">
+        <div class="t">
+          <h3>Request a date</h3>
+          <span class="caps">I'll confirm within 24h</span>
+        </div>
+        <p class="sub">Fill in the details below — the form lands straight in my inbox, so nothing gets lost.</p>
+        <form id="bookingForm" novalidate>
+          <div class="fr2">
+            <div class="fd">
+              <label for="firstName">First name <span class="r">*</span></label>
+              <input type="text" id="firstName" name="firstName" placeholder="Jane" autocomplete="given-name" required>
+            </div>
+            <div class="fd">
+              <label for="lastName">Last name <span class="r">*</span></label>
+              <input type="text" id="lastName" name="lastName" placeholder="Smith" autocomplete="family-name" required>
             </div>
           </div>
-          <div class="field-row">
-            <div class="field-group">
-              <label for="email">Email *</label>
-              <input type="email" id="email" name="email" placeholder="jane@example.com" required autocomplete="email">
+          <div class="fr2">
+            <div class="fd">
+              <label for="email">Email <span class="r">*</span></label>
+              <input type="email" id="email" name="email" placeholder="jane@example.com" autocomplete="email" required>
             </div>
-            <div class="field-group">
+            <div class="fd">
               <label for="phone">Phone</label>
               <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" autocomplete="tel" maxlength="14">
             </div>
           </div>
-          <div class="field-row">
-            <div class="field-group">
-              <label for="sessionType">Type of Shoot</label>
-              <select id="sessionType" name="sessionType">
-                <option value="" disabled selected>Select a session...</option>
-                <option value="Portrait Shoot — $50+">Portrait — starting at $50</option>
-                <option value="Sports Shoot — $50+">Sports — starting at $50</option>
-                <option value="Family Session — $75+">Family — starting at $75</option>
-                <option value="Event Coverage — $75+">Event Coverage — starting at $75</option>
-                <option value="Single Reel — $35+">Single Reel — starting at $35</option>
-                <option value="Reels Bundle — $240">Reels Bundle — $240</option>
-                <option value="Property Shoot — $80+">Real Estate — starting at $80</option>
-                <option value="Car Shoot — $65+">Automotive — starting at $65</option>
-                <option value="Custom / Other">Custom / Not Sure</option>
+          <div class="fr2">
+            <div class="fd">
+              <label for="sessionType">Type of shoot <span class="r">*</span></label>
+              <select id="sessionType" name="sessionType" required>
+                <option value="" disabled selected>Select a session…</option>
+                <option value="Portrait — $50+">Portrait · starting at $50</option>
+                <option value="Sports — $50+">Sports · starting at $50</option>
+                <option value="Family — $75+">Family · starting at $75</option>
+                <option value="Event — $75+">Event · starting at $75</option>
+                <option value="Single reel — $35+">Single reel · starting at $35</option>
+                <option value="Reels bundle — $240">Reels bundle · $240</option>
+                <option value="Real estate — $80+">Real estate · starting at $80</option>
+                <option value="Automotive — $65+">Automotive · starting at $65</option>
+                <option value="Custom / not sure">Custom / not sure</option>
               </select>
             </div>
-            <div class="field-group">
-              <label for="date">Preferred Date</label>
+            <div class="fd">
+              <label for="date">Preferred date</label>
               <input type="date" id="date" name="date">
             </div>
           </div>
-          <div class="field-group">
+          <div class="fd">
             <label for="message">Notes</label>
-            <textarea id="message" name="message" placeholder="Any ideas, locations, or details you'd like to share…"></textarea>
+            <textarea id="message" name="message" placeholder="Ideas, locations, or details you'd like to share…"></textarea>
           </div>
-        </div>
-        <div class="form-submit-area">
-          <div class="form-status" id="formStatus"></div>
-          <button type="submit" class="submit-btn">
-            <span id="submitLabel">Send Booking Request</span>
+          <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+          <button type="submit" class="btn" id="submitBtn">
+            <span id="submitLabel">Request my date</span>
+            <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true" id="submitIcon"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
           </button>
-          <p class="form-helper">
-            I'll reply within 24 hours — or email me directly at
-            <a href="/cdn-cgi/l/email-protection#3b585a565e4954555148585352555f575e497b5c565a525715585456"><span class="__cf_email__" data-cfemail="5a393b373f2835343029393233343e363f281a3d373b333674393537">[email&#160;protected]</span></a>
+          <p class="fine">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+            Sent straight to my inbox — no middlemen, no spam.
           </p>
-        </div>
-      </form>
-    </div>
-    <div class="booking-contact reveal reveal-delay-2">
-      <div class="contact-item">
-        <span class="contact-item-label">Email</span>
-        <a href="/cdn-cgi/l/email-protection#2043414d45524f4e4a534348494e444c455260474d41494c0e434f4d"><span class="__cf_email__" data-cfemail="e487858981968b8a8e97878c8d8a80888196a48389858d88ca878b89">[email&#160;protected]</span></a>
-      </div>
-      <div class="contact-item">
-        <span class="contact-item-label">Instagram</span>
-        <a href="https://www.instagram.com/schindler_cameron/" target="_blank">@schindler_cameron</a>
-      </div>
-      <div class="contact-item">
-        <span class="contact-item-label">Response</span>
-        <a style="cursor:default; pointer-events:none;">Within 24 hours</a>
+          <p class="alt-line">Prefer email? <a href="mailto:cameronjschindler@gmail.com">cameronjschindler@gmail.com</a></p>
+        </form>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <span class="logo">Cameron Schindler</span>
-  <p>&copy; 2026 Cameron Schindler</p>
-  <ul class="social-links">
-    <li><a href="https://www.instagram.com/schindler_cameron/" target="_blank">Instagram</a></li>
-    <li><a href="#">LinkedIn</a></li>
-  </ul>
-</footer>
+<script>
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyTZOWLxgIxKyQYCAc2fysuMlilz_B-6i2RJDdzKkKWGdm9VkEkEKgykZ7nsDzA3Q1sOQ/exec';
+const bar = document.querySelector('[data-bar]');
+const onScroll = () => bar.classList.toggle('scrolled', window.scrollY > 40);
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-/* ── IMAGE COMPRESSOR ────────────────────────────────────────────
-   Recompresses lazy images via canvas as they enter the viewport.
-   Skips on any error so broken images never occur.
-─────────────────────────────────────────────────────────────────*/
-const supportsWebP = (() => {
-  try {
-    const c = document.createElement('canvas');
-    c.width = c.height = 1;
-    return c.toDataURL('image/webp').startsWith('data:image/webp');
-  } catch(e) { return false; }
-})();
+/* ── Hero: parallax ───────────────────────────────────── */
+const heroEl = document.getElementById('heroMedia');
+const stillMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-document.getElementById('phone').addEventListener('input', function(e) {
+function heroFrame() {
+  const h = heroEl.parentElement.offsetHeight;
+  const p = Math.min(1, Math.max(0, window.scrollY / h));
+  heroEl.style.setProperty('--py', stillMotion.matches ? '0px' : (p * h * 0.16).toFixed(1) + 'px');
+}
+
+window.addEventListener('scroll', heroFrame, { passive: true });
+window.addEventListener('resize', heroFrame, { passive: true });
+heroFrame();
+
+const form = document.getElementById('bookingForm');
+const submitBtn = document.getElementById('submitBtn');
+const submitLabel = document.getElementById('submitLabel');
+const submitIcon = document.getElementById('submitIcon');
+const formStatus = document.getElementById('formStatus');
+
+document.getElementById('phone').addEventListener('input', function (e) {
   let val = e.target.value.replace(/\D/g, '').slice(0, 10);
-  if (val.length >= 6) {
-    val = '(' + val.slice(0,3) + ') ' + val.slice(3,6) + '-' + val.slice(6);
-  } else if (val.length >= 3) {
-    val = '(' + val.slice(0,3) + ') ' + val.slice(3);
-  } else if (val.length > 0) {
-    val = '(' + val;
-  }
+  if (val.length >= 6) val = '(' + val.slice(0,3) + ') ' + val.slice(3,6) + '-' + val.slice(6);
+  else if (val.length >= 3) val = '(' + val.slice(0,3) + ') ' + val.slice(3);
+  else if (val.length > 0) val = '(' + val;
   e.target.value = val;
 });
-function compressImage(img) {
-  if (img.dataset.compressed || img.closest('#hero-bg')) return;
-  img.dataset.compressed = '1';
 
-  const doCompress = () => {
-    // Guard: image must have loaded successfully
-    if (!img.complete || !img.naturalWidth || img.naturalWidth === 0) return;
-
-    try {
-      const canvas = document.createElement('canvas');
-      const maxW = img.closest('.h-scroll-item') ? 520 : 1200;
-      const scale = Math.min(1, maxW / img.naturalWidth);
-      canvas.width  = Math.round(img.naturalWidth  * scale);
-      canvas.height = Math.round(img.naturalHeight * scale);
-
-      const ctx = canvas.getContext('2d');
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-      const fmt = supportsWebP ? 'image/webp' : 'image/jpeg';
-      canvas.toBlob(blob => {
-        if (!blob || blob.size === 0) return; // bail silently
-        const newUrl = URL.createObjectURL(blob);
-        const oldSrc = img.src;
-        // Only swap if new blob is actually smaller
-        if (blob.size < img.naturalWidth * img.naturalHeight * 0.5) {
-          img.onload = () => URL.revokeObjectURL(oldSrc);
-          img.src = newUrl;
-        } else {
-          URL.revokeObjectURL(newUrl);
-        }
-      }, fmt, 0.82);
-    } catch(e) {
-      // Canvas tainted (cross-origin) or other error — leave image untouched
-    }
-  };
-
-  if (img.complete && img.naturalWidth) {
-    doCompress();
-  } else {
-    img.addEventListener('load',  doCompress, { once: true });
-    img.addEventListener('error', () => { img.dataset.compressed = 'err'; }, { once: true });
-  }
-}
-
-const imgObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      compressImage(e.target);
-      imgObserver.unobserve(e.target);
-    }
-  });
-}, { rootMargin: '200px' });
-
-document.querySelectorAll('img[loading="lazy"]').forEach(img => {
-  imgObserver.observe(img);
-});
-
-/* ── LOADER ──────────────────────────────────────────────── */
-window.addEventListener('load', () => {
-  // Reduced from 2200ms to 1500ms — page is likely ready sooner
-  setTimeout(() => {
-    const l = document.getElementById('loader');
-    l.classList.add('done');
-    setTimeout(() => l.remove(), 600);
-  }, 1500);
-});
-
-/* ── MOBILE NAV ──────────────────────────────────────────── */
-const hamburger = document.getElementById('hamburger');
-const drawer    = document.getElementById('navDrawer');
-
-hamburger.addEventListener('click', () => {
-  const open = drawer.classList.toggle('open');
-  hamburger.classList.toggle('open', open);
-  document.body.style.overflow = open ? 'hidden' : '';
-});
-
-document.querySelectorAll('.drawer-link').forEach(link => {
-  link.addEventListener('click', () => {
-    drawer.classList.remove('open');
-    hamburger.classList.remove('open');
-    document.body.style.overflow = '';
-  });
-});
-
-/* ── NAV SCROLL ──────────────────────────────────────────── */
-const mainNav = document.getElementById('mainNav');
-window.addEventListener('scroll', () => {
-  mainNav.classList.toggle('scrolled', window.scrollY > 60);
-}, { passive: true });
-
-/* ── SCROLL REVEAL ───────────────────────────────────────── */
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.08 });
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-/* ── COUNTER ANIMATION ───────────────────────────────────── */
-function animateCount(el, target) {
-  let current = 0;
-  const step = target / (1600 / 16);
-  const label = el.closest('.stat-item').querySelector('.stat-label').textContent;
-  const isPercent = label.includes('%');
-  const timer = setInterval(() => {
-    current = Math.min(current + step, target);
-    el.textContent = Math.floor(current) + (isPercent ? '%' : '+');
-    if (current >= target) clearInterval(timer);
-  }, 16);
-}
-
-const statObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      const el = e.target.querySelector('.stat-num');
-      if (el && !el.dataset.animated) {
-        el.dataset.animated = '1';
-        animateCount(el, parseInt(el.dataset.count));
-      }
-    }
-  });
-}, { threshold: 0.3 });
-document.querySelectorAll('.stat-item').forEach(el => statObserver.observe(el));
-
-/* ── HORIZONTAL AUTO-SCROLL ──────────────────────────────── */
-const track = document.getElementById('hTrack');
-let hPos = 0;
-function scrollH() {
-  hPos -= 0.55;
-  if (hPos <= -(track.scrollWidth / 2)) hPos = 0;
-  track.style.transform = 'translateX(' + hPos + 'px)';
-  requestAnimationFrame(scrollH);
-}
-scrollH();
-
-/* ── HERO PARALLAX ───────────────────────────────────────── */
-if (window.matchMedia('(hover: hover)').matches) {
-  window.addEventListener('scroll', () => {
-    const img = document.querySelector('#hero-bg img');
-    if (img) img.style.transform = 'scale(1.1) scaleX(-1) translateY(' + (window.scrollY * 0.28) + 'px)';
-  }, { passive: true });
-}
-
-/* ── BOOKING FORM ────────────────────────────────────────── */
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyTZOWLxgIxKyQYCAc2fysuMlilz_B-6i2RJDdzKkKWGdm9VkEkEKgykZ7nsDzA3Q1sOQ/exec';
-const form        = document.getElementById('bookingForm');
-const submitLabel = document.getElementById('submitLabel');
-const formStatus  = document.getElementById('formStatus');
-
-form.addEventListener('submit', async function(e) {
+form.addEventListener('submit', async function (e) {
   e.preventDefault();
   formStatus.className = 'form-status';
-
   const firstName = this.firstName.value.trim();
-  const lastName  = this.lastName.value.trim();
-  const email     = this.email.value.trim();
-
+  const lastName = this.lastName.value.trim();
+  const email = this.email.value.trim();
+  const session = this.sessionType.value;
   if (!firstName || !lastName || !email) {
-    formStatus.textContent = 'Please fill in your name and email to continue.';
+    formStatus.textContent = 'Please add your name and email so I can reply.';
     formStatus.className = 'form-status error';
     return;
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    formStatus.textContent = 'Please enter a valid email address.';
+    formStatus.textContent = 'That email doesn\'t look right · mind double-checking?';
     formStatus.className = 'form-status error';
     return;
   }
-
-  submitLabel.textContent = 'Sending…';
-
+  if (!session) {
+    formStatus.textContent = 'Pick a type of shoot so I can quote you properly.';
+    formStatus.className = 'form-status error';
+    return;
+  }
+  submitBtn.dataset.state = 'sending';
+  submitBtn.disabled = true;
+  submitLabel.textContent = 'Sending request…';
   const data = {
     firstName, lastName, email,
-    phone:       this.phone.value.trim(),
-    sessionType: this.sessionType.value || 'Not specified',
-    date:        this.date.value,
-    message:     this.message.value.trim()
+    phone: this.phone.value.trim(),
+    sessionType: session,
+    date: this.date.value,
+    message: this.message.value.trim()
   };
-
-  if (GOOGLE_SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL') {
-    formStatus.textContent = 'Connect your Google Apps Script URL to activate form submissions.';
-    formStatus.className = 'form-status error';
-    submitLabel.textContent = 'Send Booking Request';
-    return;
-  }
-
   try {
     await fetch(GOOGLE_SCRIPT_URL, {
       method: 'POST', mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     });
-    formStatus.textContent = '✓ Request received — I\'ll be in touch within 24 hours.';
+    formStatus.textContent = `Thanks ${firstName} · request received. I'll confirm your date within 24 hours.`;
     formStatus.className = 'form-status success';
     form.reset();
-    submitLabel.textContent = 'Send Booking Request';
+    submitLabel.textContent = 'Request sent';
+    submitIcon.innerHTML = '<path d="M2 8.5 6 12.5 14 4" fill="none" stroke="currentColor" stroke-width="1.8"/>';
+    submitBtn.dataset.state = 'sent';
   } catch (err) {
-    formStatus.textContent = 'Something went wrong — please email me directly.';
+    formStatus.textContent = 'Something went wrong on my end · email me at cameronjschindler@gmail.com and I\'ll sort it.';
     formStatus.className = 'form-status error';
-    submitLabel.textContent = 'Send Booking Request';
+    submitLabel.textContent = 'Request my date';
+    submitBtn.dataset.state = 'idle';
+    submitBtn.disabled = false;
   }
 });
+
+/* ── Work frames: the contact sheet drives the viewer ────── */
+const frames = Array.from(document.querySelectorAll('.frame'));
+
+/* ── Full-screen viewer ─────────────────────────────────── */
+const lb        = document.getElementById('lb');
+const lbImg     = document.getElementById('lbImg');
+const lbTitle   = document.getElementById('lbTitle');
+const lbCat     = document.getElementById('lbCat');
+const lbPos     = document.getElementById('lbPos');
+const lbCount   = document.getElementById('lbCount');
+const lbClose   = document.getElementById('lbClose');
+const lbPrev    = document.getElementById('lbPrev');
+const lbNext    = document.getElementById('lbNext');
+const lbGo      = document.getElementById('lbGo');
+let lbIndex = 0;
+let lbOpener = null;
+
+function lbShow(index) {
+  lbIndex = (index + frames.length) % frames.length;
+  const frame = frames[lbIndex];
+  const img = frame.querySelector('img');
+  lbImg.src = frame.dataset.full || img.currentSrc || img.src;
+  lbImg.alt = img.alt;
+  lbTitle.textContent = frame.dataset.title || '';
+  lbCat.textContent = frame.dataset.cat || '';
+  const pos = (lbIndex + 1) + ' / ' + frames.length;
+  lbPos.textContent = pos;
+  lbCount.textContent = pos;
+  lbPrev.disabled = lbNext.disabled = frames.length < 2;
+}
+
+function lbOpen(index, opener) {
+  lbOpener = opener;
+  lbShow(index);
+  lb.classList.add('open');
+  lb.setAttribute('aria-hidden', 'false');
+  document.documentElement.style.overflow = 'hidden';
+  lbClose.focus();
+}
+
+function lbClose_() {
+  lb.classList.remove('open');
+  lb.setAttribute('aria-hidden', 'true');
+  document.documentElement.style.overflow = '';
+  if (lbOpener) lbOpener.focus();
+}
+
+frames.forEach((frame, i) => {
+  frame.addEventListener('click', () => lbOpen(i, frame));
+});
+
+lbClose.addEventListener('click', lbClose_);
+lbPrev.addEventListener('click', () => lbShow(lbIndex - 1));
+lbNext.addEventListener('click', () => lbShow(lbIndex + 1));
+lb.addEventListener('click', e => { if (e.target === lb || e.target.classList.contains('lb-stage')) lbClose_(); });
+lbGo.addEventListener('click', lbClose_);
+
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') lbClose_();
+  if (e.key === 'ArrowLeft') lbShow(lbIndex - 1);
+  if (e.key === 'ArrowRight') lbShow(lbIndex + 1);
+  if (e.key === 'Tab') {
+    const focusable = [lbClose, lbPrev, lbNext, lbGo].filter(el => !el.disabled);
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+});
+
+let lbTouchX = 0;
+lb.addEventListener('touchstart', e => { lbTouchX = e.touches[0].clientX; }, { passive: true });
+lb.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - lbTouchX;
+  if (Math.abs(dx) > 60) lbShow(lbIndex + (dx < 0 ? 1 : -1));
+}, { passive: true });
+
 </script>
 </body>
 </html>

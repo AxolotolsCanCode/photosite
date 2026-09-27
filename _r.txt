@@ -1,0 +1,23 @@
+recovered block bytes : 12029
+recovered block lines : 275
+
+markers present in recovered block:
+  NO   services section
+  yes  pricing section
+  NO   cta band
+  yes  booking section
+  yes  booking form
+  yes  footer
+  NO   lightbox
+  NO   lb-count
+  NO   </body>
+
+head of block:
+\n\n<!-- HORIZONTAL GALLERY -->\n<div id="gallery-h">\n  <div class="h-scroll-track" id="hTrack">\n    <div class="h-scroll-item"><img src="DSC_3858.jpg" alt="" loading="lazy"></div>\n    <div class="h-scroll-item"><img src="I
+
+tail of block:
+class="logo">Cameron Schindler</span>\n  <p>&copy; 2026 Cameron Schindler</p>\n  <ul class="social-links">\n    <li><a href="https://www.instagram.com/schindler_cameron/" target="_blank">Instagram</a></li>\n    <li><a href="#">LinkedIn</a></li>\n  </ul>\n</footer>\n\n
+
+current file splice anchor (end of .wrap):
+  anchor index: 37708
+  chars before anchor that would be kept: 37708

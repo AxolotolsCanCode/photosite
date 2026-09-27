@@ -1,0 +1,26 @@
+file                     services  cta-band  lb overla lbCount   bookingFo pricing   assure li sheet fra frame cou lb-arrow 
+----------------------------------------------------------------------------------------------------------------------------
+graduation.html          -         -         -         -         -         -         -         -         -         -        
+iteration-01.html        1         -         -         -         1         -         -         -         -         -        
+iteration-02.html        1         -         -         -         1         -         -         6         1         -        
+iteration-03.html        1         -         -         -         1         -         -         -         -         -        
+iteration-04.html        1         -         -         -         1         -         -         1         -         -        
+iteration-05.html        1         -         -         -         1         -         -         -         1         -        
+iterations.html          -         -         -         -         -         -         -         -         -         -        
+style-2-minimal.html     -         -         -         -         1         -         -         6         -         -        
+_audit.html              1         -         1         1         1         -         1         -         -         2        
+_recovered.html          -         -         -         -         1         1         -         -         -         -        
+_work-section.html       -         -         -         -         -         -         -         35        1         -        
+
+current index.html:
+  services     MISSING
+  cta-band     MISSING
+  lb overlay   MISSING
+  lbCount      MISSING
+  bookingForm  MISSING
+  pricing      MISSING
+  assure list  MISSING
+  sheet frames 29
+  frame count  1
+  lb-arrow     MISSING
+  frames: 29

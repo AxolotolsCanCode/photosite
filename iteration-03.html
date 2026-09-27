@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cameron Schindler. · Portrait & Commercial Photography · Washington</title>
+<meta name="description" content="Cameron Schindler, Washington photographer. Portraits, families, sports, real estate, automotive and branded reels · proofs within 48 hours.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#fdfbf6;
+    --ink:#1c1b18;
+    --muted:#56544c;
+    --soft:#8b867a;
+    --line:#d8d3c5;
+    --hair:#eae6db;
+    --accent:#a8241c;
+    --sans:"Inter",system-ui,sans-serif;
+    --serif:"Instrument Serif",Georgia,serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;overflow-x:hidden}
+  ::selection{background:var(--ink);color:var(--paper)}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  body{
+    margin:0;background:#f3efe5;color:var(--ink);
+    font-family:var(--sans);line-height:1.62;-webkit-font-smoothing:antialiased;
+    scrollbar-color:var(--line) #f3efe5;
+  }
+  ::-webkit-scrollbar{width:12px;height:12px}
+  ::-webkit-scrollbar-track{background:#f3efe5}
+  ::-webkit-scrollbar-thumb{background:var(--line);border:3px solid #f3efe5;border-radius:6px}
+  ::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+  a{color:inherit}
+  img{display:block}
+  .small{font-size:.83rem;color:var(--muted)}
+  .cut{font-family:var(--serif);font-style:italic;font-size:.95rem;color:var(--muted)}
+
+  /* ── Page frame ──────────────────────────────────────── */
+  .page{max-width:1260px;margin:0 auto;background:var(--paper);border-left:1px solid var(--line);border-right:1px solid var(--line)}
+  .pad{max-width:1180px;margin:0 auto;padding:0 34px}
+
+  /* ── Masthead ────────────────────────────────────────── */
+  .mast{border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);padding:20px 0 14px;position:relative}
+  .mast .rule{position:absolute;left:0;right:0;top:0;height:1px;background:var(--ink);margin-top:6px}
+  .mast .topline,.mast .headline{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+  .mast .topline{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:14px}
+  .mast .name{font-family:var(--serif);font-weight:400;font-size:clamp(1.7rem,4.2vw,2.9rem);letter-spacing:-.01em;line-height:1;text-decoration:none}
+  .mast .name em{font-style:normal;color:var(--accent)}
+  .mast .tag{text-align:right;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600;line-height:1.7}
+
+  /* Sticky nav */
+  nav.bar{border-bottom:1px solid var(--line);background:var(--paper);position:sticky;top:0;z-index:50}
+  nav.bar .inner{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:12px 0}
+  nav.bar .links{display:flex;gap:30px;align-items:center}
+  nav.bar a{font-size:11px;letter-spacing:.22em;text-transform:uppercase;text-decoration:none;color:var(--ink);font-weight:700;padding:4px 0}
+  nav.bar a:hover{color:var(--accent)}
+  nav.bar a.cta{border-bottom:2px solid var(--accent);color:var(--accent)}
+  nav.bar a.cta:hover{color:var(--ink);border-color:var(--ink)}
+  nav.bar .issue{font-family:var(--serif);font-style:italic;font-size:.95rem;color:var(--muted)}
+  nav.bar .issue span{display:block;font-family:var(--sans);font-style:normal;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
+
+  /* ── Hero (lead story) ───────────────────────────────── */
+  .hero{padding:52px 0 0}
+  .hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:44px;align-items:center}
+  .hero h1{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(3rem,7vw,5.4rem);letter-spacing:-.018em;line-height:.98}
+  .hero h1 em{font-style:normal;color:var(--accent)}
+  .hero .stand{margin:18px 0 0;font-size:1.05rem;line-height:1.5;color:var(--muted);max-width:38ch}
+  .hero .byline{display:flex;align-items:center;gap:14px;margin-top:26px}
+  .hero .byline .ln{width:40px;height:3px;background:var(--accent)}
+  .hero .byline span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);font-weight:700}
+  .lead-photo{position:relative;overflow:hidden;background:#e7e2d5;border:1px solid var(--line)}
+  .lead-photo img{aspect-ratio:4/3.2;width:100%;height:100%;object-fit:cover;opacity:0;transform:translateY(10px);animation:ink-in .9s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes ink-in{to{opacity:1;transform:none}}
+  .lead-photo figcaption{display:flex;justify-content:space-between;gap:12px;padding:8px 2px 0;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);font-weight:600}
+
+  /* Inside box (contents) */
+  .inside{border:1px solid var(--line);border-top:2px solid var(--ink);margin-top:54px;display:grid;grid-template-columns:repeat(3,1fr)}
+  .inside>div{padding:22px 26px;border-right:1px solid var(--line)}
+  .inside>div:last-child{border-right:0}
+  .inside .cap{display:flex;justify-content:space-between;align-items:baseline;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);font-weight:600;border-bottom:1px solid var(--line);padding-bottom:9px;margin-bottom:13px}
+  .inside a{display:block;text-decoration:none;padding:7px 0;border-bottom:1px dotted var(--line);font-size:.9rem;display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+  .inside a:last-child{border-bottom:0}
+  .inside a:hover{color:var(--accent)}
+  .inside a .amt{font-family:var(--serif);font-style:italic;font-size:.9rem;color:var(--muted);white-space:nowrap}
+
+  /* ── Sections ────────────────────────────────────────── */
+  section{padding:96px 0 6px}
+  .rule-title{display:flex;align-items:center;gap:20px;margin-bottom:40px}
+  .rule-title h2{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(1.8rem,3.4vw,2.6rem);letter-spacing:-.012em}
+  .rule-title h2 em{font-style:normal;color:var(--accent)}
+  .rule-title .bar{flex:1;height:1px;background:var(--line)}
+  .rule-title .k{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--soft);font-weight:600}
+
+  /* Plates */
+  .plate{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(260px,.75fr);gap:40px;align-items:center;margin-bottom:64px}
+  .plate.flip .cap-col{order:-1}
+  .plate .photo{position:relative;overflow:hidden;background:#e7e2d5;border:1px solid var(--line)}
+  .plate .photo img{aspect-ratio:16/10;width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.65,.25,1)}
+  .plate:hover .photo img{transform:scale(1.03)}
+  .plate .photo figcaption{display:flex;justify-content:space-between;gap:12px;padding:8px 2px 0;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);font-weight:600}
+  .cap-col h3{margin:0 0 7px;font-family:var(--serif);font-weight:400;font-size:clamp(1.4rem,2.4vw,1.9rem);letter-spacing:-.01em;line-height:1.12}
+  .cap-col h3 em{font-style:normal;color:var(--accent);font-family:var(--serif)}
+  .cap-col .what{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);font-weight:600;margin:0 0 10px}
+  .cap-col p{margin:0;font-size:.9rem;color:var(--muted);max-width:38ch}
+
+  /* Rates ledger with dot leaders */
+  .rates{border-top:2px solid var(--ink)}
+  .rate-row{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1.5fr) 150px;gap:26px;align-items:baseline;padding:24px 0 20px;border-bottom:1px solid var(--line);text-decoration:none;color:inherit}
+  .rate-row .n{font-family:var(--serif);font-weight:400;font-size:clamp(1.15rem,2vw,1.5rem);letter-spacing:-.01em}
+  .rate-row .d{font-size:.85rem;color:var(--muted)}
+  .rate-row .p{text-align:right;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+  .rate-row .dots{display:none}
+  .rate-row:hover .n em{color:var(--accent)}
+  .rate-row .n em{font-style:normal;color:var(--ink);transition:color .2s ease}
+
+  /* Standfirst (promise) */
+  .standfirst{border-top:3px solid var(--ink);border-bottom:1px solid var(--line);display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center;padding:44px 0}
+  .standfirst .quot{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(2.2rem,5vw,3.8rem);letter-spacing:-.01em;line-height:1.05;max-width:20ch;margin:0}
+  .standfirst .quot em{font-style:normal;color:var(--accent)}
+  .standfirst p{margin:0;font-size:.92rem;color:var(--muted);max-width:48ch}
+
+  /* Booking */
+  .book{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+  .book-aside .lead{margin:0 0 28px;font-size:.95rem;color:var(--muted);max-width:46ch}
+  .big-mail{font-family:var(--serif);font-size:clamp(1.2rem,2.2vw,1.7rem);letter-spacing:-.01em;text-decoration:none;border-bottom:1px solid var(--ink);display:inline-block;line-height:1.4}
+  .big-mail:hover{color:var(--accent);border-color:var(--accent)}
+  .contact{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:36px;padding-top:24px;border-top:1px solid var(--line)}
+  .contact .lbl{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);font-weight:600;margin-bottom:7px}
+  .contact p{margin:0;font-size:.9rem;font-weight:600}
+  .contact a:hover{color:var(--accent)}
+
+  .coupon{position:relative;border:1px solid var(--ink);background:#fffef9;padding:38px 38px 34px}
+  .coupon::before,.coupon::after{content:"";position:absolute;width:22px;height:22px;border:1px solid var(--ink);background:var(--paper)}
+  .coupon::before{top:-11px;left:-11px;border-left:0;border-top:0}
+  .coupon::after{bottom:-11px;right:-11px;border-right:0;border-bottom:0}
+  .coupon .t{display:flex;justify-content:space-between;align-items:baseline;gap:14px;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:26px}
+  .coupon .t h3{margin:0;font-family:var(--serif);font-weight:400;font-size:1.5rem}
+  .coupon .t span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);font-weight:600}
+  .fr2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .fd{margin-bottom:18px}
+  .fd label{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:7px}
+  .fd label .r{color:var(--accent)}
+  .fd input,.fd select,.fd textarea{width:100%;background:transparent;border:0;border-bottom:1px solid var(--line);padding:8px 0;font:inherit;font-size:.94rem;color:var(--ink);border-radius:0;transition:border-color .2s ease}
+  .fd ::placeholder{color:#b3ad9d}
+  .fd input:focus,.fd select:focus,.fd textarea:focus{outline:none;border-color:var(--accent)}
+  .fd select{appearance:none;-webkit-appearance:none;cursor:pointer;
+    background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2356544c' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 2px center;
+  }
+  .fd select:invalid{color:var(--soft)}
+  .fd textarea{min-height:84px;resize:vertical}
+  input:-webkit-autofill{-webkit-box-shadow:0 0 0 1000px #fffef9 inset;-webkit-text-fill-color:var(--ink);caret-color:var(--accent)}
+  .fd input,.fd textarea{caret-color:var(--accent)}
+  .form-status{min-height:20px;font-size:.82rem;margin:2px 0 12px;color:var(--muted)}
+  .form-status.success{color:#1a7f37;font-weight:600}
+  .form-status.error{color:var(--accent);font-weight:600}
+  .btn{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;padding:15px 20px;background:var(--ink);color:var(--paper);font:inherit;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;border:0;cursor:pointer;transition:background .2s ease,color .2s ease}
+  .btn:hover,.btn:focus-visible{background:var(--accent);color:#fff}
+  .btn svg{transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+  .btn:hover svg{transform:translateX(4px)}
+  .fine{display:flex;align-items:center;gap:8px;margin:14px 0 0;font-size:.78rem;color:var(--muted)}
+  .fine svg{color:var(--accent)}
+
+  /* Footer */
+  .footer{border-top:2px solid var(--ink);margin-top:110px;padding:36px 0 40px}
+  .footer .giant{font-family:var(--serif);font-weight:400;font-size:clamp(2.6rem,8.5vw,5.2rem);letter-spacing:-.015em;margin:0 0 16px;line-height:1}
+  .footer .giant em{font-style:normal;color:var(--accent)}
+  .footer .row{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);font-weight:600}
+
+  @media (max-width:1020px){
+    .book{grid-template-columns:1fr;gap:44px}
+    .standfirst{grid-template-columns:1fr;gap:22px}
+  }
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:30px}
+    .inside{grid-template-columns:1fr}
+    .inside>div{border-right:0;border-bottom:1px solid var(--line)}
+    .inside>div:last-child{border-bottom:0}
+    .plate{grid-template-columns:1fr;gap:20px}
+    .plate.flip .cap-col{order:0}
+    .rate-row{grid-template-columns:1fr 1fr;gap:4px 20px}
+    .rate-row .p{text-align:left}
+    .contact{grid-template-columns:1fr}
+  }
+  @media (max-width:640px){
+    .pad{padding:0 20px}
+    nav.bar .issue{display:none}
+    nav.bar .links{gap:18px}
+    .fr2{grid-template-columns:1fr}
+    .coupon{padding:28px 22px}
+    .hero h1{font-size:clamp(2.5rem,4.2vw,3.6rem)}
+    .footer .giant{font-size:clamp(2.4rem,8.6vw,3.5rem)}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .lead-photo img{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="page" id="top">
+
+  <div class="pad">
+    <header class="mast">
+      <div class="rule" aria-hidden="true"></div>
+      <div class="topline">
+        <span>Photographer · Washington</span>
+        <span>Proofs in 48 hours</span>
+        <span>Est. on location</span>
+      </div>
+      <div class="headline">
+        <a class="name" href="#top">Cameron Schindler<em>.</em></a>
+        <div class="tag">
+          VOL. ONE<br>
+          PORTRAIT · COMMERCIAL
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <nav class="bar" aria-label="Primary">
+    <div class="pad inner">
+      <div class="links">
+        <a href="#work">Work</a>
+        <a href="#services">Rates</a>
+        <a href="#booking">Contact</a>
+        <a class="cta" href="#booking">Book a date</a>
+      </div>
+      <div class="issue">this week's edition<span>Turnaround: 48 hours</span></div>
+    </div>
+  </nav>
+
+  <main class="pad">
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <h1>Cameron<br>Schindler<em>.</em></h1>
+          <p class="stand">Business shoots in the morning, a family session at the park by afternoon. Portraits, families, sports, real estate, automotive and branded reels · on location across Washington.</p>
+          <div class="byline">
+            <span class="ln" aria-hidden="true"></span>
+            <span><a href="#booking" style="text-decoration:none;border-bottom:2px solid var(--accent);color:var(--ink)">Request a date</a> · Reply within a day</span>
+          </div>
+        </div>
+        <figure class="lead-photo">
+          <img src="DSC_2244-Edit.jpg" alt="Recent session photography by Cameron Schindler" fetchpriority="high" decoding="async" width="6000" height="4000">
+          <figcaption><span>Lead plate · on assignment in Washington</span><span>48h</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="inside" aria-label="Services at a glance">
+        <div>
+          <div class="cap"><span>Portraits &amp; families</span><span>from $50</span></div>
+          <a href="#services">Relaxed sessions, no stiff poses <span class="amt">→</span></a>
+          <a href="#services">On location, indoors or out <span class="amt">→</span></a>
+        </div>
+        <div>
+          <div class="cap"><span>Real estate &amp; auto</span><span>from $65</span></div>
+          <a href="#services">Listings that look lived-in <span class="amt">→</span></a>
+          <a href="#services">Showroom gloss or gravel grit <span class="amt">→</span></a>
+        </div>
+        <div>
+          <div class="cap"><span>Sports, reels &amp; events</span><span>from $35</span></div>
+          <a href="#services">Posted the same night <span class="amt">→</span></a>
+          <a href="#services">Video made for social <span class="amt">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="rule-title">
+        <span class="k">The plates</span>
+        <h2>Selected work<em>.</em></h2>
+        <span class="bar" aria-hidden="true"></span>
+      </div>
+
+      <div class="plate">
+        <figure class="photo">
+          <img src="DSC_2452.jpg" alt="Baby at six months · portrait session" loading="lazy" decoding="async" width="4000" height="6000">
+          <figcaption><span>Plate I · Portrait</span><span>Auburn, WA</span></figcaption>
+        </figure>
+        <div class="cap-col">
+          <h3>Six months<em>.</em></h3>
+          <p class="what">Portrait · on location</p>
+          <p>Relaxed in-home session. No stiff poses, no assembly line · just a baby being exactly what it is.</p>
+        </div>
+      </div>
+
+      <div class="plate flip">
+        <figure class="photo">
+          <img src="DSC_1522-Enhanced-NR.jpg" alt="Seattle Space Needle · landscape photography" loading="lazy" decoding="async" width="3563" height="5344">
+          <figcaption><span>Plate II · Landscape</span><span>Seattle</span></figcaption>
+        </figure>
+        <div class="cap-col">
+          <h3>Space Needle<em>.</em></h3>
+          <p class="what">Landscape · Seattle</p>
+          <p>Quiet light over the city. The needle cut against a soft sky is Washington in a single frame.</p>
+        </div>
+      </div>
+
+      <div class="plate">
+        <figure class="photo">
+          <img src="Z62_0078-Enhanced-NR.jpg" alt="Basketball action · sports photography" loading="lazy" decoding="async" width="4024" height="6048">
+          <figcaption><span>Plate III · Sports</span><span>Tri-Cities</span></figcaption>
+        </figure>
+        <div class="cap-col">
+          <h3>Basketball<em>.</em></h3>
+          <p class="what">Sports · Tri-Cities</p>
+          <p>Mid-match energy, built to be posted the same night. Motion frozen where it counts.</p>
+        </div>
+      </div>
+
+      <div class="plate flip">
+        <figure class="photo">
+          <img src="DSC_4057.jpg" alt="Flamingo · wildlife photography" loading="lazy" decoding="async" width="3879" height="5818">
+          <figcaption><span>Plate IV · Wildlife</span><span>Detail</span></figcaption>
+        </figure>
+        <div class="cap-col">
+          <h3>Flamingo<em>.</em></h3>
+          <p class="what">Wildlife</p>
+          <p>Color that does the work alone. One bird, one frame, nothing else needed.</p>
+        </div>
+      </div>
+
+      <div class="plate">
+        <figure class="photo">
+          <img src="IMG_6940-Enhanced-NR.jpg" alt="Car session · automotive photography" loading="lazy" decoding="async" width="3456" height="5184">
+          <figcaption><span>Plate V · Automotive</span><span>Seattle</span></figcaption>
+        </figure>
+        <div class="cap-col">
+          <h3>Car session<em>.</em></h3>
+          <p class="what">Automotive · Seattle</p>
+          <p>Showroom gloss and gravel-road grit. For dealers who want the car to read as worth it.</p>
+        </div>
+      </div>
+
+      <div class="plate flip">
+        <figure class="photo">
+          <img src="IMG_3874-Enhanced.png.jpg" alt="Fireworks · event photography" loading="lazy" decoding="async" width="3257" height="4886">
+          <figcaption><span>Plate VI · Events</span><span>Long exposure</span></figcaption>
+        </figure>
+        <div class="cap-col">
+          <h3>Fireworks<em>.</em></h3>
+          <p class="what">Events</p>
+          <p>Long exposure, clean sky. Event work that feels cinematic instead of documentary.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="rule-title">
+        <span class="k">The rates</span>
+        <h2>Services &amp; pricing<em>.</em></h2>
+        <span class="bar" aria-hidden="true"></span>
+      </div>
+      <div class="rates">
+        <a class="rate-row" href="#booking">
+          <div class="n">Portraits &amp; families<em> · </em></div>
+          <div class="d">No stiff poses, no assembly line. Relaxed sessions on location.</div>
+          <div class="p">From $50</div>
+        </a>
+        <a class="rate-row" href="#booking">
+          <div class="n">Sports &amp; athletes<em> · </em></div>
+          <div class="d">Mid-match energy, built to be posted the same night.</div>
+          <div class="p">From $50</div>
+        </a>
+        <a class="rate-row" href="#booking">
+          <div class="n">Real estate<em> · </em></div>
+          <div class="d">Interiors, exteriors and lots that make the listing look lived-in.</div>
+          <div class="p">From $80</div>
+        </a>
+        <a class="rate-row" href="#booking">
+          <div class="n">Automotive<em> · </em></div>
+          <div class="d">Showroom gloss and gravel-road grit for dealers and owners.</div>
+          <div class="p">From $65</div>
+        </a>
+        <a class="rate-row" href="#booking">
+          <div class="n">Reels &amp; events<em> · </em></div>
+          <div class="d">Short-form video and event coverage made for social.</div>
+          <div class="p">From $35</div>
+        </a>
+      </div>
+    </section>
+
+    <section class="standfirst" id="promise">
+      <blockquote class="quot">Proofs in your inbox within 48&nbsp;hours<em>.</em></blockquote>
+      <p>That turnaround is the standard the business is built on, not a promise reserved for good days. Replies to booking requests land within a day. And if you're not thrilled with the result, we re-shoot or you don't pay.</p>
+    </section>
+
+    <section id="booking">
+      <div class="rule-title">
+        <span class="k">The coupon</span>
+        <h2>Book a session<em>.</em></h2>
+        <span class="bar" aria-hidden="true"></span>
+      </div>
+      <div class="book">
+        <div class="book-aside">
+          <p class="lead">Tell me what you have in mind · game day, graduation, family photos at the park. The request lands straight in my inbox and a reply is on its way within a day.</p>
+          <a class="big-mail" href="mailto:cameronjschindler@gmail.com">cameronjschindler@gmail.com</a>
+          <div class="contact">
+            <div>
+              <span class="lbl">Location</span>
+              <p>Auburn · Seattle · Tri-Cities</p>
+            </div>
+            <div>
+              <span class="lbl">Instagram</span>
+              <p><a href="https://instagram.com/schindler_cameron" target="_blank" rel="noopener">@schindler_cameron</a></p>
+            </div>
+          </div>
+        </div>
+
+        <form class="coupon" id="bookingForm" novalidate>
+          <div class="t">
+            <h3>Request your date</h3>
+            <span>No payment until we confirm</span>
+          </div>
+          <div class="fr2">
+            <div class="fd">
+              <label for="firstName">First name <span class="r">*</span></label>
+              <input type="text" id="firstName" name="firstName" placeholder="Jane" required autocomplete="given-name">
+            </div>
+            <div class="fd">
+              <label for="lastName">Last name <span class="r">*</span></label>
+              <input type="text" id="lastName" name="lastName" placeholder="Smith" required autocomplete="family-name">
+            </div>
+          </div>
+          <div class="fr2">
+            <div class="fd">
+              <label for="email">Email <span class="r">*</span></label>
+              <input type="email" id="email" name="email" placeholder="jane@example.com" required autocomplete="email">
+            </div>
+            <div class="fd">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" autocomplete="tel" maxlength="14">
+            </div>
+          </div>
+          <div class="fr2">
+            <div class="fd">
+              <label for="sessionType">Type of shoot <span class="r">*</span></label>
+              <select id="sessionType" name="sessionType" required>
+                <option value="" disabled selected>Select a session…</option>
+                <option value="Portrait / Family · from $50">Portrait / Family · from $50</option>
+                <option value="Sports · from $50">Sports · from $50</option>
+                <option value="Events · from $75">Events · from $75</option>
+                <option value="Single Reel · from $35">Single reel · from $35</option>
+                <option value="Reels Bundle · $240">Reels bundle · $240</option>
+                <option value="Real estate · from $80">Real estate · from $80</option>
+                <option value="Automotive · from $65">Automotive · from $65</option>
+                <option value="Custom / Other">Custom / not sure yet</option>
+              </select>
+            </div>
+            <div class="fd">
+              <label for="date">Preferred date</label>
+              <input type="date" id="date" name="date">
+            </div>
+          </div>
+          <div class="fd">
+            <label for="message">Tell me about it</label>
+            <textarea id="message" name="message" placeholder="Game day? Graduation? Family photos at the park? Any details help…"></textarea>
+          </div>
+
+          <div class="form-status" id="formStatus" aria-live="polite"></div>
+          <button type="submit" class="btn">
+            <span id="submitLabel">Request my date</span>
+            <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          </button>
+          <p class="fine">
+            <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6.5 5 9l5-6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            Reply within 24 hours · No payment until we confirm
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="pad">
+      <p class="giant">Cameron&nbsp;Schindler<em>.</em></p>
+      <div class="row">
+        <span>Photography · Washington</span>
+        <span>Proofs in 48 hours</span>
+        <span>© 2026</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyTZOWLxgIxKyQYCAc2fysuMlilz_B-6i2RJDdzKkKWGdm9VkEkEKgykZ7nsDzA3Q1sOQ/exec';
+const form = document.getElementById('bookingForm');
+const submitLabel = document.getElementById('submitLabel');
+const formStatus = document.getElementById('formStatus');
+
+document.getElementById('phone').addEventListener('input', function (e) {
+  let val = e.target.value.replace(/\D/g, '').slice(0, 10);
+  if (val.length >= 6) val = '(' + val.slice(0,3) + ') ' + val.slice(3,6) + '-' + val.slice(6);
+  else if (val.length >= 3) val = '(' + val.slice(0,3) + ') ' + val.slice(3);
+  else if (val.length > 0) val = '(' + val;
+  e.target.value = val;
+});
+
+form.addEventListener('submit', async function (e) {
+  e.preventDefault();
+  formStatus.className = 'form-status';
+  const firstName = this.firstName.value.trim();
+  const lastName = this.lastName.value.trim();
+  const email = this.email.value.trim();
+  const session = this.sessionType.value;
+  if (!firstName || !lastName || !email) {
+    formStatus.textContent = 'Please add your name and email so I can reply.';
+    formStatus.className = 'form-status error';
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    formStatus.textContent = 'That email doesn\'t look right · mind double-checking?';
+    formStatus.className = 'form-status error';
+    return;
+  }
+  if (!session) {
+    formStatus.textContent = 'Pick a type of shoot so I can quote you properly.';
+    formStatus.className = 'form-status error';
+    return;
+  }
+  submitLabel.textContent = 'Sending request…';
+  const data = {
+    firstName, lastName, email,
+    phone: this.phone.value.trim(),
+    sessionType: session,
+    date: this.date.value,
+    message: this.message.value.trim()
+  };
+  try {
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    formStatus.textContent = '✓ Request received! I\'ll confirm your date within 24 hours.';
+    formStatus.className = 'form-status success';
+    form.reset();
+    submitLabel.textContent = 'Request my date';
+  } catch (err) {
+    formStatus.textContent = 'Something went wrong · please email me directly and I\'ll sort it.';
+    formStatus.className = 'form-status error';
+    submitLabel.textContent = 'Request my date';
+  }
+});
+</script>
+</body>
+</html>

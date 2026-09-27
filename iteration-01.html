@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cameron Schindler. · Portrait & Commercial Photography · Washington</title>
+<meta name="description" content="Cameron Schindler, Washington photographer. Portraits, families, sports, real estate, automotive and branded reels · proofs within 48 hours.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0b;
+    --panel:#111113;
+    --well:#161619;
+    --paper:#f5f2ec;
+    --muted:#a19d96;
+    --line:#252529;
+    --hair:#1d1d21;
+    --accent:#ff2e1a;
+    --sans:"Inter",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;overflow-x:hidden}
+  ::selection{background:var(--accent);color:var(--bg)}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  body{
+    margin:0;background:var(--bg);color:var(--paper);
+    font-family:var(--sans);line-height:1.58;-webkit-font-smoothing:antialiased;
+    scrollbar-color:var(--line) var(--bg);text-rendering:optimizeLegibility;
+  }
+  ::-webkit-scrollbar{width:12px;height:12px}
+  ::-webkit-scrollbar-track{background:var(--bg)}
+  ::-webkit-scrollbar-thumb{background:var(--line);border:3px solid var(--bg);border-radius:6px}
+  ::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+  a{color:inherit}
+  img{display:block}
+  .wrap{max-width:1360px;margin:0 auto;padding:0 26px}
+  .caps{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600}
+
+  /* ── Header ───────────────────────────────────────────── */
+  .bar{position:fixed;top:0;left:0;right:0;z-index:60;transition:background .35s ease,border-color .35s ease}
+  .bar.scrolled{background:rgba(10,10,11,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--hair)}
+  .bar .inner{display:flex;justify-content:space-between;align-items:center;padding:20px 0;max-width:1360px;margin:0 auto;padding-left:26px;padding-right:26px}
+  .wordmark{font-size:17px;font-weight:800;letter-spacing:-.02em;text-decoration:none;color:var(--paper)}
+  .wordmark .dot{color:var(--accent)}
+  .bar nav{display:flex;gap:32px;align-items:center}
+  .bar nav a{font-size:11px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--paper);font-weight:600;opacity:.72;transition:opacity .2s ease}
+  .bar nav a:hover{opacity:1}
+  .bar nav a.active{opacity:1;border-bottom:1px solid var(--accent);padding-bottom:2px}
+  .bar nav a.cta{opacity:1;border:1px solid var(--accent);padding:9px 16px;color:#fff;background:var(--accent);transition:background .2s ease,color .2s ease}
+  .bar nav a.cta:hover{background:transparent;color:var(--paper)}
+
+  /* ── Hero ────────────────────────────────────────────── */
+  .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;background:var(--bg)}
+  .hero img.photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.92;transform:scale(1.035);animation:settle 1.6s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes settle{to{transform:scale(1)}}
+  .hero::after{content:"";position:absolute;inset:0;background:
+    linear-gradient(180deg,rgba(10,10,11,.72) 0%,rgba(10,10,11,.18) 42%,rgba(10,10,11,.42) 66%,rgba(10,10,11,.96) 100%),
+    radial-gradient(120% 90% at 50% 0%,transparent 40%,rgba(10,10,11,.42) 100%)}
+  .hero::before{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:overlay;opacity:.12;
+    background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .hero .inner{position:relative;z-index:2;width:100%;max-width:1360px;margin:0 auto;padding:0 26px 56px;display:grid;grid-template-columns:1.45fr 1fr;align-items:end;gap:48px}
+  .hero h1{margin:0;font-size:clamp(3rem,9.2vw,6rem);font-weight:900;letter-spacing:-.035em;line-height:.92}
+  .hero h1 em{font-style:normal;color:var(--accent)}
+  .hero .sub{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:22px;color:var(--muted)}
+  .hero .sub .caps{color:var(--muted)}
+  .hero .side{display:flex;flex-direction:column;gap:26px;align-items:flex-start;padding-bottom:6px}
+  .hero .side p{margin:0;font-size:.95rem;color:var(--muted);max-width:46ch}
+  .hero .cta{
+    display:inline-flex;align-items:center;gap:12px;padding:15px 22px;
+    background:var(--accent);color:#fff;text-decoration:none;
+    font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;
+    transition:background .2s ease,transform .2s ease;
+  }
+  .hero .cta:hover{background:#e0200d}
+  .hero .cta svg{transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+  .hero .cta:hover svg{transform:translateX(4px)}
+  .rec{
+    position:absolute;top:26px;right:26px;z-index:3;display:flex;align-items:center;gap:9px;
+    font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:var(--paper);
+    mix-blend-mode:screen;
+  }
+  .rec .ind{width:11px;height:11px;border-radius:50%;background:var(--accent);animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.25);opacity:.55}}
+
+  /* ── Sections ────────────────────────────────────────── */
+  section{padding:118px 0 10px}
+  .kicker-row{display:flex;justify-content:space-between;gap:18px;align-items:center;border-bottom:1px solid var(--hair);padding-bottom:15px;margin-bottom:44px}
+  h2{font-size:clamp(1.7rem,3.6vw,2.6rem);font-weight:800;letter-spacing:-.028em;margin:0;line-height:1.02}
+  h2 .dot{color:var(--accent)}
+
+  /* ── Work ────────────────────────────────────────────── */
+  .work-row{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(260px,.6fr);gap:44px;align-items:center;margin-bottom:64px}
+  .work-row.flip{grid-template-columns:minmax(260px,.6fr) minmax(0,1.55fr)}
+  .work-row.flip .shot{order:2}
+  .shot{position:relative;overflow:hidden;background:var(--well);border:1px solid var(--hair);aspect-ratio:16/10}
+  .shot img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.65,.25,1),filter .6s ease}
+  .work-row:hover .shot img{transform:scale(1.035)}
+  .shot::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(245,242,236,.05)}
+  .work-row:nth-child(even) .shot .tag{left:auto;right:18px}
+  .tag{position:absolute;bottom:16px;left:18px;z-index:2;display:inline-flex;align-items:center;gap:10px;background:rgba(10,10,11,.72);border:1px solid rgba(245,242,236,.18);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:var(--paper);padding:7px 12px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600}
+  .tag .t-dot{width:5px;height:5px;border-radius:50%;background:var(--accent)}
+  .work-copy{padding-bottom:4px}
+  .work-copy h3{margin:0 0 8px;font-size:clamp(1.25rem,2.2vw,1.7rem);font-weight:800;letter-spacing:-.022em}
+  .work-copy .what{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:0 0 12px}
+  .work-copy p{margin:0;font-size:.9rem;color:var(--muted);max-width:44ch}
+
+  /* ── Services (cast ledger) ──────────────────────────── */
+  .ledger{border-top:1px solid var(--line)}
+  .ledger-row{
+    display:grid;grid-template-columns:1.6fr 1fr 150px;gap:26px;align-items:center;
+    padding:26px 0;border-bottom:1px solid var(--line);text-decoration:none;color:inherit;
+  }
+  .ledger-row .n{font-size:1.25rem;font-weight:700;letter-spacing:-.02em;transition:color .2s ease}
+  .ledger-row .d{font-size:.87rem;color:var(--muted);max-width:52ch}
+  .ledger-row .p{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:600;text-align:right}
+  .ledger-row:hover .n{color:var(--accent)}
+  .ledger-row .p .num{color:var(--paper);font-weight:700}
+
+  /* ── Promise ─────────────────────────────────────────── */
+  .promise{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:start;padding:14px 0 0}
+  .promise h2{font-size:clamp(2rem,4.6vw,3.6rem);font-weight:900;letter-spacing:-.035em;line-height:1.02;margin:0;max-width:18ch}
+  .promise h2 .em{color:var(--accent)}
+  .promise p{font-size:.95rem;color:var(--muted);margin:0;max-width:54ch}
+  .promise .rule{width:52px;height:3px;background:var(--accent);margin-bottom:30px}
+
+  /* ── Booking ─────────────────────────────────────────── */
+  .booking{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+  .book-info h2{margin:0 0 16px}
+  .book-info .lead{margin:0 0 34px;font-size:.95rem;color:var(--muted);max-width:46ch}
+  .email-line{font-size:clamp(1.05rem,2.2vw,1.55rem);font-weight:800;letter-spacing:-.028em;text-decoration:none;border-bottom:2px solid var(--line);display:inline-block;line-height:1.4;transition:border-color .2s ease,color .2s ease}
+  .email-line:hover{border-color:var(--accent);color:var(--accent)}
+  .foot-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:40px;padding-top:26px;border-top:1px solid var(--hair)}
+  .foot-grid .lbl{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:7px}
+  .foot-grid p{margin:0;font-size:.92rem;font-weight:600}
+  .foot-grid a:hover{color:var(--accent)}
+
+  .formp{background:var(--panel);border:1px solid var(--hair);padding:42px}
+  .formp .t{display:flex;justify-content:space-between;align-items:baseline;gap:16px;border-bottom:1px solid var(--line);padding-bottom:15px;margin-bottom:30px}
+  .formp .t h3{margin:0;font-size:1.15rem;font-weight:700;letter-spacing:-.018em}
+  .formp .t .caps{color:var(--muted)}
+  .fr2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .fd{margin-bottom:22px}
+  .fd label{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:8px}
+  .fd label .r{color:var(--accent)}
+  .fd input,.fd select,.fd textarea{
+    width:100%;background:transparent;border:0;border-bottom:1px solid var(--line);
+    padding:10px 0;font:inherit;font-size:.96rem;color:var(--paper);border-radius:0;
+    transition:border-color .2s ease;
+  }
+  .fd input::placeholder,.fd textarea::placeholder{color:#5d5d63}
+  .fd input:focus,.fd select:focus,.fd textarea:focus{outline:none;border-color:var(--accent)}
+  .fd select{appearance:none;-webkit-appearance:none;cursor:pointer;color:var(--paper);
+    background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a19d96' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 2px center;
+  }
+  .fd select option{background:var(--panel);color:var(--paper)}
+  .fd textarea{min-height:92px;resize:vertical}
+  .fd select:invalid{color:#5d5d63}
+  input:-webkit-autofill{-webkit-box-shadow:0 0 0 1000px var(--panel) inset;-webkit-text-fill-color:var(--paper);caret-color:var(--accent)}
+  .fd input,.fd textarea{caret-color:var(--accent)}
+  .form-status{min-height:20px;font-size:.84rem;margin:2px 0 14px;color:var(--muted)}
+  .form-status.success{color:#7dd88f;font-weight:600}
+  .form-status.error{color:var(--accent);font-weight:600}
+  .btn{
+    display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;
+    padding:17px 20px;background:var(--accent);color:#fff;
+    font:inherit;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;
+    border:0;cursor:pointer;text-decoration:none;transition:background .2s ease;
+  }
+  .btn:hover,.btn:focus-visible{background:#ffd400;color:#111}
+  .btn svg{transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+  .btn:hover svg{transform:translateX(4px)}
+  .fine{display:flex;align-items:center;gap:8px;margin:16px 0 0;font-size:.8rem;color:var(--muted)}
+  .fine svg{color:var(--accent)}
+
+  /* ── Footer ──────────────────────────────────────────── */
+  .footer{border-top:1px solid var(--line);margin-top:120px;padding:44px 0 40px}
+  .footer .giant{font-size:clamp(2.6rem,9.5vw,6rem);font-weight:900;letter-spacing:-.035em;margin:0 0 20px;line-height:.92}
+  .footer .giant .dot{color:var(--accent)}
+  .footer .row{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--muted)}
+
+  @media (max-width:1020px){
+    .booking{grid-template-columns:1fr;gap:44px}
+    .promise{grid-template-columns:1fr;gap:24px}
+  }
+  @media (max-width:900px){
+    .hero .inner{grid-template-columns:1fr;gap:22px;padding-bottom:36px}
+    .hero h1{font-size:clamp(2.4rem,9.5vw,4rem)}
+    .work-row{grid-template-columns:1fr;gap:20px}
+    .work-row.flip{grid-template-columns:1fr}
+    .work-row.flip .shot{order:0}
+    .ledger-row{grid-template-columns:1fr;gap:6px}
+    .ledger-row .p{text-align:left}
+    .bar nav{display:none}
+  }
+  @media (max-width:560px){
+    .fr2{grid-template-columns:1fr}
+    .formp{padding:28px 22px}
+    .foot-grid{grid-template-columns:1fr}
+    .hero .sub{flex-direction:column;gap:8px}
+    .hero h1{font-size:clamp(2.3rem,8.6vw,3.7rem)}
+    .footer .giant{font-size:clamp(2.05rem,8.8vw,3.5rem)}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .hero img.photo{transform:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="bar" id="top" data-bar>
+  <div class="inner">
+    <a class="wordmark" href="#top">Cameron Schindler<span class="dot">.</span></a>
+    <nav aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#booking">Contact</a>
+      <a class="cta" href="#booking">Book a date</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" aria-label="Cameron Schindler, Washington photographer">
+    <img class="photo" src="DSC_2244-Edit.jpg" alt="Session photography by Cameron Schindler" fetchpriority="high" decoding="async" width="6000" height="4000">
+    <div class="rec" aria-hidden="true"><span class="ind"></span>REC</div>
+    <div class="inner">
+      <div>
+        <h1>Cameron&nbsp;Schindler<em>.</em></h1>
+        <div class="sub">
+          <span class="caps">Portrait &amp; commercial</span>
+          <span class="caps">Washington</span>
+          <span class="caps">Proofs in 48 hours</span>
+        </div>
+      </div>
+      <div class="side">
+        <p>On location across Washington · a business shoot in the morning, a family session at the park by afternoon. Portraits, families, sports, real estate, automotive and branded reels.</p>
+        <a class="cta" href="#booking">Request a date
+          <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <section id="work">
+      <div class="kicker-row">
+        <h2>Selected&nbsp;work<span class="dot">.</span></h2>
+        <span class="caps">Portrait · landscape · sports · wildlife · automotive · events</span>
+      </div>
+
+      <div class="work-row">
+        <div class="shot"><img src="DSC_2452.jpg" alt="Baby at six months · portrait session" loading="lazy" decoding="async" width="4000" height="6000"><span class="tag"><span class="t-dot"></span>Portrait</span></div>
+        <div class="work-copy">
+          <h3>Six months</h3>
+          <p class="what">Portrait · Auburn, WA</p>
+          <p>Relaxed in-home session. No stiff poses, no assembly line · just a baby being exactly what it is.</p>
+        </div>
+      </div>
+
+      <div class="work-row flip">
+        <div class="work-copy">
+          <h3>Space Needle</h3>
+          <p class="what">Landscape · Seattle</p>
+          <p>Quiet light over the city. The needle cut against a soft sky is Washington in a single frame.</p>
+        </div>
+        <div class="shot"><img src="DSC_1522-Enhanced-NR.jpg" alt="Seattle Space Needle · landscape photography" loading="lazy" decoding="async" width="3563" height="5344"><span class="tag"><span class="t-dot"></span>Landscape</span></div>
+      </div>
+
+      <div class="work-row">
+        <div class="shot"><img src="Z62_0078-Enhanced-NR.jpg" alt="Basketball action · sports photography" loading="lazy" decoding="async" width="4024" height="6048"><span class="tag"><span class="t-dot"></span>Sports</span></div>
+        <div class="work-copy">
+          <h3>Basketball</h3>
+          <p class="what">Sports · Tri-Cities</p>
+          <p>Mid-match energy, built to be posted the same night. Motion frozen where it counts.</p>
+        </div>
+      </div>
+
+      <div class="work-row flip">
+        <div class="work-copy">
+          <h3>Flamingo</h3>
+          <p class="what">Wildlife</p>
+          <p>Color that does the work alone. One bird, one frame, nothing else needed.</p>
+        </div>
+        <div class="shot"><img src="DSC_4057.jpg" alt="Flamingo · wildlife photography" loading="lazy" decoding="async" width="3879" height="5818"><span class="tag"><span class="t-dot"></span>Wildlife</span></div>
+      </div>
+
+      <div class="work-row">
+        <div class="shot"><img src="IMG_6940-Enhanced-NR.jpg" alt="Car session · automotive photography" loading="lazy" decoding="async" width="3456" height="5184"><span class="tag"><span class="t-dot"></span>Automotive</span></div>
+        <div class="work-copy">
+          <h3>Car session</h3>
+          <p class="what">Automotive · Seattle</p>
+          <p>Showroom gloss and gravel-road grit. For dealers who want the car to read as worth it.</p>
+        </div>
+      </div>
+
+      <div class="work-row flip">
+        <div class="work-copy">
+          <h3>Fireworks</h3>
+          <p class="what">Events</p>
+          <p>Long exposure, clean sky. Event work that feels cinematic instead of documentary.</p>
+        </div>
+        <div class="shot"><img src="IMG_3874-Enhanced.png.jpg" alt="Fireworks · event photography" loading="lazy" decoding="async" width="3257" height="4886"><span class="tag"><span class="t-dot"></span>Events</span></div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="kicker-row">
+        <h2>Services<span class="dot">.</span></h2>
+        <span class="caps">Starting-point pricing</span>
+      </div>
+      <div class="ledger">
+        <a class="ledger-row" href="#booking">
+          <div class="n">Portraits &amp; families</div>
+          <div class="d">No stiff poses, no assembly line. Relaxed sessions on location.</div>
+          <div class="p"><span class="num">From $50</span></div>
+        </a>
+        <a class="ledger-row" href="#booking">
+          <div class="n">Sports &amp; athletes</div>
+          <div class="d">Mid-match energy, built to be posted the same night.</div>
+          <div class="p"><span class="num">From $50</span></div>
+        </a>
+        <a class="ledger-row" href="#booking">
+          <div class="n">Real estate</div>
+          <div class="d">Interiors, exteriors and lots that make the listing look lived-in.</div>
+          <div class="p"><span class="num">From $80</span></div>
+        </a>
+        <a class="ledger-row" href="#booking">
+          <div class="n">Automotive</div>
+          <div class="d">Showroom gloss and gravel-road grit for dealers and owners.</div>
+          <div class="p"><span class="num">From $65</span></div>
+        </a>
+        <a class="ledger-row" href="#booking">
+          <div class="n">Reels &amp; events</div>
+          <div class="d">Short-form video and event coverage made for social.</div>
+          <div class="p"><span class="num">From $35</span></div>
+        </a>
+      </div>
+    </section>
+
+    <section id="promise">
+      <div class="promise">
+        <div>
+          <div class="rule" aria-hidden="true"></div>
+          <h2>Proofs in your inbox within 48&nbsp;hours<span class="em">.</span></h2>
+        </div>
+        <p>That turnaround is the standard the business is built on, not a promise reserved for good days. Replies to booking requests land within a day. And if you're not thrilled with the result, we re-shoot or you don't pay.</p>
+      </div>
+    </section>
+
+    <section id="booking">
+      <div class="kicker-row">
+        <h2>Book a session<span class="dot">.</span></h2>
+        <span class="caps">Reply within 24 hours · No payment until we confirm</span>
+      </div>
+      <div class="booking">
+        <div class="book-info">
+          <p class="lead">Tell me what you have in mind · game day, graduation, family photos at the park. The request lands straight in my inbox and a reply is on its way within a day.</p>
+          <a class="email-line" href="mailto:cameronjschindler@gmail.com">cameronjschindler@gmail.com</a>
+          <div class="foot-grid">
+            <div>
+              <span class="lbl">Location</span>
+              <p>Auburn · Seattle · Tri-Cities</p>
+            </div>
+            <div>
+              <span class="lbl">Instagram</span>
+              <p><a href="https://instagram.com/schindler_cameron" target="_blank" rel="noopener">@schindler_cameron</a></p>
+            </div>
+          </div>
+        </div>
+
+        <form class="formp" id="bookingForm" novalidate>
+          <div class="t">
+            <h3>Request your date</h3>
+            <span class="caps">Form</span>
+          </div>
+          <div class="fr2">
+            <div class="fd">
+              <label for="firstName">First name <span class="r">*</span></label>
+              <input type="text" id="firstName" name="firstName" placeholder="Jane" required autocomplete="given-name">
+            </div>
+            <div class="fd">
+              <label for="lastName">Last name <span class="r">*</span></label>
+              <input type="text" id="lastName" name="lastName" placeholder="Smith" required autocomplete="family-name">
+            </div>
+          </div>
+          <div class="fr2">
+            <div class="fd">
+              <label for="email">Email <span class="r">*</span></label>
+              <input type="email" id="email" name="email" placeholder="jane@example.com" required autocomplete="email">
+            </div>
+            <div class="fd">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" autocomplete="tel" maxlength="14">
+            </div>
+          </div>
+          <div class="fr2">
+            <div class="fd">
+              <label for="sessionType">Type of shoot <span class="r">*</span></label>
+              <select id="sessionType" name="sessionType" required>
+                <option value="" disabled selected>Select a session…</option>
+                <option value="Portrait / Family · from $50">Portrait / Family · from $50</option>
+                <option value="Sports · from $50">Sports · from $50</option>
+                <option value="Events · from $75">Events · from $75</option>
+                <option value="Single Reel · from $35">Single reel · from $35</option>
+                <option value="Reels Bundle · $240">Reels bundle · $240</option>
+                <option value="Real estate · from $80">Real estate · from $80</option>
+                <option value="Automotive · from $65">Automotive · from $65</option>
+                <option value="Custom / Other">Custom / not sure yet</option>
+              </select>
+            </div>
+            <div class="fd">
+              <label for="date">Preferred date</label>
+              <input type="date" id="date" name="date">
+            </div>
+          </div>
+          <div class="fd">
+            <label for="message">Tell me about it</label>
+            <textarea id="message" name="message" placeholder="Game day? Graduation? Family photos at the park? Any details help…"></textarea>
+          </div>
+
+          <div class="form-status" id="formStatus" aria-live="polite"></div>
+          <button type="submit" class="btn">
+            <span id="submitLabel">Request my date</span>
+            <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          </button>
+          <p class="fine">
+            <svg width="13" height="13" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6.5 5 9l5-6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            Reply within 24 hours · No payment until we confirm
+          </p>
+        </form>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p class="giant">Cameron&nbsp;Schindler<span class="dot">.</span></p>
+    <div class="row">
+      <span class="caps">Photography · Washington</span>
+      <span class="caps">Proofs in 48 hours</span>
+      <span class="caps">© 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyTZOWLxgIxKyQYCAc2fysuMlilz_B-6i2RJDdzKkKWGdm9VkEkEKgykZ7nsDzA3Q1sOQ/exec';
+const bar = document.querySelector('[data-bar]');
+const onScroll = () => bar.classList.toggle('scrolled', window.scrollY > 40);
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+const form = document.getElementById('bookingForm');
+const submitLabel = document.getElementById('submitLabel');
+const formStatus = document.getElementById('formStatus');
+
+document.getElementById('phone').addEventListener('input', function (e) {
+  let val = e.target.value.replace(/\D/g, '').slice(0, 10);
+  if (val.length >= 6) val = '(' + val.slice(0,3) + ') ' + val.slice(3,6) + '-' + val.slice(6);
+  else if (val.length >= 3) val = '(' + val.slice(0,3) + ') ' + val.slice(3);
+  else if (val.length > 0) val = '(' + val;
+  e.target.value = val;
+});
+
+form.addEventListener('submit', async function (e) {
+  e.preventDefault();
+  formStatus.className = 'form-status';
+  const firstName = this.firstName.value.trim();
+  const lastName = this.lastName.value.trim();
+  const email = this.email.value.trim();
+  const session = this.sessionType.value;
+  if (!firstName || !lastName || !email) {
+    formStatus.textContent = 'Please add your name and email so I can reply.';
+    formStatus.className = 'form-status error';
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    formStatus.textContent = 'That email doesn\'t look right · mind double-checking?';
+    formStatus.className = 'form-status error';
+    return;
+  }
+  if (!session) {
+    formStatus.textContent = 'Pick a type of shoot so I can quote you properly.';
+    formStatus.className = 'form-status error';
+    return;
+  }
+  submitLabel.textContent = 'Sending request…';
+  const data = {
+    firstName, lastName, email,
+    phone: this.phone.value.trim(),
+    sessionType: session,
+    date: this.date.value,
+    message: this.message.value.trim()
+  };
+  try {
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    formStatus.textContent = '✓ Request received! I\'ll confirm your date within 24 hours.';
+    formStatus.className = 'form-status success';
+    form.reset();
+    submitLabel.textContent = 'Request my date';
+  } catch (err) {
+    formStatus.textContent = 'Something went wrong · please email me directly and I\'ll sort it.';
+    formStatus.className = 'form-status error';
+    submitLabel.textContent = 'Request my date';
+  }
+});
+</script>
+</body>
+</html>

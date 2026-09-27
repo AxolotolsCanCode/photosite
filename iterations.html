@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Five directions · Cameron Schindler photography redesign</title>
+<meta name="description" content="Five fully-built design directions for the Cameron Schindler photography site. Same photos, same copy, same form · five different films.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fafaf9;
+    --card:#ffffff;
+    --ink:#111111;
+    --muted:#5f5b55;
+    --soft:#8a8578;
+    --line:#d9d9d4;
+    --hair:#efeee9;
+    --accent:#e3170e;
+    --sans:"Inter",system-ui,sans-serif;
+    --serif:"Instrument Serif",Georgia,serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  ::selection{background:var(--ink);color:var(--bg)}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;
+    scrollbar-color:var(--line) var(--bg);
+  }
+  ::-webkit-scrollbar{width:12px;height:12px}
+  ::-webkit-scrollbar-track{background:var(--bg)}
+  ::-webkit-scrollbar-thumb{background:var(--line);border:3px solid var(--bg);border-radius:6px}
+  ::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+  a{color:inherit}
+  img{display:block}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .lbl{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--muted)}
+
+  /* Header */
+  header{border-bottom:1px solid var(--ink)}
+  .bar{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0}
+  .bar .back{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:2px}
+  .bar .back:hover{color:var(--accent);border-color:var(--accent)}
+  .bar .pause{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600}
+
+  /* Intro */
+  .intro{padding:76px 0 20px;max-width:60ch}
+  .intro h1{margin:0;font-size:clamp(2.4rem,5.4vw,3.8rem);font-weight:900;letter-spacing:-.04em;line-height:.98}
+  .intro h1 .dot{color:var(--accent)}
+  .intro .lede{margin:20px 0 0;font-size:1.02rem;color:var(--muted)}
+  .intro .lede b{color:var(--ink)}
+  .contents{margin:44px 0 0;border:1px solid var(--line);border-top:2px solid var(--ink)}
+  .contents a{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:15px 20px;border-bottom:1px solid var(--line);text-decoration:none}
+  .contents a:last-child{border-bottom:0}
+  .contents a .n{font-family:var(--serif);font-size:1.1rem}
+  .contents a .t{font-weight:700;letter-spacing:.01em}
+  .contents a .m{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--soft);font-weight:600}
+  .contents a:hover{background:var(--card)} 
+  .contents a:hover .t{color:var(--accent)}
+
+  /* Cards */
+  section{padding:84px 0 8px}
+  .card{border:1px solid var(--line);background:var(--card);margin-bottom:56px}
+  .card .top{display:grid;grid-template-columns:64px 1fr;gap:20px;padding:26px 26px 0;align-items:start}
+  .card .num{font-family:var(--serif);font-style:italic;font-size:2.2rem;line-height:1;color:var(--accent)}
+  .card .name{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+  .card .name h2{margin:0;font-size:clamp(1.6rem,3.2vw,2.2rem);font-weight:800;letter-spacing:-.03em;line-height:1}
+  .card .name .voice{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--soft);font-weight:600;text-align:right;white-space:nowrap}
+  .card .concept{padding:14px 26px 0 110px;margin:0;font-size:.93rem;color:var(--muted);max-width:72ch}
+  .shot{display:grid;grid-template-columns:1fr;margin-top:22px;position:relative}
+  .shot .main{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .shot .main a{display:block}
+  .shot .main img{width:100%;height:auto;display:block;transition:transform .6s cubic-bezier(.2,.65,.25,1);filter:saturate(.9)}
+  .shot .main a:hover img{transform:scale(1.015);filter:saturate(1)}
+  .shot .tag-main{position:absolute;top:14px;left:14px;background:var(--ink);color:#fff;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;padding:7px 12px}
+  .shot .pair{display:grid;grid-template-columns:1fr auto;gap:0;align-items:center}
+  .shot .pair .mob{border-bottom:1px solid var(--line);overflow:hidden}
+  .shot .pair .mob img{width:180px;height:auto;display:block;max-height:340px;object-fit:cover;object-position:top}
+  .shot .cap{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--soft);font-weight:600;padding:9px 26px;display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--hair)}
+
+  .detail{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line)}
+  .detail>div{padding:20px 22px;border-right:1px solid var(--line)}
+  .detail>div:last-child{border-right:0}
+  .detail .k{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);font-weight:700;margin-bottom:10px}
+  .detail .v{font-size:.83rem;color:var(--ink)}
+  .swatches{display:flex;gap:7px;flex-wrap:wrap}
+  .sw{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:700;letter-spacing:.02em}
+  .sw i{width:20px;height:20px;border:1px solid rgba(0,0,0,.12);border-radius:50%}
+  .detail .risk{font-style:italic;font-family:var(--serif);font-size:.98rem;color:var(--muted)}
+  .cta-row{margin-top:24px;padding:0 26px 26px}
+  .cta{display:inline-flex;align-items:center;gap:12px;background:var(--ink);color:#fff;text-decoration:none;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;padding:15px 22px;transition:background .2s ease}
+  .cta:hover{background:var(--accent)}
+  .cta svg{transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+  .cta:hover svg{transform:translateX(4px)}
+
+  /* How to choose */
+  .howto{border:1px solid var(--line);border-top:2px solid var(--ink);padding:34px 34px 30px;margin:20px 0 90px}
+  .howto h3{margin:0 0 20px;font-size:1.4rem;font-weight:800;letter-spacing:-.025em}
+  .howto .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .howto .ocap{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);font-weight:700;margin-bottom:9px}
+  .howto p{margin:0;font-size:.86rem;color:var(--muted)}
+
+  footer{border-top:1px solid var(--ink);padding:30px 0 48px}
+  footer .row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+  @media (max-width:760px){
+    .card .concept{padding:14px 26px 0}
+    .card .name{flex-direction:column;align-items:flex-start;gap:4px}
+    .shot .pair{grid-template-columns:1fr}
+    .shot .pair .mob{display:none}
+    .detail{grid-template-columns:repeat(2,1fr)}
+    .detail>div{border-right:0;border-bottom:1px solid var(--line)}
+    .detail>div:nth-child(2n){border-left:1px solid var(--line)}
+    .howto .cols{grid-template-columns:1fr}
+  }
+  @media (max-width:480px){
+    .card .top{grid-template-columns:1fr;gap:10px}
+    .detail{grid-template-columns:1fr}
+    .detail>div:nth-child(2n){border-left:0}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{transition:none!important;animation:none!important}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="bar">
+      <a class="back" href="index.html">← Back to the live site</a>
+      <span class="pause">Five directions · choose one</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="intro">
+    <h1>Five ways one site can look<span class="dot">.</span></h1>
+    <p class="lede">Same <b>photos</b>, same <b>copy</b>, same <b>booking form</b> · the exact content and facts currently live on the site, placed into five different committed visual worlds. Each one below carries the full homepage: hero, selected work, services, the 48-hour promise, and a working booking form that still posts to the same inbox.</p>
+    <nav class="contents" aria-label="Jump to a direction">
+      <a href="#d1"><span class="n">01</span><span class="t">PROJECTION</span><span class="m">Dark cinema</span></a>
+      <a href="#d2"><span class="n">02</span><span class="t">CONTACT SHEET</span><span class="m">Analog print</span></a>
+      <a href="#d3"><span class="n">03</span><span class="t">FRONT PAGE</span><span class="m">Newspaper</span></a>
+      <a href="#d4"><span class="n">04</span><span class="t">MARQUEE</span><span class="m">Festival poster</span></a>
+      <a href="#d5"><span class="n">05</span><span class="t">CALL SHEET</span><span class="m">Booking-forward</span></a>
+    </nav>
+  </div>
+
+  <section id="d1">
+    <article class="card">
+      <div class="top">
+        <span class="num" aria-hidden="true">01</span>
+        <div>
+          <div class="name">
+            <h2>PROJECTION</h2>
+            <span class="voice">Inter 900 · caps</span>
+          </div>
+        </div>
+      </div>
+      <div class="shot">
+        <div class="main"><span class="tag-main">Open · iteration-01.html</span><a href="iteration-01.html"><img src="previews/iteration-01-desktop.png" alt="PROJECTION direction preview" loading="lazy"></a></div>
+        <div class="cap"><span>DESKTOP 1440</span><span>live file</span></div>
+      </div>
+      <p class="concept">The reference faithful: the whole page is an end-credit sequence projected in a dark room. Photography full-bleed, type set like film credits, one pulsing REC dot, a film-grain veil. If the priority is "does exactly what denniswebber.com does, but for this photographer's facts" · this is it.</p>
+      <div class="detail">
+        <div><span class="k">Signature move</span><span class="v">Pulsing REC dot + film-grain overlay on the hero</span></div>
+        <div><span class="k">Palette</span><span class="swatches"><span class="sw"><i style="background:#0a0a0b"></i>#0a0a0b</span><span class="sw"><i style="background:#f5f2ec"></i>#f5f2ec</span><span class="sw"><i style="background:#ff2e1a"></i>#ff2e1a</span></span></div>
+        <div><span class="k">Motion</span><span class="v">One hero settle + slow credit pulse; reduced-motion safe</span></div>
+        <div><span class="k">Honest risk</span><span class="risk">The least novel card · it's the incumbent world, sharpened to its full cinematic destination.</span></div>
+      </div>
+      <div class="cta-row"><a class="cta" href="iteration-01.html">Open PROJECTION<svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></div>
+    </article>
+  </section>
+
+  <section id="d2">
+    <article class="card">
+      <div class="top">
+        <span class="num" aria-hidden="true">02</span>
+        <div>
+          <div class="name">
+            <h2>CONTACT SHEET</h2>
+            <span class="voice">Inter + IBM Plex Mono</span>
+          </div>
+        </div>
+      </div>
+      <div class="shot">
+        <div class="main"><span class="tag-main">Open · iteration-02.html</span><a href="iteration-02.html"><img src="previews/iteration-02-desktop.png" alt="CONTACT SHEET direction preview" loading="lazy"></a></div>
+        <div class="cap"><span>DESKTOP 1440</span><span>live file</span></div>
+      </div>
+      <p class="concept">The site as a contact sheet straight from the lab: sprocket holes, monospaced frame labels, a rate card like a lab price list, and the 48-hour promise stamped as a round ink mark. The work literally is the page. Photography stays the hero; print is the world around it.</p>
+      <div class="detail">
+        <div><span class="k">Signature move</span><span class="v">The whole work section built as a proof sheet with a 48h stamp</span></div>
+        <div><span class="k">Palette</span><span class="swatches"><span class="sw"><i style="background:#faf7f1"></i>#faf7f1</span><span class="sw"><i style="background:#24221d"></i>#24221d</span><span class="sw"><i style="background:#a8331c"></i>#a8331c</span></span></div>
+        <div><span class="k">Motion</span><span class="v">Prints "develop" in a staggered sequence on load; reduced-motion safe</span></div>
+        <div><span class="k">Honest risk</span><span class="risk">The strongest motif · needs to keep serving booking at full-site scale, not just the landing.</span></div>
+      </div>
+      <div class="cta-row"><a class="cta" href="iteration-02.html">Open CONTACT SHEET<svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></div>
+    </article>
+  </section>
+
+  <section id="d3">
+    <article class="card">
+      <div class="top">
+        <span class="num" aria-hidden="true">03</span>
+        <div>
+          <div class="name">
+            <h2>FRONT PAGE</h2>
+            <span class="voice">Instrument Serif + Inter</span>
+          </div>
+        </div>
+      </div>
+      <div class="shot">
+        <div class="main"><span class="tag-main">Open · iteration-03.html</span><a href="iteration-03.html"><img src="previews/iteration-03-desktop.png" alt="FRONT PAGE direction preview" loading="lazy"></a></div>
+        <div class="cap"><span>DESKTOP 1440</span><span>live file</span></div>
+      </div>
+      <p class="concept">An editorial broadsheet: framed page, serif masthead, plates with cutlines, dot-leader rate tables, and the booking form as a clip-the-coupon box. The most "print publication" of the five · Washington's photograph of record.</p>
+      <div class="detail">
+        <div><span class="k">Signature move</span><span class="v">The entire page framed as a newspaper with a serif masthead</span></div>
+        <div><span class="k">Palette</span><span class="swatches"><span class="sw"><i style="background:#fdfbf6"></i>#fdfbf6</span><span class="sw"><i style="background:#1c1b18"></i>#1c1b18</span><span class="sw"><i style="background:#a8241c"></i>#a8241c</span></span></div>
+        <div><span class="k">Motion</span><span class="v">Lead plate "inks in" on load; reduced-motion safe</span></div>
+        <div><span class="k">Honest risk</span><span class="risk">Reads furthest from the cinematic reference · it's editorial, not credit-roll.</span></div>
+      </div>
+      <div class="cta-row"><a class="cta" href="iteration-03.html">Open FRONT PAGE<svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></div>
+    </article>
+  </section>
+
+  <section id="d4">
+    <article class="card">
+      <div class="top">
+        <span class="num" aria-hidden="true">04</span>
+        <div>
+          <div class="name">
+            <h2>MARQUEE</h2>
+            <span class="voice">Bebas Neue + Inter</span>
+          </div>
+        </div>
+      </div>
+      <div class="shot">
+        <div class="main"><span class="tag-main">Open · iteration-04.html</span><a href="iteration-04.html"><img src="previews/iteration-04-desktop.png" alt="MARQUEE direction preview" loading="lazy"></a></div>
+        <div class="cap"><span>DESKTOP 1440</span><span>live file</span></div>
+      </div>
+      <p class="concept">Festival-poster loud: poster caps, a red ticker band rolling the service list, work as numbered one-sheets, and prices on a perforated ticket stub. The loudest card by intent · it's the "make this a show" pitch.</p>
+      <div class="detail">
+        <div><span class="k">Signature move</span><span class="v">Scrolling crimson marquee band of every service (pauses for reduced motion)</span></div>
+        <div><span class="k">Palette</span><span class="swatches"><span class="sw"><i style="background:#f1eee6"></i>#f1eee6</span><span class="sw"><i style="background:#0d0c09"></i>#0d0c09</span><span class="sw"><i style="background:#e32017"></i>#e32017</span></span></div>
+        <div><span class="k">Motion</span><span class="v">One authored moment: the marquee roll; everything else still</span></div>
+        <div><span class="k">Honest risk</span><span class="risk">The loudest card · you have to love it. It's a poster, not a whisper.</span></div>
+      </div>
+      <div class="cta-row"><a class="cta" href="iteration-04.html">Open MARQUEE<svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></div>
+    </article>
+  </section>
+
+  <section id="d5">
+    <article class="card">
+      <div class="top">
+        <span class="num" aria-hidden="true">05</span>
+        <div>
+          <div class="name">
+            <h2>CALL SHEET</h2>
+            <span class="voice">Inter</span>
+          </div>
+        </div>
+      </div>
+      <div class="shot">
+        <div class="main"><span class="tag-main">Open · iteration-05.html</span><a href="iteration-05.html"><img src="previews/iteration-05-desktop.png" alt="CALL SHEET direction preview" loading="lazy"></a></div>
+        <div class="cap"><span>DESKTOP 1440</span><span>live file</span></div>
+      </div>
+      <p class="concept">The booking machine: a clear three-step plan (request → reply in a day → gallery in 48h), service cards that fill the form when tapped, and a black quote strip that updates the price as you choose. The quietest card visually, and the one built to convert local business owners fastest.</p>
+      <div class="detail">
+        <div><span class="k">Signature move</span><span class="v">Tap-to-fill session cards + live "your session / price" quote strip</span></div>
+        <div><span class="k">Palette</span><span class="swatches"><span class="sw"><i style="background:#f4f4f0"></i>#f4f4f0</span><span class="sw"><i style="background:#161613"></i>#161613</span><span class="sw"><i style="background:#d8200b"></i>#d8200b</span></span></div>
+        <div><span class="k">Motion</span><span class="v">One load settle; quote strip updates live for every choice</span></div>
+        <div><span class="k">Honest risk</span><span class="risk">The most conventional look · it trades drama for speed and clarity.</span></div>
+      </div>
+      <div class="cta-row"><a class="cta" href="iteration-05.html">Open CALL SHEET<svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></div>
+    </article>
+  </section>
+
+  <section class="howto" aria-label="How to choose">
+    <h3>How to choose<span class="dot" style="color:var(--accent)">.</span></h3>
+    <div class="cols">
+      <div>
+        <div class="ocap">Obey the cinematic brief exactly</div>
+        <p>01 PROJECTION takes the denniswebber reference to its full destination. It's the safe-through-faithful pick.</p>
+      </div>
+      <div>
+        <div class="ocap">Own the photography in a memorable world</div>
+        <p>02 CONTACT SHEET or 03 FRONT PAGE. Both put the photos and the promise front and center, and both would be distinct in any follow-up reel about this site.</p>
+      </div>
+      <div>
+        <div class="ocap">Convert local business owners as fast as possible</div>
+        <p>05 CALL SHEET. The tap-to-fill cards and the live quote make the "book in under a minute" promise literal.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <span class="lbl">Five directions · Cameron Schindler</span>
+      <span class="lbl">Same facts, five films</span>
+      <span class="lbl">© 2026</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

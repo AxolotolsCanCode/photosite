@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cameron Schindler — Portrait & Commercial Photography</title>
+<meta name="description" content="Cameron Schindler, Washington photographer. Portraits, families, sports, real estate, automotive and branded reels — proofs within 48 hours.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fafaf9;
+    --card:#ffffff;
+    --ink:#111111;
+    --muted:#6e6e6e;
+    --line:#d9d9d4;
+    --hair:#eeeeea;
+    --accent:#e3170e;
+    --sans:"Inter",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scrollbar-color:var(--ink) var(--bg)}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  ::selection{background:var(--ink);color:var(--bg)}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .wrap{max-width:1320px;margin:0 auto;padding:0 24px}
+  .mono-label{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+  /* Header */
+  .bar{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:26px 0;border-bottom:1px solid var(--ink)}
+  .wordmark{font-size:19px;font-weight:800;letter-spacing:-.03em;text-decoration:none}
+  .wordmark .sq{display:inline-block;width:12px;height:12px;background:var(--accent);margin-left:6px;vertical-align:2px}
+  .bar nav{display:flex;gap:34px;align-items:center}
+  .bar nav a{font-size:11px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--ink);font-weight:600}
+  .bar nav a:not(.cta):hover{text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
+  .bar nav a.cta{border-bottom:2px solid var(--ink);padding-bottom:3px}
+  .bar nav a.cta:hover{border-color:var(--accent);color:var(--accent)}
+
+  /* Hero */
+  .hero{padding:96px 0 40px}
+  .hero-grid{display:grid;grid-template-columns:1fr 340px;gap:60px;align-items:end}
+  .hero h1{
+    margin:0;font-size:clamp(3rem,8.4vw,7.4rem);font-weight:800;letter-spacing:-.045em;line-height:.96;
+  }
+  .hero .line{display:block}
+  .hero .line:nth-child(2){margin-left:1.6ch}
+  .hero-aside{display:flex;flex-direction:column;gap:18px;padding-bottom:8px}
+  .hero-aside p{margin:0;font-size:.95rem;color:var(--muted);font-weight:400}
+  .hero-aside .link{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--ink);text-decoration:none;border-bottom:2px solid var(--ink);align-self:flex-start;padding-bottom:2px}
+  .hero-aside .link:hover{border-color:var(--accent);color:var(--accent)}
+  .hero-shot{margin-top:64px;aspect-ratio:16/6;position:relative;overflow:hidden;background:var(--card);border:1px solid var(--hair)}
+  .hero-shot img{width:100%;height:100%;object-fit:cover;display:block;animation:settle 1.2s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes settle{from{transform:scale(1.035)}to{transform:scale(1)}}
+
+  /* Section head */
+  section{padding:110px 0}
+  .sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;border-bottom:1px solid var(--ink);padding-bottom:14px;margin-bottom:40px}
+  .sec-head h2{margin:0;font-size:clamp(1.6rem,3.2vw,2.4rem);font-weight:700;letter-spacing:-.03em}
+
+  /* Work grid */
+  .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  .item{min-width:0}
+  .frame{position:relative;overflow:hidden;background:var(--card);border:1px solid var(--hair);aspect-ratio:3/4}
+  .frame img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.65,.25,1)}
+  .item:hover .frame img{transform:scale(1.04)}
+  .item .meta{display:flex;justify-content:space-between;gap:16px;padding-top:12px}
+  .item .meta .t{font-size:13px;font-weight:700;letter-spacing:-.01em}
+  .item .meta .c{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:600;padding-top:2px}
+
+  /* Services index */
+  .index{border-top:1px solid var(--ink)}
+  .index-row{
+    display:grid;grid-template-columns:2fr 1.4fr 160px;gap:26px;align-items:center;
+    padding:26px 0;border-bottom:1px solid var(--line);text-decoration:none;color:inherit;
+  }
+  .index-row .name{font-size:1.35rem;font-weight:700;letter-spacing:-.02em}
+  .index-row .desc{font-size:.88rem;color:var(--muted)}
+  .index-row .from{text-align:right;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .index-row:hover .name{color:var(--accent)}
+  .index-row:hover .from{color:var(--ink)}
+
+  /* Promise */
+  .promise{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+  .promise h2{font-size:clamp(1.8rem,4vw,3rem);font-weight:800;letter-spacing:-.035em;line-height:1.06;margin:0;max-width:18ch}
+  .promise p{font-size:.95rem;color:var(--muted);margin:0;max-width:56ch}
+  .promise .rule{width:44px;height:8px;background:var(--accent);margin-bottom:26px}
+
+  /* Booking */
+  .booking{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+  .book-aside .mono-label{display:block;margin-bottom:18px}
+  .book-aside h2{margin:0 0 14px;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;letter-spacing:-.03em;max-width:16ch}
+  .book-aside .lead{margin:0 0 34px;font-size:.95rem;color:var(--muted);max-width:44ch}
+  .big-mail{font-size:clamp(1.1rem,2.4vw,1.7rem);font-weight:800;letter-spacing:-.03em;text-decoration:none;border-bottom:3px solid var(--ink);display:inline-block;line-height:1.35}
+  .big-mail:hover{border-color:var(--accent);color:var(--accent)}
+  .contact-foot{display:flex;flex-direction:column;gap:22px;margin-top:44px;padding-top:28px;border-top:1px solid var(--hair)}
+  .contact-foot div .mono-label{display:block;margin-bottom:6px}
+  .contact-foot div p{margin:0;font-weight:600;font-size:.92rem}
+  .contact-foot a:hover{color:var(--accent)}
+
+  /* Form */
+  .book-form{padding:44px;background:var(--card);border:1px solid var(--line)}
+  .book-form .form-title{display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-bottom:1px solid var(--ink);padding-bottom:14px;margin-bottom:32px}
+  .book-form .form-title h3{margin:0;font-size:1.25rem;font-weight:700;letter-spacing:-.02em}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .field{margin-bottom:22px}
+  .field label{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:8px}
+  .field label .req{color:var(--accent)}
+  .field input,.field select,.field textarea{
+    width:100%;background:transparent;border:0;border-bottom:1px solid var(--line);
+    padding:10px 0;font:inherit;font-size:.98rem;color:var(--ink);border-radius:0;
+    transition:border-color .2s ease,box-shadow .2s ease;
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{
+    outline:none;border-color:var(--ink);box-shadow:0 1px 0 var(--ink);
+  }
+  .field select{appearance:none;-webkit-appearance:none;cursor:pointer;
+    background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%236e6e6e' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 2px center;
+  }
+  .field select:invalid{color:var(--muted)}
+  .field textarea{min-height:96px;resize:vertical}
+  .field input:focus-visible,.field select:focus-visible,.field textarea:focus-visible{outline:none}
+  input:-webkit-autofill{-webkit-box-shadow:0 0 0 1000px var(--card) inset;-webkit-text-fill-color:var(--ink);caret-color:var(--accent)}
+  input,textarea{caret-color:var(--accent)}
+  .field ::placeholder{color:#b3b3ab}
+  .form-status{min-height:20px;font-size:.86rem;margin:2px 0 14px;color:var(--muted)}
+  .form-status.success{color:#1a7f37;font-weight:600}
+  .form-status.error{color:var(--accent);font-weight:600}
+  .btn{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;
+    padding:17px 22px;background:var(--ink);color:var(--bg);
+    font:inherit;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;
+    border:0;cursor:pointer;text-decoration:none;transition:background .2s ease,color .2s ease;
+  }
+  .btn:hover,.btn:focus-visible{background:var(--accent);color:#fff}
+  .btn .arrow{font-size:16px;line-height:1;transition:transform .25s ease}
+  .btn:hover .arrow{transform:translateX(4px)}
+  .form-guarantee{margin:16px 0 0;font-size:.82rem;color:var(--muted)}
+  .form-guarantee .check{color:var(--accent);font-weight:700}
+
+  /* Contact */
+  .contact .mono-label{display:block;margin-bottom:18px}
+  .contact .big-mail{font-size:clamp(1.6rem,4.4vw,3.4rem);border-bottom:3px solid var(--ink)}
+  .contact .big-mail:hover{border-color:var(--accent);color:var(--accent)}
+
+  /* Footer */
+  .footer{border-top:1px solid var(--ink);padding:34px 0;margin-top:40px}
+  .footer .row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .footer .giant{font-size:clamp(2.6rem,9vw,7rem);font-weight:900;letter-spacing:-.05em;margin:0 0 18px;line-height:.94}
+  .footer .giant .sq{display:inline-block;width:.12em;height:.12em;background:var(--accent);margin-left:.04em;border-radius:50%;vertical-align:.02em}
+
+  /* Style switcher */
+  .views{
+    position:fixed;left:18px;bottom:18px;z-index:60;display:flex;gap:2px;padding:5px;
+    background:rgba(255,255,255,.95);border:1px solid var(--ink);font-size:11px;letter-spacing:.12em;
+  }
+  .views a{color:var(--muted);text-decoration:none;padding:7px 11px;font-weight:600}
+  .views a:hover,.views a[aria-current="page"]{background:var(--ink);color:var(--bg)}
+
+  @media (max-width:1000px){
+    .booking{grid-template-columns:1fr;gap:44px}
+  }
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:28px}
+    .hero-shot{aspect-ratio:16/9}
+    .work-grid{grid-template-columns:repeat(2,1fr)}
+    .index-row{grid-template-columns:1fr;gap:6px}
+    .index-row .from{text-align:left}
+    .promise{grid-template-columns:1fr;gap:22px}
+    .bar{padding:18px 0}
+    .bar nav{display:none}
+    .book-form{padding:30px 22px}
+  }
+  @media (max-width:540px){.work-grid{grid-template-columns:1fr}.field-row{grid-template-columns:1fr}}
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+  }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <div class="bar">
+    <a class="wordmark" href="#top">Cameron Schindler<span class="sq"></span></a>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#booking">Contact</a>
+      <a class="cta" href="#booking">Book a date</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero" id="top">
+    <div class="hero-grid">
+      <h1><span class="line">Photographer.</span><span class="line">Washington.</span></h1>
+      <div class="hero-aside">
+        <p>Portraits, families, sports, real estate and branded reels. On location across Washington — from a business shoot to a Sunday in the park.</p>
+        <a class="link" href="#booking">Request a date</a>
+      </div>
+    </div>
+    <div class="hero-shot" role="img" aria-label="Recent session photography by Cameron Schindler">
+      <img src="DSC_2244-Edit.jpg" alt="Recent session photography by Cameron Schindler" fetchpriority="high" decoding="async" width="6000" height="4000">
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="sec-head">
+      <h2>Selected work</h2>
+      <span class="mono-label">Portrait · landscape · sports · wildlife · automotive · events</span>
+    </div>
+    <div class="work-grid">
+      <div class="item">
+        <div class="frame"><img src="DSC_2452.jpg" alt="Baby at six months — portrait session" loading="lazy" decoding="async" width="4000" height="6000"></div>
+        <div class="meta"><span class="t">Six months</span><span class="c">Portrait</span></div>
+      </div>
+      <div class="item">
+        <div class="frame"><img src="DSC_1522-Enhanced-NR.jpg" alt="Seattle Space Needle — landscape photography" loading="lazy" decoding="async" width="3563" height="5344"></div>
+        <div class="meta"><span class="t">Space Needle</span><span class="c">Landscape</span></div>
+      </div>
+      <div class="item">
+        <div class="frame"><img src="Z62_0078-Enhanced-NR.jpg" alt="Basketball action — sports photography" loading="lazy" decoding="async" width="4024" height="6048"></div>
+        <div class="meta"><span class="t">Basketball</span><span class="c">Sports</span></div>
+      </div>
+      <div class="item">
+        <div class="frame"><img src="DSC_4057.jpg" alt="Flamingo — wildlife photography" loading="lazy" decoding="async" width="3879" height="5818"></div>
+        <div class="meta"><span class="t">Flamingo</span><span class="c">Wildlife</span></div>
+      </div>
+      <div class="item">
+        <div class="frame"><img src="IMG_6940-Enhanced-NR.jpg" alt="Car session — automotive photography" loading="lazy" decoding="async" width="3456" height="5184"></div>
+        <div class="meta"><span class="t">Car session</span><span class="c">Automotive</span></div>
+      </div>
+      <div class="item">
+        <div class="frame"><img src="IMG_3874-Enhanced.png.jpg" alt="Fireworks — event photography" loading="lazy" decoding="async" width="3257" height="4886"></div>
+        <div class="meta"><span class="t">Fireworks</span><span class="c">Events</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" style="padding-top:0">
+    <div class="sec-head">
+      <h2>Services</h2>
+      <span class="mono-label">Starting point pricing</span>
+    </div>
+    <div class="index">
+      <a class="index-row" href="#booking">
+        <div class="name">Portraits &amp; families</div>
+        <div class="desc">No stiff poses, no assembly line. Relaxed sessions on location.</div>
+        <div class="from">From $50</div>
+      </a>
+      <a class="index-row" href="#booking">
+        <div class="name">Sports &amp; athletes</div>
+        <div class="desc">Mid-match energy, built to be posted the same night.</div>
+        <div class="from">From $50</div>
+      </a>
+      <a class="index-row" href="#booking">
+        <div class="name">Real estate</div>
+        <div class="desc">Interiors, exteriors and lots that make the listing look lived-in.</div>
+        <div class="from">From $80</div>
+      </a>
+      <a class="index-row" href="#booking">
+        <div class="name">Automotive</div>
+        <div class="desc">Showroom gloss and gravel-road grit for dealers and owners.</div>
+        <div class="from">From $65</div>
+      </a>
+      <a class="index-row" href="#booking">
+        <div class="name">Reels &amp; events</div>
+        <div class="desc">Short-form video and event coverage made for social.</div>
+        <div class="from">From $35</div>
+      </a>
+    </div>
+  </section>
+
+  <section id="promise" style="border-top:1px solid var(--line)">
+    <div class="promise">
+      <div>
+        <div class="rule"></div>
+        <h2>Proofs in your inbox within 48 hours.</h2>
+      </div>
+      <p>That turnaround is the standard the business is built on, not a promise reserved for good days. Replies to booking requests land within a day. And if you're not thrilled with the result, we re-shoot or you don't pay.</p>
+    </div>
+  </section>
+
+  <section id="booking" style="border-top:1px solid var(--line)">
+    <div class="sec-head">
+      <h2>Book a session</h2>
+      <span class="mono-label">Reply within 24 hours · No payment until we confirm</span>
+    </div>
+    <div class="booking">
+      <div class="book-aside">
+        <p class="lead">Tell me what you have in mind — game day, graduation, family photos at the park. The request lands straight in my inbox and a reply is on its way within a day.</p>
+        <a class="big-mail" href="mailto:cameronjschindler@gmail.com">cameronjschindler@gmail.com</a>
+        <div class="contact-foot">
+          <div>
+            <span class="mono-label">Location</span>
+            <p>Auburn · Seattle · Tri-Cities</p>
+          </div>
+          <div>
+            <span class="mono-label">Instagram</span>
+            <p><a href="https://instagram.com/schindler_cameron" target="_blank" rel="noopener" style="text-decoration:none;border-bottom:1px solid var(--ink)">@schindler_cameron</a></p>
+          </div>
+        </div>
+      </div>
+
+      <form class="book-form" id="bookingForm" novalidate>
+        <div class="form-title">
+          <h3>Request your date</h3>
+          <span class="mono-label">Form</span>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="firstName">First name <span class="req">*</span></label>
+            <input type="text" id="firstName" name="firstName" placeholder="Jane" required autocomplete="given-name">
+          </div>
+          <div class="field">
+            <label for="lastName">Last name <span class="req">*</span></label>
+            <input type="text" id="lastName" name="lastName" placeholder="Smith" required autocomplete="family-name">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="email">Email <span class="req">*</span></label>
+            <input type="email" id="email" name="email" placeholder="jane@example.com" required autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" autocomplete="tel" maxlength="14">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="sessionType">Type of shoot <span class="req">*</span></label>
+            <select id="sessionType" name="sessionType" required>
+              <option value="" disabled selected>Select a session…</option>
+              <option value="Portrait / Family — from $50">Portrait / Family — from $50</option>
+              <option value="Sports — from $50">Sports — from $50</option>
+              <option value="Events — from $75">Events — from $75</option>
+              <option value="Single Reel — from $35">Single reel — from $35</option>
+              <option value="Reels Bundle — $240">Reels bundle — $240</option>
+              <option value="Real estate — from $80">Real estate — from $80</option>
+              <option value="Automotive — from $65">Automotive — from $65</option>
+              <option value="Custom / Other">Custom / not sure yet</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="date">Preferred date</label>
+            <input type="date" id="date" name="date">
+          </div>
+        </div>
+        <div class="field">
+          <label for="message">Tell me about it</label>
+          <textarea id="message" name="message" placeholder="Game day? Graduation? Family photos at the park? Any details help…"></textarea>
+        </div>
+
+        <div class="form-status" id="formStatus" aria-live="polite"></div>
+        <button type="submit" class="btn">
+          <span id="submitLabel">Request my date</span>
+          <span class="arrow" aria-hidden="true">→</span>
+        </button>
+        <p class="form-guarantee"><span class="check">✓</span>Reply within 24 hours · No payment until we confirm</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p class="giant">Cameron&nbsp;Schindler<span class="sq"></span></p>
+    <div class="row">
+      <span class="mono-label">Photography · Washington</span>
+      <span class="mono-label">Proofs in 48 hours</span>
+      <span class="mono-label">© 2026</span>
+    </div>
+  </div>
+</footer>
+
+<nav class="views" aria-label="Switch portfolio style">
+  <a href="style-1-cinematic.html">1 Cinematic</a>
+  <a href="style-2-minimal.html" aria-current="page">2 Minimal</a>
+  <a href="style-3-magazine.html">3 Magazine</a>
+  <a href="style-4-brutalist.html">4 Raw</a>
+  <a href="style-5-boutique.html">5 Soft</a>
+</nav>
+
+<script>
+/* ── BOOKING FORM ──────────────────────────────────────────────── */
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyTZOWLxgIxKyQYCAc2fysuMlilz_B-6i2RJDdzKkKWGdm9VkEkEKgykZ7nsDzA3Q1sOQ/exec';
+const form        = document.getElementById('bookingForm');
+const submitLabel = document.getElementById('submitLabel');
+const formStatus  = document.getElementById('formStatus');
+
+document.getElementById('phone').addEventListener('input', function (e) {
+  let val = e.target.value.replace(/\D/g, '').slice(0, 10);
+  if (val.length >= 6)       val = '(' + val.slice(0,3) + ') ' + val.slice(3,6) + '-' + val.slice(6);
+  else if (val.length >= 3)  val = '(' + val.slice(0,3) + ') ' + val.slice(3);
+  else if (val.length > 0)   val = '(' + val;
+  e.target.value = val;
+});
+
+form.addEventListener('submit', async function (e) {
+  e.preventDefault();
+  formStatus.className = 'form-status';
+
+  const firstName = this.firstName.value.trim();
+  const lastName  = this.lastName.value.trim();
+  const email     = this.email.value.trim();
+  const session   = this.sessionType.value;
+
+  if (!firstName || !lastName || !email) {
+    formStatus.textContent = 'Please add your name and email so I can reply.';
+    formStatus.className = 'form-status error';
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    formStatus.textContent = 'That email doesn\'t look right — mind double-checking?';
+    formStatus.className = 'form-status error';
+    return;
+  }
+  if (!session) {
+    formStatus.textContent = 'Pick a type of shoot so I can quote you properly.';
+    formStatus.className = 'form-status error';
+    return;
+  }
+
+  submitLabel.textContent = 'Sending request…';
+
+  const data = {
+    firstName, lastName, email,
+    phone:       this.phone.value.trim(),
+    sessionType: session,
+    date:        this.date.value,
+    message:     this.message.value.trim()
+  };
+
+  if (GOOGLE_SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL') {
+    formStatus.textContent = 'The form isn\'t wired up yet — email me directly instead.';
+    formStatus.className = 'form-status error';
+    submitLabel.textContent = 'Request my date';
+    return;
+  }
+
+  try {
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    formStatus.textContent = '✓ Request received! I\'ll confirm your date within 24 hours.';
+    formStatus.className = 'form-status success';
+    form.reset();
+    submitLabel.textContent = 'Request my date';
+  } catch (err) {
+    formStatus.textContent = 'Something went wrong — please email me directly and I\'ll sort it.';
+    formStatus.className = 'form-status error';
+    submitLabel.textContent = 'Request my date';
+  }
+});
+</script>
+</body>
+</html>
