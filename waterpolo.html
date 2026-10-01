@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#16120e">
+<meta name="description" content="Water polo senior night gallery by Cameron Schindler. Every photo is available for purchase as a digital download.">
+<title>Water Polo Senior Night — Cameron Schindler</title>
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+
+<style>
+/* ─── RESET & TOKENS ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+:root {
+  --paper:      #f4ede0;
+  --paper-deep: #1d1812;
+  --ink:        #f4ede0;
+  --ink-soft:   #e8e0d0;
+  --muted:      rgba(244,237,226,.66);
+  --faint:      rgba(244,237,226,.5);
+  --hairline:   rgba(244,237,226,.14);
+  --accent:     #7c8b60;
+  --accent-deep:#8a9a6e;
+  --accent-ink: #11140b;
+  --bg:         #16120e;
+  --dark:       #0e0c0a;
+  --dark-soft:  #201b16;
+  --r: 16px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Instrument Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 360;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+a { color: inherit; text-decoration: none; }
+
+.label {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: .74rem; font-weight: 500;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: var(--muted);
+}
+.label.accent { color: var(--accent); }
+
+/* ─── PURCHASE BANNER ─── */
+.purchase-banner {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: var(--dark); color: var(--paper);
+  padding: 11px clamp(16px, 4vw, 32px);
+  display: flex; align-items: center; gap: 14px; justify-content: center;
+  flex-wrap: wrap; border-bottom: 1px solid rgba(244,237,226,.08);
+}
+.banner-brand { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 520; color: var(--paper); letter-spacing: 0; }
+.banner-brand .dot { color: var(--accent); }
+.purchase-banner-text {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: .72rem; font-weight: 400; letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(244,237,226,.64); text-align: center; line-height: 1.6;
+}
+.purchase-banner-text strong { font-weight: 500; color: var(--paper); }
+.banner-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: .72rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
+  padding: 9px 16px; border-radius: var(--r); cursor: pointer; flex-shrink: 0;
+  transition: background .25s, border-color .25s, color .25s;
+}
+.banner-btn-primary { background: var(--accent); color: var(--accent-ink); border: 1px solid var(--accent); }
+.banner-btn-primary:hover { background: var(--accent-deep); }
+.banner-btn-ghost { background: transparent; color: var(--paper); border: 1px solid rgba(244,237,226,.26); }
+.banner-btn-ghost:hover { background: var(--paper); color: var(--dark); border-color: var(--paper); }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 46px; left: 0; right: 0; z-index: 100;
+  background: rgba(22,18,14,.85);
+  -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--hairline);
+}
+nav .nav-inner {
+  max-width: 1480px; margin: 0 auto;
+  padding: 13px clamp(16px, 4vw, 32px);
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+}
+.nav-logo { font-family: 'Fraunces', serif; font-size: 1.18rem; font-weight: 580; letter-spacing: -.01em; }
+.nav-logo .dot { color: var(--accent); }
+.nav-back {
+  font-family: 'Instrument Sans', sans-serif; font-size: .72rem; font-weight: 500;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--accent-deep);
+  display: inline-flex; align-items: center; gap: 8px; padding: 6px 0;
+  transition: color .25s;
+}
+.nav-back:hover { color: var(--paper); }
+.nav-back::before { content: ''; display: inline-block; width: 18px; height: 1px; background: var(--accent-deep); transition: transform .25s; }
+.nav-back:hover::before { transform: translateX(-3px); }
+
+/* ─── PAGE INTRO ─── */
+.page-intro { padding: calc(46px + 64px) clamp(20px, 5vw, 48px) 0; text-align: center; }
+.page-intro .label { display: block; margin-bottom: 18px; }
+.page-intro .label::before { content: ''; display: block; width: 44px; height: 1px; background: var(--accent); margin: 0 auto 16px; }
+.page-intro h1 {
+  font-family: 'Fraunces', serif; font-weight: 520;
+  font-size: clamp(2.4rem, 8vw, 4.2rem); line-height: 1.02; letter-spacing: -.01em;
+}
+.page-intro h1 em { font-style: italic; color: var(--muted); font-weight: 340; }
+.page-intro p {
+  margin: 18px auto 0; max-width: 620px;
+  color: var(--muted); font-weight: 360; font-size: clamp(1rem, 1.7vw, 1.14rem); line-height: 1.66;
+}
+.gallery-count {
+  font-family: 'Instrument Sans', sans-serif; font-size: .72rem; font-weight: 500;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--muted);
+  margin: 22px 0 34px; text-align: center;
+}
+
+/* ─── GALLERY GRID ─── */
+.gallery-section { padding: 0 20px 60px; max-width: 1480px; margin: 0 auto; width: 100%; }
+.gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+
+.photo-card {
+  position: relative; border-radius: var(--r); overflow: hidden;
+  cursor: pointer; background: var(--paper-deep);
+  aspect-ratio: 2/3; display: block;
+}
+.photo-card img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .6s cubic-bezier(.22,.61,.36,1), opacity .3s;
+  opacity: 0;
+}
+.photo-card img.loaded { opacity: 1; }
+.photo-card:hover img, .photo-card:focus img { transform: scale(1.05); }
+
+.photo-number {
+  position: absolute; bottom: 10px; left: 10px; z-index: 2; pointer-events: none;
+  background: rgba(22,18,14,.72); color: var(--paper);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  font-family: 'Instrument Sans', sans-serif; font-size: .72rem; font-weight: 500; letter-spacing: .12em;
+  padding: 5px 11px; border-radius: 999px;
+}
+
+.photo-hover-overlay {
+  position: absolute; inset: 0; z-index: 3;
+  background: rgba(23,20,16,.3);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity .3s;
+}
+.photo-card:hover .photo-hover-overlay, .photo-card:focus .photo-hover-overlay { opacity: 1; }
+.photo-hover-overlay span {
+  font-family: 'Instrument Sans', sans-serif; font-size: .7rem; font-weight: 500;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--paper);
+  border: 1px solid rgba(244,237,226,.6); padding: 8px 18px; border-radius: 999px;
+  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+}
+
+/* skeleton loader */
+.photo-card::after {
+  content: ''; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(90deg, #1b1711 25%, #241f17 50%, #1b1711 75%);
+  background-size: 200% 100%; animation: shimmer 1.5s infinite;
+  transition: opacity .3s;
+}
+.photo-card.img-loaded::after { opacity: 0; pointer-events: none; }
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+/* ─── LIGHTBOX ─── */
+.lightbox {
+  position: fixed; inset: 0; z-index: 500; background: rgba(23,20,16,.97);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity .3s;
+  padding: 20px; padding-top: max(20px, env(safe-area-inset-top)); padding-bottom: max(20px, env(safe-area-inset-bottom));
+}
+.lightbox.open { opacity: 1; pointer-events: auto; }
+.lightbox-inner { position: relative; display: flex; flex-direction: column; align-items: center; gap: 20px; max-width: 900px; width: 100%; max-height: 100%; }
+.lightbox-img-wrap { position: relative; max-height: calc(100svh - 230px); display: flex; align-items: center; }
+.lightbox-img-wrap img { max-width: 100%; max-height: calc(100svh - 230px); object-fit: contain; border-radius: var(--r); display: block; box-shadow: 0 30px 80px rgba(0,0,0,.5); }
+.lightbox-badge {
+  position: absolute; top: 14px; left: 14px;
+  background: rgba(22,18,14,.78); color: var(--paper);
+  font-family: 'Fraunces', serif; font-size: 1.15rem; font-weight: 520; letter-spacing: .04em;
+  padding: 4px 14px; border-radius: 999px;
+}
+.lightbox-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.lb-btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px;
+  font-family: 'Instrument Sans', sans-serif; font-size: .72rem; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase; border-radius: var(--r);
+  cursor: pointer; transition: background .25s, border-color .25s, color .25s, transform .15s;
+  text-decoration: none;
+}
+.lb-btn:active { transform: scale(.97); }
+.lb-btn-primary { background: var(--accent); color: var(--accent-ink); border: 1px solid var(--accent); }
+.lb-btn-primary:hover { background: var(--accent-deep); }
+.lb-btn-secondary { background: transparent; color: var(--paper); border: 1px solid rgba(244,237,226,.28); }
+.lb-btn-secondary:hover { border-color: rgba(244,237,226,.6); }
+.lb-btn-close { background: transparent; color: rgba(244,237,226,.64); border: 1px solid rgba(244,237,226,.16); min-width: 48px; padding: 13px 14px; justify-content: center; }
+.lb-btn-close:hover { color: var(--paper); border-color: rgba(244,237,226,.35); }
+
+.lb-arrow {
+  position: fixed; top: 50%; transform: translateY(-50%); z-index: 510;
+  background: rgba(23,20,16,.6); border: 1px solid rgba(244,237,226,.16); color: var(--paper);
+  font-size: 1.3rem; width: 50px; height: 68px;
+  display: flex; align-items: center; justify-content: center; cursor: pointer; border-radius: var(--r);
+  transition: background .25s, border-color .25s;
+  -webkit-tap-highlight-color: transparent;
+}
+.lb-arrow:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.lb-arrow-prev { left: 10px; }
+.lb-arrow-next { right: 10px; }
+
+.copy-toast {
+  position: fixed; bottom: 40px; left: 50%; z-index: 600;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--accent); color: var(--accent-ink);
+  font-family: 'Instrument Sans', sans-serif; font-size: .72rem; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase;
+  padding: 11px 22px; border-radius: 999px;
+  opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; white-space: nowrap;
+}
+.copy-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ─── EMPTY STATE ─── */
+.empty-state { text-align: center; padding: 80px 24px; grid-column: 1 / -1; }
+.empty-state .label { margin-top: 12px; display: block; }
+.empty-state code { color: var(--accent-deep); font-size: .85em; }
+
+/* ─── CREDIT STRIP ─── */
+.credit-strip {
+  margin-top: auto; flex-shrink: 0;
+  border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);
+  background: var(--paper-deep);
+  padding: clamp(20px, 3.4vw, 30px) 24px;
+  display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.credit-strip span {
+  font-family: 'Instrument Sans', sans-serif; font-size: .7rem; font-weight: 400;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+}
+.credit-strip b { color: var(--paper); font-weight: 500; }
+.credit-strip .sep { color: var(--faint); }
+
+/* ─── FOOTER ─── */
+footer { background: var(--bg); border-top: 1px solid var(--hairline); padding: clamp(24px, 4vw, 40px) 24px; }
+.footer-inner { max-width: 1480px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+footer .logo { font-family: 'Fraunces', serif; font-size: 1.18rem; font-weight: 580; letter-spacing: -.01em; }
+footer .logo .dot { color: var(--accent); }
+footer p { font-family: 'Instrument Sans', sans-serif; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); }
+.social-links { display: flex; gap: 22px; list-style: none; }
+.social-links a { font-family: 'Instrument Sans', sans-serif; font-size: .7rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); transition: color .25s; }
+.social-links a:hover { color: var(--accent-deep); }
+
+/* ─── RESPONSIVE ─── */
+@media (min-width: 600px) {
+  .purchase-banner { padding: 13px 32px; }
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+}
+@media (min-width: 900px) {
+  .gallery-grid { grid-template-columns: repeat(4, 1fr); gap: 14px; }
+}
+@media (min-width: 1200px) {
+  .gallery-grid { grid-template-columns: repeat(5, 1fr); }
+}
+@media (min-width: 900px) and (max-width: 1199px) {
+  .gallery-grid .photo-card:nth-child(10n + 2),
+  .gallery-grid .photo-card:nth-child(10n + 7) { grid-column: span 2; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- STICKY PURCHASE BANNER -->
+<div class="purchase-banner">
+  <span class="banner-brand">Water Polo Senior Night<span class="dot">.</span></span>
+  <p class="purchase-banner-text">
+    Every photo is available as a digital download — email <strong>cameronjschindler@gmail.com</strong> or DM
+    <strong>@schindler_cameron</strong> and include the <strong>photo number</strong>.
+  </p>
+  <a href="mailto:cameronjschindler@gmail.com?subject=Water Polo Photo Purchase" class="banner-btn banner-btn-primary">Email Me</a>
+  <a href="https://www.instagram.com/schindler_cameron/" target="_blank" class="banner-btn banner-btn-ghost" rel="noopener">Instagram</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Cameron Schindler<span class="dot">.</span></a>
+    <a href="/" class="nav-back">Home</a>
+  </div>
+</nav>
+
+<!-- PAGE INTRO -->
+<section class="page-intro">
+  <span class="label accent">Water Polo · Senior Night</span>
+  <h1>Senior <em>Night</em></h1>
+  <p>Seniors, this one is yours. Every photo below is available to purchase — view them full screen, note the numbers, and reach out.</p>
+  <p class="gallery-count" id="gallery-count"></p>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section">
+  <div class="gallery-grid" id="gallery-grid"></div>
+</section>
+
+<!-- CREDIT STRIP -->
+<div class="credit-strip">
+  <span><b>Water Polo Senior Night</b></span>
+  <span class="sep">·</span>
+  <span>Senior night gallery</span>
+  <span class="sep">·</span>
+  <span>Digital downloads available</span>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span class="logo">Cameron Schindler<span class="dot">.</span></span>
+    <p>© 2026 Cameron Schindler. All photos reserved.</p>
+    <ul class="social-links">
+      <li><a href="https://www.instagram.com/schindler_cameron/" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a href="mailto:cameronjschindler@gmail.com">Email</a></li>
+    </ul>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lb-arrow lb-arrow-prev" id="lb-prev" aria-label="Previous photo">&#8592;</button>
+  <button class="lb-arrow lb-arrow-next" id="lb-next" aria-label="Next photo">&#8594;</button>
+
+  <div class="lightbox-inner">
+    <div class="lightbox-img-wrap">
+      <img id="lb-img" alt="Selected photo">
+      <div class="lightbox-badge" id="lb-badge">#001</div>
+    </div>
+
+    <div class="lightbox-actions">
+      <a href="#" id="lb-purchase-btn" class="lb-btn lb-btn-primary">Purchase Photo</a>
+      <button id="lb-copy-btn" class="lb-btn lb-btn-secondary">Copy Number</button>
+      <button id="lb-close" class="lb-btn lb-btn-close" aria-label="Close">&#10005;</button>
+    </div>
+  </div>
+</div>
+
+<!-- COPY TOAST -->
+<div class="copy-toast" id="copy-toast">Copied!</div>
+
+<script>
+const WATERPOLO_PHOTOS = [
+  "Z62_2454.jpg",
+  "Z62_2465.jpg",
+  "Z62_2480.jpg",
+  "Z62_2497.jpg",
+  "Z62_2507.jpg",
+  "Z62_2563.jpg",
+  "Z62_2572.jpg",
+  "Z62_2608.jpg",
+  "Z62_2611-Enhanced-NR.jpg",
+  "Z62_2658.jpg",
+  "Z62_2674.jpg",
+  "Z62_2697.jpg",
+  "Z62_2708.jpg",
+  "Z62_2746-Enhanced-NR.jpg",
+  "Z62_2823.jpg",
+  "Z62_2926.jpg",
+  "Z62_2936.jpg",
+  "Z62_2950.jpg",
+  "Z62_2966.jpg",
+  "Z62_2982.jpg",
+  "Z62_2993.jpg",
+  "Z62_3002.jpg",
+  "Z62_3004.jpg",
+];
+
+const FOLDER_GRID = "waterpolo/grid/";
+const FOLDER_FULL = "waterpolo/full/";
+const EMAIL  = "cameronjschindler@gmail.com";
+const INSTA  = "https://www.instagram.com/schindler_cameron/";
+
+/* ─── BUILD GRID ─── */
+const grid        = document.getElementById("gallery-grid");
+const countEl     = document.getElementById("gallery-count");
+const lightbox    = document.getElementById("lightbox");
+const lbImg       = document.getElementById("lb-img");
+const lbBadge     = document.getElementById("lb-badge");
+const lbPurchase  = document.getElementById("lb-purchase-btn");
+const lbCopy      = document.getElementById("lb-copy-btn");
+const lbClose     = document.getElementById("lb-close");
+const lbPrev      = document.getElementById("lb-prev");
+const lbNext      = document.getElementById("lb-next");
+const toast       = document.getElementById("copy-toast");
+
+let currentIndex = 0;
+
+if (WATERPOLO_PHOTOS.length === 0) {
+  grid.innerHTML = `
+    <div class="empty-state">
+      <p class="label">Photos coming soon — check back shortly!</p>
+      <p class="label">Developers: add filenames to <code>WATERPOLO_PHOTOS</code> in the script.</p>
+    </div>`;
+  countEl.textContent = "";
+} else {
+  countEl.textContent = `${WATERPOLO_PHOTOS.length} photo${WATERPOLO_PHOTOS.length !== 1 ? "s" : ""} · all available for purchase`;
+
+  WATERPOLO_PHOTOS.forEach((filename, i) => {
+    const num  = String(i + 1).padStart(3, "0");
+    const card = document.createElement("div");
+    card.className = "photo-card";
+    card.setAttribute("role", "button");
+    card.setAttribute("tabindex", "0");
+    card.setAttribute("aria-label", `Open photo #${num}`);
+
+    const img = document.createElement("img");
+    img.dataset.src = FOLDER_GRID + filename;
+    img.alt = `Water polo senior night photo #${num}`;
+    img.decoding = "async";
+    img.addEventListener("load", () => {
+      img.classList.add("loaded");
+      card.classList.add("img-loaded");
+    });
+    img.addEventListener("error", () => {
+      card.classList.add("img-loaded");
+      img.style.display = "none";
+    });
+
+    const badge = document.createElement("div");
+    badge.className = "photo-number";
+    badge.textContent = `#${num}`;
+
+    const overlay = document.createElement("div");
+    overlay.className = "photo-hover-overlay";
+    overlay.innerHTML = `<span>View Full Size</span>`;
+
+    card.appendChild(img);
+    card.appendChild(badge);
+    card.appendChild(overlay);
+    grid.appendChild(card);
+
+    const openLightbox = () => openAt(i);
+    card.addEventListener("click", openLightbox);
+    card.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") openLightbox(); });
+  });
+}
+
+/* ─── LAZY LOAD via IntersectionObserver ─── */
+const lazyObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const img = entry.target.querySelector("img[data-src]");
+    if (img) {
+      img.src = img.dataset.src;
+      delete img.dataset.src;
+    }
+    lazyObserver.unobserve(entry.target);
+  });
+}, { rootMargin: "200px 0px" });
+
+document.querySelectorAll(".photo-card").forEach(card => lazyObserver.observe(card));
+
+/* ─── LIGHTBOX LOGIC ─── */
+function padNum(n) { return String(n + 1).padStart(3, "0"); }
+
+function openAt(index) {
+  currentIndex = index;
+  const filename = WATERPOLO_PHOTOS[index];
+  const num = padNum(index);
+
+  lbImg.src = FOLDER_FULL + filename;
+  lbImg.alt = `Water polo senior night photo #${num}`;
+  lbBadge.textContent = `#${num}`;
+  lbPurchase.href = `mailto:${EMAIL}?subject=Water Polo Photo Purchase — %23${num}&body=Hi Cameron,%0A%0AI'd love to purchase photo %23${num} from your water polo senior night gallery.%0A%0APlease let me know the pricing and next steps. Thanks!`;
+
+  lightbox.classList.add("open");
+  document.body.style.overflow = "hidden";
+  lbImg.focus();
+}
+
+function closeLightbox() {
+  lightbox.classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function navigate(dir) {
+  const count = WATERPOLO_PHOTOS.length;
+  currentIndex = (currentIndex + dir + count) % count;
+  openAt(currentIndex);
+}
+
+lbClose.addEventListener("click", closeLightbox);
+lbPrev.addEventListener("click", () => navigate(-1));
+lbNext.addEventListener("click", () => navigate(1));
+
+lightbox.addEventListener("click", e => {
+  if (e.target === lightbox) closeLightbox();
+});
+
+document.addEventListener("keydown", e => {
+  if (!lightbox.classList.contains("open")) return;
+  if (e.key === "Escape")      closeLightbox();
+  if (e.key === "ArrowLeft")   navigate(-1);
+  if (e.key === "ArrowRight")  navigate(1);
+});
+
+/* ─── COPY BUTTON ─── */
+lbCopy.addEventListener("click", () => {
+  const num = padNum(currentIndex);
+  navigator.clipboard.writeText(`#${num}`).catch(() => {});
+  toast.textContent = `#${num} copied`;
+  toast.classList.add("show");
+  clearTimeout(lbCopy._timer);
+  lbCopy._timer = setTimeout(() => toast.classList.remove("show"), 2000);
+});
+
+/* ─── SWIPE SUPPORT (mobile) ─── */
+let touchStartX = 0;
+lightbox.addEventListener("touchstart", e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+lightbox.addEventListener("touchend", e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) > 60) navigate(dx < 0 ? 1 : -1);
+}, { passive: true });
+</script>
+
+</body>
+</html>
